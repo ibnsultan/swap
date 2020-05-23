@@ -18,7 +18,7 @@ For developers to get started with this project, you'll need to create a local c
 
 Run the following in your terminal:
 ```
- git clone https://github.com/ibnsultan003/
+ git clone https://github.com/ibnsultan003/Swap
 ```
 
 Then change into the local directory, run the following in your terminal:
