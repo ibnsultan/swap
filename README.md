@@ -83,5 +83,5 @@ npm test
 ```
 
 ## Author
-- Abdulbasit Rubeiyya- @edtech
+- Abdulbasit Rubeiyya- @ibnsultan003
 
