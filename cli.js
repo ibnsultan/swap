@@ -8,9 +8,9 @@ const commander = require("commander");
 commander.on("--help", function () {
     console.log("");
     console.log("Examples:");
-    console.log("  $ yorl test.yl");
-    console.log("  $ yorl -h");
-    console.log("  $ yorl -v");
+    console.log("  $ swap test.yl");
+    console.log("  $ swap -h");
+    console.log("  $ swap -v");
 });
 
 commander.version(packageJson.version, "-v, --version");

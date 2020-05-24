@@ -1,8 +1,8 @@
 {
   "name": "swapro",
-  "version": "1.0.0",
-  "description": "Programming Lamguage that allows programmers to code in Swahili Language construct",
-  "main": "./cli.js",
+  "version": "1.0.2",
+  "description": "Swahili Programming Language",
+  "main": "cli.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
@@ -15,8 +15,11 @@
   "keywords": [
     "swap"
   ],
-  "author": "Abdulbasit S Rubeyya",
+  "author": "Abdulbasit S Rubeiyya",
   "license": "MIT",
+  "bin": {
+    "swap": "cli.js"
+  },
   "bugs": {
     "url": "https://github.com/ibnsultan/Swap/issues"
   },

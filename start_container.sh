@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE_NAME="yorlang_playground"
+IMAGE_NAME="swapro_playground"
 
 ROOT="$( pwd )"
 
