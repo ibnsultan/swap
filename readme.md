@@ -8,7 +8,7 @@
 - Conditionals & Loops
 - Functions & Arrays
 
-For the full documentation showcasing examples and language use, visit the [Website](https://anoniscoding.github.io/yorlang/).
+For the full documentation showcasing examples and language use, visit the [Website](http://swap.edtech.co.tz
 
 This project assumes you have [Git](https://git-scm.com/downloads) installed.
 
@@ -17,12 +17,7 @@ For developers to get started with this project, you'll need to create a local c
 
 Run the following in your terminal:
 ```
- git clone https://github.com/ibnsultan003/
-```
-
-Then change into the local directory, run the following in your terminal:
-```
-cd yorlang
+ git clone https://github.com/ibnsultan/Swap
 ```
 
 
@@ -57,19 +52,21 @@ You should get something like ``v8.9.4``
 #### Install Node.js Modules
 To install all dependencies, run the following in your terminal:
 ```
-npm install
+npm install -g swapro
 ```
 
-#### Link Yorl Command to Terminal
-In order to run a file using the ``yorl`` command, run the following:
+#### Link swap Command to Terminal
+In order to run a file using the ``swap`` command, run the following:
 ```
 npm run link
 ```
 
 ## Hello World
 You can run sample code by running the following in your terminal:
+Download the sample file from the site http://edtech.co.tz
+or github https://github.com/ibnsultan/Swap and run command
 ```
-yorl sample/test.yl
+swap main.swap
 ```
 
 You should get something like: ``habari yako``
@@ -82,7 +79,7 @@ npm test
 ```
 
 ## Author
-- Abdulbasit Rubeiyya- @edtech
+- Abdulbasit S Rubeiyya- @ibnsultan
 
 ## License
 - [MIT](https://github.com/)
