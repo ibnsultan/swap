@@ -28,6 +28,6 @@ wakati (teule < 6){
 			andika "umekosea tafadhali chagua tena";
 	}
 	
-	hifadhi teule = beba ("weka chagua lako hapa: ");
+	hifadhi teule = beba ("weka chagua lako hapa: "); 
 }
 
