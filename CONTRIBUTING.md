@@ -72,11 +72,11 @@ merged:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/yorlang
+   git clone https://github.com/<your-username>/Swap
    # Navigate to the newly cloned directory
-   cd yorlang
+   cd Swap
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/anoniscoding/yorlang
+   git remote add upstream https://github.com/ibnsultan/Swap
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
