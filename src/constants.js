@@ -5,7 +5,7 @@ const KEYWORDS = {
     TABI: "basi",
     OOTO: "kweli",
     IRO: "sikweli",
-    ISE: "kabidhi",
+    ISE: "kazi",
     FUN: "hakika",
     PADA: "rejesha",
     KURO: "vunja",
