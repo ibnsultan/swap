@@ -42,7 +42,7 @@ information. Please try to be as detailed as possible in your report.
 
 <a name="features"></a>
 ## Feature requests
- 
+
 Feature requests are welcome. But take a moment to find out whether your idea
 fits with the scope and aims of the project. It's up to *you* to make a strong
 case to convince the Roots developers of the merits of this feature. Please
@@ -72,11 +72,11 @@ merged:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/Swap
+   git clone https://github.com/<your-username>/yorlang
    # Navigate to the newly cloned directory
-   cd Swap
+   cd yorlang
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/ibnsultan/Swap
+   git remote add upstream https://github.com/anoniscoding/yorlang
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
