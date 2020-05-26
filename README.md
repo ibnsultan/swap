@@ -12,7 +12,7 @@ All documentation can be found at http://swap.edtech.co.tz
 
 ## Credits
 - Anoulowapo (yorlang developer)
--node js
--jScript
+- node js
+- jScript
 
 
