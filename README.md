@@ -11,7 +11,8 @@ All documentation can be found at http://swap.edtech.co.tz
 - Abdulbasit Rubeiyya- @ibnsultan003
 
 ## Credits
-- Anoulowapo (yorlang developer)
+- Anoulowapo (yorlang developer, programmer)
+- vicent Kwambiana (math & Ics teacher, programmers)
 - node js
 - jScript
 
