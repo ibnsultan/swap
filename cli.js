@@ -6,9 +6,15 @@ const constants = require("./src/constants.js");
 const commander = require("commander");
 
 commander.on("--help", function () {
-    console.log("");
+    console.log("    _________              _________  ________");
+    console.log("   /          /          //        //        /");
+    console.log("  /          /          //        //        / swahili");
+    console.log(" /_________ /          //________//________/  programming");
+    console.log("          //    /     //        //            Language");
+    console.log("         //    /     //        // author: Abdulbasit Rubeiyya");
+    console.log("________//____/_____//        //   ");
     console.log("Examples:");
-    console.log("  $ swap test.yl");
+    console.log("  $ swap test.swap");
     console.log("  $ swap -h");
     console.log("  $ swap -v");
 });
@@ -22,14 +28,14 @@ commander.arguments("[file]")
             setGlobalVars(options);
             startYorlangProcess(file);
         } else {
-            throw new Error("Invalid file extension used");
+            throw new Error("Invalid file extension used, only swap file can be used");
         }
     });
 
 commander.parse(process.argv);
 
 function setGlobalVars (options) {
-    const lang = [ "english", "yoruba", ];
+    const lang = [ "english", "kiswahili", ];
     global.defaultLang = lang.includes(options.lang) ? options.lang : "english";
 }
 
