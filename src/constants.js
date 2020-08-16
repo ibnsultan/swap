@@ -1,20 +1,20 @@
 const KEYWORDS = {
-    JEKI: "hifadhi",
-    NIGBATI: "wakati",
-    SOPE: "andika",
-    TABI: "basi",
-    OOTO: "kweli",
-    IRO: "sikweli",
-    ISE: "kazi",
-    FUN: "hakika",
+    HIFADHI: "hifadhi",
+    WAKATI: "wakati",
+    ANDIKA: "andika",
+    BASI: "basi",
+    KWELI: "kweli",
+    SIKWELI: "sikweli",
+    KAZI: "kazi",
+    HAKIKA: "hakika",
     PADA: "rejesha",
-    KURO: "vunja",
-    SE: "kama",
-    YI: "badilisha",
-    IRU: "chaguo",
+    VUNJA: "vunja",
+    KAMA: "kama",
+    BAD: "chagua",
+    KESI: "kesi",
     PADASI: "zaidi",
-    GBE_WOLE: "lete",
-    WOKE: "ita",
+    LETE: "lete",
+    ITA: "ita",
 };
 
 const SYMBOLS = {
@@ -69,10 +69,10 @@ const LIST = {
         SYMBOLS.EMPTY_SPACE, SYMBOLS.TAB_SPACE, SYMBOLS.NEW_LINE,
     ],
     KEYWORDS: [
-        KEYWORDS.JEKI, KEYWORDS.NIGBATI, KEYWORDS.SE, KEYWORDS.SOPE,
-        KEYWORDS.TABI, KEYWORDS.OOTO, KEYWORDS.IRO, KEYWORDS.ISE,
-        KEYWORDS.FUN, KEYWORDS.PADA, KEYWORDS.KURO, KEYWORDS.YI,
-        KEYWORDS.IRU, KEYWORDS.PADASI, KEYWORDS.GBE_WOLE, KEYWORDS.WOKE,
+        KEYWORDS.HIFADHI, KEYWORDS.WAKATI, KEYWORDS.KAMA, KEYWORDS.ANDIKA,
+        KEYWORDS.BASI, KEYWORDS.KWELI, KEYWORDS.SIKWELI, KEYWORDS.KAZI,
+        KEYWORDS.HAKIKA, KEYWORDS.PADA, KEYWORDS.VUNJA, KEYWORDS.BAD,
+        KEYWORDS.KESI, KEYWORDS.PADASI, KEYWORDS.LETE, KEYWORDS.ITA,
     ],
 };
 
@@ -98,7 +98,7 @@ const constants = {
     GET_JEKI: "getJeki",
     CALL_ISE: "callIse",
     EXP_PUNC: "expression_punctuations",
-    YL_EXT: ".swap",
+    SWAP_EXT: ".sw",
     NEGATE_EXPRESSION: "negate_exp",
 };
 

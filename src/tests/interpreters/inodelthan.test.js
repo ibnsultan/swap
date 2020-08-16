@@ -20,24 +20,24 @@ describe("INodeLessThan test suite", () => {
     });
 
     test("it should return ooto for a lesser than true condition", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = 4 < 5;`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 4 < 5;`;
         const node = kwNodeTi.getNode.call(parser);
-        expect(iNodeLthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.OOTO);
+        expect(iNodeLthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.KWELI);
     });
 
     test("it should return iro for a lesser than false condition", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = 5 < 5;`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 5 < 5;`;
         const node = kwNodeTi.getNode.call(parser);
-        expect(iNodeLthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.IRO);
+        expect(iNodeLthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.SIKWELI);
     });
 
     test("it should get the value of a variable and test it in a lesser than condition", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 6;
-            ${constants.KW.JEKI} b = a < 7;
+            ${constants.KW.HIFADHI} a = 6;
+            ${constants.KW.HIFADHI} b = a < 7;
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "b")).toEqual(constants.KW.OOTO);
+        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "b")).toEqual(constants.KW.KWELI);
     });
 });

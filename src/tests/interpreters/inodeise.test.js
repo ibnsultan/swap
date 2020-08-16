@@ -20,21 +20,21 @@ describe("INodeIse test suite", () => {
 
     test("It should save an ise node", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.ISE} teOruko(fname) {
-                ${constants.KW.SOPE} fname;
+            ${constants.KW.KAZI} teOruko(fname) {
+                ${constants.KW.ANDIKA} fname;
             }
         `;
 
         const expectedNode = {
             body: [{
-                operation: constants.KW.SOPE,
+                operation: constants.KW.ANDIKA,
                 body: {
                     name: "fname",
                     operation: constants.GET_JEKI,
                 },
             }, ],
             name: "teOruko",
-            operation: constants.KW.ISE,
+            operation: constants.KW.KAZI,
             paramTokens: [
                 {
                     type: constants.VARIABLE,
@@ -49,12 +49,12 @@ describe("INodeIse test suite", () => {
 
     test("It should fail to save ise node if there exist another ise node with the same name in the same scope", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.ISE} teOruko(fname, lname) {
-                ${constants.KW.SOPE} fname + " "+ lname;
+            ${constants.KW.KAZI} teOruko(fname, lname) {
+                ${constants.KW.ANDIKA} fname + " "+ lname;
             }
 
-            ${constants.KW.ISE} teOruko(fname) {
-                ${constants.KW.SOPE} fname + " "+ lname;
+            ${constants.KW.KAZI} teOruko(fname) {
+                ${constants.KW.ANDIKA} fname + " "+ lname;
             }
         `;
 
@@ -63,10 +63,10 @@ describe("INodeIse test suite", () => {
 
     test("It should save nested ise node", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.ISE} teName(fname, lname) {
-                ${constants.KW.SOPE} fname + " "+ lname;
-                ${constants.KW.ISE} teNumber(number) {
-                    ${constants.KW.SOPE} number;
+            ${constants.KW.KAZI} teName(fname, lname) {
+                ${constants.KW.ANDIKA} fname + " "+ lname;
+                ${constants.KW.KAZI} teNumber(number) {
+                    ${constants.KW.ANDIKA} number;
                 }
             }
         `;

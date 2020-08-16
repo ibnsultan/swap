@@ -20,16 +20,16 @@ describe("INodeNigbati test suite", () => {
 
     test("it should interprete the nigbati keyword with kuro keyword", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 0;
-            ${constants.KW.NIGBATI} (a < 3) {
-                ${constants.KW.SOPE} a;
-                ${constants.KW.JEKI} a = a + 1;
-                ${constants.KW.SE} (a == 2) {
-                    ${constants.KW.KURO};
+            ${constants.KW.HIFADHI} a = 0;
+            ${constants.KW.WAKATI} (a < 3) {
+                ${constants.KW.ANDIKA} a;
+                ${constants.KW.HIFADHI} a = a + 1;
+                ${constants.KW.KAMA} (a == 2) {
+                    ${constants.KW.VUNJA};
                 }
-                ${constants.KW.NIGBATI} (a < 2) {
-                    ${constants.KW.SOPE} a;
-                    ${constants.KW.KURO};
+                ${constants.KW.WAKATI} (a < 2) {
+                    ${constants.KW.ANDIKA} a;
+                    ${constants.KW.VUNJA};
                 }
             }
         `;
@@ -40,10 +40,10 @@ describe("INodeNigbati test suite", () => {
 
     test("it should interprete the nigbati keyword", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 0;
-            ${constants.KW.NIGBATI} (a < 3) {
-                ${constants.KW.SOPE} a;
-                ${constants.KW.JEKI} a = a + 1;
+            ${constants.KW.HIFADHI} a = 0;
+            ${constants.KW.WAKATI} (a < 3) {
+                ${constants.KW.ANDIKA} a;
+                ${constants.KW.HIFADHI} a = a + 1;
             }
         `;
 
@@ -53,14 +53,14 @@ describe("INodeNigbati test suite", () => {
 
     test("it should interprete nested nigbati keyword", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 0;
-            ${constants.KW.NIGBATI} (a < 3) {
-                ${constants.KW.SOPE} a;
-                ${constants.KW.JEKI} a = a + 1;
-                ${constants.KW.JEKI} b = a + 1;
-                ${constants.KW.NIGBATI} (b < 3) {
-                    ${constants.KW.SOPE} "anu";
-                    ${constants.KW.JEKI} b = b + 1;
+            ${constants.KW.HIFADHI} a = 0;
+            ${constants.KW.WAKATI} (a < 3) {
+                ${constants.KW.ANDIKA} a;
+                ${constants.KW.HIFADHI} a = a + 1;
+                ${constants.KW.HIFADHI} b = a + 1;
+                ${constants.KW.WAKATI} (b < 3) {
+                    ${constants.KW.ANDIKA} "anu";
+                    ${constants.KW.HIFADHI} b = b + 1;
                 }
             }
         `;

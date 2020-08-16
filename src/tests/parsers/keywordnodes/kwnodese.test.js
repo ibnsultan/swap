@@ -16,8 +16,8 @@ describe("KwNodeSe test suite", () => {
     });
 
     test("it should return a valid se node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SE} (niOruko) {
-            ${constants.KW.SOPE} "o ni oruko";
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (niOruko) {
+            ${constants.KW.ANDIKA} "o ni oruko";
         }`;
 
         const expectedNode = {
@@ -25,7 +25,7 @@ describe("KwNodeSe test suite", () => {
                 name: "niOruko",
                 operation: constants.GET_JEKI,
             },
-            operation: constants.KW.SE,
+            operation: constants.KW.KAMA,
             then: [
                 {
                     body: {
@@ -34,7 +34,7 @@ describe("KwNodeSe test suite", () => {
                         right: null,
                         value: "o ni oruko",
                     },
-                    operation: constants.KW.SOPE,
+                    operation: constants.KW.ANDIKA,
                 },
             ],
         };
@@ -43,14 +43,14 @@ describe("KwNodeSe test suite", () => {
     });
 
     test("it should return a valid se node when body is empty", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SE} (niOruko) {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (niOruko) {}`;
 
         const expectedNode = {
             condition: {
                 name: "niOruko",
                 operation: constants.GET_JEKI,
             },
-            operation: constants.KW.SE,
+            operation: constants.KW.KAMA,
             then: [],
         };
 
@@ -58,15 +58,15 @@ describe("KwNodeSe test suite", () => {
     });
 
     test("it should return a valid se node for nested blocks", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SE} (niOruko) {
-            ${constants.KW.SE} (niOruko) {}
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (niOruko) {
+            ${constants.KW.KAMA} (niOruko) {}
         }`;
 
         expect(kwNodeSe.getNode.call(parser)).toBeTruthy();
     });
 
     test("it should return a valid se and tabi node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SE} (aropo && ${constants.KW.OOTO}) {} ${constants.KW.TABI} {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (aropo && ${constants.KW.KWELI}) {} ${constants.KW.BASI} {}`;
 
         const expectedNode = {
             condition: {
@@ -79,12 +79,12 @@ describe("KwNodeSe test suite", () => {
                     left: null,
                     operation: null,
                     right: null,
-                    value: constants.KW.OOTO,
+                    value: constants.KW.KWELI,
                 },
                 value: null,
             },
             else: [],
-            operation: constants.KW.SE,
+            operation: constants.KW.KAMA,
             then: [],
         };
 
@@ -92,7 +92,7 @@ describe("KwNodeSe test suite", () => {
     });
 
     test("it should throw an error when given an invalid se and tabi node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SE} aropo && ${constants.KW.OOTO}) {} tàbí {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} aropo && ${constants.KW.KWELI}) {} tàbí {}`;
 
         expect(() => {
             kwNodeSe.getNode.call(parser);
@@ -101,10 +101,10 @@ describe("KwNodeSe test suite", () => {
 
     test("it should parse tabi se (else if) statements", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.SE} (aropo && ${constants.KW.OOTO}) {} 
-            ${constants.KW.TABI} ${constants.KW.SE} (niOruko) {}
-            ${constants.KW.TABI} ${constants.KW.SE} (${constants.KW.OOTO}) {}
-            ${constants.KW.TABI} {}
+            ${constants.KW.KAMA} (aropo && ${constants.KW.KWELI}) {} 
+            ${constants.KW.BASI} ${constants.KW.KAMA} (niOruko) {}
+            ${constants.KW.BASI} ${constants.KW.KAMA} (${constants.KW.KWELI}) {}
+            ${constants.KW.BASI} {}
         `;
 
         const expectedNode = {
@@ -118,7 +118,7 @@ describe("KwNodeSe test suite", () => {
                     "left": null,
                     "operation": null,
                     "right": null,
-                    "value": constants.KW.OOTO,
+                    "value": constants.KW.KWELI,
                 },
                 "value": null,
             },
@@ -132,16 +132,16 @@ describe("KwNodeSe test suite", () => {
                         "left": null,
                         "operation": null,
                         "right": null,
-                        "value": constants.KW.OOTO,
+                        "value": constants.KW.KWELI,
                     },
                     "else": [],
-                    "operation": constants.KW.SE,
+                    "operation": constants.KW.KAMA,
                     "then": [],
                 },
-                "operation": constants.KW.SE,
+                "operation": constants.KW.KAMA,
                 "then": [],
             },
-            "operation": constants.KW.SE,
+            "operation": constants.KW.KAMA,
             "then": [],
         };
 

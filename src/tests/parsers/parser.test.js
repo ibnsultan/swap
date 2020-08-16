@@ -39,15 +39,15 @@ describe("Parser test suite", () => {
     });
 
     test("isNextTokenKeyword - it should confirm that the given token is an operator and it matches the next token in the stream", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI}`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI}`;
 
-        expect(parser.isNextTokenKeyword(constants.KW.JEKI)).toBeTruthy();
+        expect(parser.isNextTokenKeyword(constants.KW.HIFADHI)).toBeTruthy();
     });
 
     test("isNextTokenKeyword - it should confirm that the next token in the stream does not match the keyword given", () => {
         parser.lexer().inputStream.code = `${constants.SYM.PIPE}`;
 
-        expect(parser.isNextTokenKeyword(constants.KW.JEKI)).toBeFalsy();
+        expect(parser.isNextTokenKeyword(constants.KW.HIFADHI)).toBeFalsy();
     });
 
     test("SkipPunctuation - it should skip the punctuation token L_PAREN", () => {
@@ -77,20 +77,20 @@ describe("Parser test suite", () => {
     });
 
     test("SkipKeyword - it should skip the keyword token JEKI", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI};`;
-        parser.skipKeyword(constants.KW.JEKI);
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI};`;
+        parser.skipKeyword(constants.KW.HIFADHI);
 
         expect(parser.isNextTokenPunctuation(constants.SYM.STATEMENT_TERMINATOR)).toBeTruthy();
     });
 
     test("SkipKeyword - it should fail to skip the keyword token JEKI", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI};`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI};`;
 
-        expect(() => parser.skipKeyword(constants.KW.SOPE)).toThrow();
+        expect(() => parser.skipKeyword(constants.KW.ANDIKA)).toThrow();
     });
 
     test("GetCurrentTokenValue - it should get the current token value", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI};`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI};`;
 
         expect(parser.getCurrentTokenValue()).toBeTruthy();
     });

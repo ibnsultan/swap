@@ -27,6 +27,6 @@ describe("TeSibi Test suite", () => {
 
     test("It should fail because helper function teSibi expects an array as argument", () => {
         const array = 2;
-        expect(() => teSibi(array)).toThrow("Yorlang system error");
+        expect(() => teSibi(array)).toThrow("system error");
     });
 });

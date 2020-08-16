@@ -60,25 +60,25 @@ describe("KwNodeFun test suite", () => {
                     value: 0,
                 },
             },
-            operation: constants.KW.FUN,
+            operation: constants.KW.HAKIKA,
         };
 
-        parser.lexer().inputStream.code = `${constants.KW.FUN} (${constants.KW.JEKI} i =0; i < 10; ${constants.KW.JEKI} i = i + 1) {}`;
+        parser.lexer().inputStream.code = `${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {}`;
 
         expect(kwNodeFun.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("it should return a valid fun node for nested blocks", () => {
-        parser.lexer().inputStream.code = `${constants.KW.FUN} (${constants.KW.JEKI} i =0; i < 10; ${constants.KW.JEKI} i = i + 1) {
-            ${constants.KW.FUN} (${constants.KW.JEKI} i =0; i < 10; ${constants.KW.JEKI} i = i + 1) {}
+        parser.lexer().inputStream.code = `${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
+            ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {}
         }`;
 
         expect(kwNodeFun.getNode.call(parser)).toBeTruthy();
     });
 
     test("it should throw an error when given invalid fun node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.FUN} ${constants.KW.JEKI} i =0; i < 10; ${constants.KW.JEKI} i = i + 1) {
-            ${constants.KW.SOPE} i;
+        parser.lexer().inputStream.code = `${constants.KW.HAKIKA} ${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
+            ${constants.KW.ANDIKA} i;
         }`;
 
         expect(() => {
@@ -87,8 +87,8 @@ describe("KwNodeFun test suite", () => {
     });
 
     test("it should throw an error when given invalid fun increment node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.FUN} (${constants.KW.JEKI} i =0; i < 10; ${constants.KW.JEKI} i = j + 1) {
-            ${constants.KW.SOPE} i;
+        parser.lexer().inputStream.code = `${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = j + 1) {
+            ${constants.KW.ANDIKA} i;
         }`;
 
         expect(() => {

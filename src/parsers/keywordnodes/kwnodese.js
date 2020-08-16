@@ -12,14 +12,14 @@ class KwNodeSe extends BaseNode {
     }
 
     getNode () {
-        this.skipKeyword(constants.KW.SE);
+        this.skipKeyword(constants.KW.KAMA);
 
         const node = {};
-        node.operation = constants.KW.SE;
+        node.operation = constants.KW.KAMA;
         node.condition = bracketExpressionNl.getNode.call(this, { isArithmeticExpression: false, isBracketExpected: true, });
-        node.then = this.parseBlock(constants.KW.SE);
+        node.then = this.parseBlock(constants.KW.KAMA);
 
-        if (this.isNextTokenKeyword(constants.KW.TABI)) {
+        if (this.isNextTokenKeyword(constants.KW.BASI)) {
             node.else = KwNodeSe.getTabiNode(this);
         }
 
@@ -27,13 +27,13 @@ class KwNodeSe extends BaseNode {
     }
 
     static getTabiNode (context) {
-        context.skipKeyword(constants.KW.TABI);
+        context.skipKeyword(constants.KW.BASI);
 
-        if (context.isNextTokenKeyword(constants.KW.SE)) { // cater for 'tabi se' block
+        if (context.isNextTokenKeyword(constants.KW.KAMA)) { // cater for 'tabi se' block
             return new KwNodeSe().getNode.call(context);
         }
 
-        return context.parseBlock(constants.KW.TABI);
+        return context.parseBlock(constants.KW.BASI);
     }
 }
 

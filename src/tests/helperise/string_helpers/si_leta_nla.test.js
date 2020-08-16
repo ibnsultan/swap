@@ -13,6 +13,6 @@ describe("SiLetaNla Test suite", () => {
 
     test("It should fail because helper function siLetaNla expects an array as argument", () => {
         const array = 2;
-        expect(() => siLetaNla(array)).toThrow("Yorlang system error");
+        expect(() => siLetaNla(array)).toThrow("system error");
     });
 });

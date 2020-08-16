@@ -11,7 +11,7 @@ describe("fiRopo Test Suite", () => {
     });
 
     test("It should fail because helper function waNinu expects an array as argument", () => {
-        expect(() => fiRopo(1)).toThrow("Yorlang system error");
+        expect(() => fiRopo(1)).toThrow("system error");
     });
 
 });

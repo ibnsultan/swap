@@ -21,21 +21,21 @@ describe("INodeArray test suite", () => {
     });
 
     test("it should return an array literal", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = [1,2,b];`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = [1,2,b];`;
         const node = kwNodeTi.getNode.call(parser);
         expect(() => iNodeArray.interpreteNode.call(mainInterpreter, node.right)).toThrow();
     });
 
     test("it should return an empty array literal", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = [];`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = [];`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeArray.interpreteNode.call(mainInterpreter, node.right)).toEqual([]);
     });
 
     test("it should interprete expression that contains a variable reference", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 5;
-            ${constants.KW.JEKI} b = [1,2,a];
+            ${constants.KW.HIFADHI} a = 5;
+            ${constants.KW.HIFADHI} b = [1,2,a];
         `;
 
         mainInterpreter.interpreteProgram();
@@ -44,8 +44,8 @@ describe("INodeArray test suite", () => {
 
     test("it should interprete expression that contains an array element reference", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [3,2];
-            ${constants.KW.JEKI} b = [1,2,a[0]];
+            ${constants.KW.HIFADHI} a = [3,2];
+            ${constants.KW.HIFADHI} b = [1,2,a[0]];
         `;
 
         mainInterpreter.interpreteProgram();
@@ -54,8 +54,8 @@ describe("INodeArray test suite", () => {
 
     test("it should interprete a multidimensional array", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [3,4];
-            ${constants.KW.JEKI} b = [[1,2], [3,a[1]]];
+            ${constants.KW.HIFADHI} a = [3,4];
+            ${constants.KW.HIFADHI} b = [[1,2], [3,a[1]]];
         `;
 
         mainInterpreter.interpreteProgram();
@@ -64,9 +64,9 @@ describe("INodeArray test suite", () => {
 
     test("it should interprete a multidimensional array element", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [3,4];
-            ${constants.KW.JEKI} b = [[1,2], [3,a[1]]];
-            ${constants.KW.SOPE} b[1][1];
+            ${constants.KW.HIFADHI} a = [3,4];
+            ${constants.KW.HIFADHI} b = [[1,2], [3,a[1]]];
+            ${constants.KW.ANDIKA} b[1][1];
         `;
 
         mainInterpreter.interpreteProgram();
@@ -75,9 +75,9 @@ describe("INodeArray test suite", () => {
 
     test("it should fail when trying to access an invalid multidimensional array element", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [3,4];
-            ${constants.KW.JEKI} b = [[1,2], [3,a[1]]];
-            ${constants.KW.SOPE} b[1][1][0];
+            ${constants.KW.HIFADHI} a = [3,4];
+            ${constants.KW.HIFADHI} b = [[1,2], [3,a[1]]];
+            ${constants.KW.ANDIKA} b[1][1][0];
         `;
 
         expect(() => mainInterpreter.interpreteProgram()).toThrow();

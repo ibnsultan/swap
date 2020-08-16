@@ -17,7 +17,7 @@ describe("KwNodePada test suite", () => {
 
     test("it should return node with body.value of type number", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} 2;`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -34,7 +34,7 @@ describe("KwNodePada test suite", () => {
 
     test("it should return node with body.value of type string", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} "anu";`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -51,7 +51,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should return node with body.operation of type getTi i.e return a variable", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} sum;`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -66,7 +66,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should return node with body.operation of type callIse i.e return the value of a function call", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} sum(1,a);`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -85,7 +85,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should return node with body.operation of type array element i.e return the value of an array element", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} sum[1];`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -100,13 +100,13 @@ describe("KwNodePada test suite", () => {
     });
 
     test("It should return node with body.value of type bool", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} ${constants.KW.IRO};`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.lexer().inputStream.code = `${constants.KW.PADA} ${constants.KW.SIKWELI};`;
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
             body: {
-                value: `${constants.KW.IRO}`,
+                value: `${constants.KW.SIKWELI}`,
                 left: null,
                 right: null,
                 operation: null,
@@ -118,7 +118,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should return node with body.operation 'array' ", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} [1,2];`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -135,7 +135,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should return node with body.operation 'array' when array is empty", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} [];`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         const expectedNode = {
             operation: constants.KW.PADA,
@@ -150,7 +150,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should skip the semicolon after the keyword padà", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} iró;`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
         kwNodePada.getNode.call(parser);
 
         expect(parser.lexer().peek()).toBe(null);
@@ -158,7 +158,7 @@ describe("KwNodePada test suite", () => {
 
     test("It should throw an error when given invalid pada node", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} );`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         expect(() => {
             kwNodePada.getNode.call(parser);

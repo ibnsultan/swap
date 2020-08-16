@@ -19,7 +19,7 @@ describe("INodePada test suite", () => {
 
     test("pada should return a number value", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} 2;`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
         const node = kwNodePada.getNode.call(parser);
 
         expect(iNodePada.interpreteNode.call(new MainInterpreter(), node)).toBe(2);
@@ -27,7 +27,7 @@ describe("INodePada test suite", () => {
 
     test("pada should return a string value", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} "anu";`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
         const node = kwNodePada.getNode.call(parser);
 
         expect(iNodePada.interpreteNode.call(new MainInterpreter(), node)).toBe("anu");
@@ -35,7 +35,7 @@ describe("INodePada test suite", () => {
 
     test("pada should return a floating point value", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} 3.142;`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
         const node = kwNodePada.getNode.call(parser);
 
         expect(iNodePada.interpreteNode.call(new MainInterpreter(), node)).toBe(3.142);
@@ -43,7 +43,7 @@ describe("INodePada test suite", () => {
 
     test("pada should return an array literal value", () => {
         parser.lexer().inputStream.code = `${constants.KW.PADA} [1,2];`;
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
         const node = kwNodePada.getNode.call(parser);
 
         expect(iNodePada.interpreteNode.call(new MainInterpreter(), node)).toEqual([1, 2, ]);

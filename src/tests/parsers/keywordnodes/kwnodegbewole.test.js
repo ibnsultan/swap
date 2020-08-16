@@ -13,13 +13,13 @@ describe("KwNodeGbeWole test suite", () => {
     let parser;
 
     beforeEach(() => {
-        fs.readFileSync.mockReturnValue(`${constants.KW.GBE_WOLE} "./test.yl";`);
+        fs.readFileSync.mockReturnValue(`${constants.KW.LETE} "./test.yl";`);
         parser = new Parser(new lexer(new InputStream()));
     });
 
     test("It should return valid gbewole node", () => {
         const expectedNode = {
-            operation: constants.KW.GBE_WOLE,
+            operation: constants.KW.LETE,
             path: {
                 left: null,
                 operation: null,
@@ -34,7 +34,7 @@ describe("KwNodeGbeWole test suite", () => {
 
     test("It should fail when gbewole is given invalid parameter", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.GBE_WOLE} "./test.yal";
+            ${constants.KW.LETE} "./test.yal";
         `;
         expect(() => KwNodeGbeWole.getNode.call(parser)).toThrow();
     });

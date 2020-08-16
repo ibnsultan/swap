@@ -16,10 +16,10 @@ describe("INodeGbeWole test suite", () => {
     });
 
     test("it should import valid file path correctly", () => {
-        fs.readFileSync.mockReturnValueOnce(`${constants.KW.GBE_WOLE} "/sample/sample.yl";   
-                ${constants.KW.JEKI} b = isiro(14, 2);
-                ${constants.KW.SOPE} b;         
-            `).mockReturnValueOnce(`${constants.KW.ISE} isiro(a, b) { 
+        fs.readFileSync.mockReturnValueOnce(`${constants.KW.LETE} "/sample/sample.yl";   
+                ${constants.KW.HIFADHI} b = isiro(14, 2);
+                ${constants.KW.ANDIKA} b;         
+            `).mockReturnValueOnce(`${constants.KW.KAZI} isiro(a, b) { 
                 ${constants.KW.PADA} a * b; 
             }`);
 
@@ -30,9 +30,9 @@ describe("INodeGbeWole test suite", () => {
     });
 
     test("it should fail to import invalid file path", () => {
-        fs.readFileSync.mockReturnValueOnce(`${constants.KW.GBE_WOLE} "sample/sample.yl";   
-                ${constants.KW.JEKI} b = isiro(14, 2);
-                ${constants.KW.SOPE} b;         
+        fs.readFileSync.mockReturnValueOnce(`${constants.KW.LETE} "sample/sample.yl";   
+                ${constants.KW.HIFADHI} b = isiro(14, 2);
+                ${constants.KW.ANDIKA} b;         
             `);
 
         const parser = new Parser(new Lexer(new InputStream()));

@@ -16,26 +16,26 @@ describe("KwNodeWoke test suite", () => {
     });
 
     test("It should return a valid woke node found within an ise block", () => {
-        parser.lexer().inputStream.code = `${constants.KW.WOKE} \`counter, name\`;`;
+        parser.lexer().inputStream.code = `${constants.KW.ITA} \`counter, name\`;`;
 
         const expectedNode = {
-            operation: constants.KW.WOKE,
+            operation: constants.KW.ITA,
             varNames: ["counter", "name", ],
         };
-        parser.pushToBlockTypeStack(constants.KW.ISE);
+        parser.pushToBlockTypeStack(constants.KW.KAZI);
 
         expect(kwNodeWoke.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should fail to return a valid woke node found outside ise block", () => {
-        parser.lexer().inputStream.code = `${constants.KW.WOKE} \`counter\`;`;
+        parser.lexer().inputStream.code = `${constants.KW.ITA} \`counter\`;`;
         parser.pushToBlockTypeStack(constants.PROGRAM);
 
         expect(() => kwNodeWoke.getNode.call(parser)).toThrow();
     });
 
     test("It should fail to return a valid woke node when woke is not used with a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.WOKE} \`"something"\`;`;
+        parser.lexer().inputStream.code = `${constants.KW.ITA} \`"something"\`;`;
         parser.pushToBlockTypeStack(constants.PROGRAM);
 
         expect(() => kwNodeWoke.getNode.call(parser)).toThrow();

@@ -17,11 +17,11 @@ class KwNodeFun extends BaseNode {
     }
 
     getNode () {
-        this.skipKeyword(constants.KW.FUN);
+        this.skipKeyword(constants.KW.HAKIKA);
 
         this.skipPunctuation(constants.SYM.L_BRACKET);
         const node = {};
-        node.operation = constants.KW.FUN;
+        node.operation = constants.KW.HAKIKA;
         node.init = kwNodeJeki.getNode.call(this);
         node.condition = bracketExpressionNl.getNode.call(this, { isArithmeticExpression: false, isBracketExpected: false, });
 
@@ -33,7 +33,7 @@ class KwNodeFun extends BaseNode {
         }
         this.skipPunctuation(constants.SYM.R_BRACKET);
 
-        node.body = this.parseBlock(constants.KW.FUN);
+        node.body = this.parseBlock(constants.KW.HAKIKA);
 
         return node;
     }

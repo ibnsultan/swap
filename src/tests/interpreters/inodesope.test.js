@@ -21,14 +21,14 @@ describe("INodeSope test suite", () => {
     });
 
     test("it should print a string to the console", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SOPE} "femi";`;
+        parser.lexer().inputStream.code = `${constants.KW.ANDIKA} "femi";`;
         const node = kwNodeSope.getNode.call(parser);
         iNodeSope.interpreteNode.call(mainInterpreter, node);
         expect(global.console.log).toHaveBeenCalledWith("femi");
     });
 
     test("it should print a number to the console", () => {
-        parser.lexer().inputStream.code = `${constants.KW.SOPE} 3;`;
+        parser.lexer().inputStream.code = `${constants.KW.ANDIKA} 3;`;
         const node = kwNodeSope.getNode.call(parser);
         iNodeSope.interpreteNode.call(mainInterpreter, node);
         expect(global.console.log).toHaveBeenCalledWith(3);
@@ -36,8 +36,8 @@ describe("INodeSope test suite", () => {
 
     test("it should print the value of variable to the console", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 5;
-            ${constants.KW.SOPE} a;
+            ${constants.KW.HIFADHI} a = 5;
+            ${constants.KW.ANDIKA} a;
         `;
 
         mainInterpreter.interpreteProgram();
@@ -46,7 +46,7 @@ describe("INodeSope test suite", () => {
 
     test("it should print the value of an expression to the console", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.SOPE} "a" + 5;
+            ${constants.KW.ANDIKA} "a" + 5;
         `;
 
         mainInterpreter.interpreteProgram();
@@ -55,8 +55,8 @@ describe("INodeSope test suite", () => {
 
     test("it should print the value of variable to the console", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [1,5];
-            ${constants.KW.SOPE} a[1];
+            ${constants.KW.HIFADHI} a = [1,5];
+            ${constants.KW.ANDIKA} a[1];
         `;
 
         mainInterpreter.interpreteProgram();

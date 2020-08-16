@@ -20,28 +20,28 @@ describe("INodeJeki test suite", () => {
     });
 
     test("it should assign expression to a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = ((5 + 2) * (2 - 4)) / 2;`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ((5 + 2) * (2 - 4)) / 2;`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
         expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(-7);
     });
 
     test("it should assign floating point number to a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = 3.142;`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 3.142;`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
         expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(3.142);
     });
 
     test("it should assign string to a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = "anu";`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = "anu";`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
         expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe("anu");
     });
 
     test("it should assign an array literal to a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = [1,2];`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = [1,2];`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
         expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual([1, 2, ]);
@@ -49,8 +49,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should interprete expression that contains a variable reference", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = 5;
-            ${constants.KW.JEKI} b = ((a + 2) * (2 - 4)) / 2;
+            ${constants.KW.HIFADHI} a = 5;
+            ${constants.KW.HIFADHI} b = ((a + 2) * (2 - 4)) / 2;
         `;
 
         mainInterpreter.interpreteProgram();
@@ -59,8 +59,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign value to an array element", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [1,2];
-            ${constants.KW.JEKI} a[0] = "funmi";
+            ${constants.KW.HIFADHI} a = [1,2];
+            ${constants.KW.HIFADHI} a[0] = "funmi";
         `;
 
         mainInterpreter.interpreteProgram();
@@ -69,8 +69,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign value to the last position of an array element with empty index", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [1,2];
-            ${constants.KW.JEKI} a[] = "funmi";
+            ${constants.KW.HIFADHI} a = [1,2];
+            ${constants.KW.HIFADHI} a[] = "funmi";
         `;
 
         mainInterpreter.interpreteProgram();
@@ -79,8 +79,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign value to the last position of a multidimensional array element with empty index", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [1,[2]];
-            ${constants.KW.JEKI} a[1][] = "funmi";
+            ${constants.KW.HIFADHI} a = [1,[2]];
+            ${constants.KW.HIFADHI} a[1][] = "funmi";
         `;
 
         mainInterpreter.interpreteProgram();
@@ -89,8 +89,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign value to a multi-dimensional array element", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [[1,2], [[3,4], 5]];
-            ${constants.KW.JEKI} a[1][0][0] = "funmi";
+            ${constants.KW.HIFADHI} a = [[1,2], [[3,4], 5]];
+            ${constants.KW.HIFADHI} a[1][0][0] = "funmi";
         `;
 
         mainInterpreter.interpreteProgram();
@@ -99,8 +99,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should fail to assign value to an invalid multi-dimensional array element", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [[1,2], [[3,4], 5]];
-            ${constants.KW.JEKI} a[1][0][0][0] = "funmi";
+            ${constants.KW.HIFADHI} a = [[1,2], [[3,4], 5]];
+            ${constants.KW.HIFADHI} a[1][0][0][0] = "funmi";
         `;
 
         expect(() => mainInterpreter.interpreteProgram()).toThrow();
@@ -108,11 +108,11 @@ describe("INodeJeki test suite", () => {
 
     test("it should fail to assign undefined to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.ISE} teOruko(fname) {
-                ${constants.KW.SOPE} fname;
+            ${constants.KW.KAZI} teOruko(fname) {
+                ${constants.KW.ANDIKA} fname;
             }
             
-            ${constants.KW.JEKI} a = teOruko("name");
+            ${constants.KW.HIFADHI} a = teOruko("name");
         `;
 
         expect(() => mainInterpreter.interpreteProgram()).toThrow();
@@ -120,8 +120,8 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign value to a multi-dimensional array element", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = [[1,2], [3,4], 5];
-            ${constants.KW.JEKI} a[1] = "funmi";
+            ${constants.KW.HIFADHI} a = [[1,2], [3,4], 5];
+            ${constants.KW.HIFADHI} a[1] = "funmi";
         `;
 
         mainInterpreter.interpreteProgram();
@@ -130,7 +130,7 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign transformed (uppercase) string to variablet", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = síLẹ́tàŃlá("funmi");
+            ${constants.KW.HIFADHI} a = síLẹ́tàŃlá("funmi");
         `;
 
         mainInterpreter.interpreteProgram();
@@ -139,7 +139,7 @@ describe("INodeJeki test suite", () => {
 
     test("it should assign transformed (lowercase) string to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} a = síLẹ́tàKékeré("FUNMI");
+            ${constants.KW.HIFADHI} a = síLẹ́tàKékeré("FUNMI");
         `;
 
         mainInterpreter.interpreteProgram();
@@ -148,7 +148,7 @@ describe("INodeJeki test suite", () => {
 
     test("it should test integration of helper fiRopo", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} text = fiRopo("Yoruba da pupo", "pupo", "gidigan");
+            ${constants.KW.HIFADHI} text = fiRopo("Yoruba da pupo", "pupo", "gidigan");
 
         `;
 
@@ -158,7 +158,7 @@ describe("INodeJeki test suite", () => {
 
     test("it should test integration of helper waNinu", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} text = waNinu("Yoruba da pupo", "pupo");
+            ${constants.KW.HIFADHI} text = waNinu("Yoruba da pupo", "pupo");
 
         `;
 
@@ -168,7 +168,7 @@ describe("INodeJeki test suite", () => {
 
     test("it should test integration of helper aago", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} time = aago();
+            ${constants.KW.HIFADHI} time = aago();
         `;
 
         mainInterpreter.interpreteProgram();

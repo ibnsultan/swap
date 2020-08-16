@@ -16,13 +16,13 @@ describe("KwNodeYi test suite", () => {
     });
 
     test("it should return a valid yi node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.YI} (firstname) {
-            ${constants.KW.IRU} "anu":
-                ${constants.KW.SOPE} "it is anu";
-            ${constants.KW.IRU} "femi": 
-                ${constants.KW.SOPE} "it femi";
+        parser.lexer().inputStream.code = `${constants.KW.BAD} (firstname) {
+            ${constants.KW.KESI} "anu":
+                ${constants.KW.ANDIKA} "it is anu";
+            ${constants.KW.KESI} "femi": 
+                ${constants.KW.ANDIKA} "it femi";
             ${constants.KW.PADASI}: 
-                ${constants.KW.SOPE} "mi o mo";      
+                ${constants.KW.ANDIKA} "mi o mo";      
         }`;
 
         const expectedNode = {
@@ -36,7 +36,7 @@ describe("KwNodeYi test suite", () => {
                                 right: null,
                                 value: "it is anu",
                             },
-                            operation: constants.KW.SOPE,
+                            operation: constants.KW.ANDIKA,
                         },
                     ],
                     IRUvalue: {
@@ -45,7 +45,7 @@ describe("KwNodeYi test suite", () => {
                         right: null,
                         operation: null,
                     },
-                    operation: constants.KW.IRU,
+                    operation: constants.KW.KESI,
                 },
                 {
                     IRUbody: [
@@ -56,7 +56,7 @@ describe("KwNodeYi test suite", () => {
                                 right: null,
                                 value: "it femi",
                             },
-                            operation: constants.KW.SOPE,
+                            operation: constants.KW.ANDIKA,
                         },
                     ],
                     IRUvalue: {
@@ -65,10 +65,10 @@ describe("KwNodeYi test suite", () => {
                         right: null,
                         operation: null,
                     },
-                    operation: constants.KW.IRU,
+                    operation: constants.KW.KESI,
                 },
             ],
-            operation: constants.KW.YI,
+            operation: constants.KW.BAD,
             padasi: [
                 {
                     body: {
@@ -77,7 +77,7 @@ describe("KwNodeYi test suite", () => {
                         right: null,
                         value: "mi o mo",
                     },
-                    operation: constants.KW.SOPE,
+                    operation: constants.KW.ANDIKA,
                 },
             ],
             yivalue: {
@@ -90,15 +90,15 @@ describe("KwNodeYi test suite", () => {
     });
 
     test("it should throw an error when an invalid yi node is given", () => {
-        parser.lexer().inputStream.code = `${constants.KW.YI} name) {
-            ${constants.KW.IRU} "anu":
-                ${constants.KW.SOPE} "it is anu";
-                ${constants.KW.KURO};
-            ${constants.KW.IRU} "femi": 
-                ${constants.KW.SOPE} "it femi";
-                ${constants.KW.KURO};
+        parser.lexer().inputStream.code = `${constants.KW.BAD} name) {
+            ${constants.KW.KESI} "anu":
+                ${constants.KW.ANDIKA} "it is anu";
+                ${constants.KW.VUNJA};
+            ${constants.KW.KESI} "femi": 
+                ${constants.KW.ANDIKA} "it femi";
+                ${constants.KW.VUNJA};
             ${constants.KW.PADASI}: 
-                ${constants.KW.SOPE} "mi o mo";      
+                ${constants.KW.ANDIKA} "mi o mo";      
         }`;
 
         expect(() => {

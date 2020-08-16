@@ -13,9 +13,9 @@ class KwNodeYi extends BaseNode {
 
     getNode () {
         const node = {};
-        node.operation = constants.KW.YI;
-        this.pushToBlockTypeStack(constants.KW.YI);
-        this.skipKeyword(constants.KW.YI);
+        node.operation = constants.KW.BAD;
+        this.pushToBlockTypeStack(constants.KW.BAD);
+        this.skipKeyword(constants.KW.BAD);
         node.yivalue = bracketExpressionNl.getNode.call(this);
         this.skipPunctuation(constants.SYM.L_PAREN);
         node.yibody = KwNodeYi.getYiBody(this);
@@ -37,7 +37,7 @@ class KwNodeYi extends BaseNode {
     }
 
     static isNextTokenIru (context) {
-        return context.isNotEndOfFile() && context.lexer().peek().value === constants.KW.IRU;
+        return context.isNotEndOfFile() && context.lexer().peek().value === constants.KW.KESI;
     }
 
     static getPadasi (context) {
@@ -59,8 +59,8 @@ class KwNodeYi extends BaseNode {
 class KwNodeIRU extends BaseNode {
     getNode () {
         const node = {};
-        node.operation = constants.KW.IRU;
-        this.skipKeyword(constants.KW.IRU);
+        node.operation = constants.KW.KESI;
+        this.skipKeyword(constants.KW.KESI);
         node.IRUvalue = this.parseExpression();
         this.skipPunctuation(constants.SYM.COLON);
         node.IRUbody = KwNodeIRU.getIRUBody(this);
@@ -80,7 +80,7 @@ class KwNodeIRU extends BaseNode {
 
     static canParseIRUStatements (context) {
         return context.isNotEndOfFile() &&
-                        context.lexer().peek().value !== constants.KW.IRU &&
+                        context.lexer().peek().value !== constants.KW.KESI &&
                         context.lexer().peek().value !== constants.KW.PADASI &&
                         context.lexer().peek().value !== constants.SYM.R_PAREN;
     }

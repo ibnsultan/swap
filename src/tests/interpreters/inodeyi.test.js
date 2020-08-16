@@ -20,13 +20,13 @@ describe("INodeFun test suite", () => {
 
     test("it should interprete a valid yi node", () => {
         parser.lexer().inputStream.code = `
-        ${constants.KW.JEKI} oruko = "femi";
+        ${constants.KW.HIFADHI} oruko = "femi";
 
-        ${constants.KW.YI} (oruko) {
-            ${constants.KW.IRU} "anu":
-                ${constants.KW.SOPE} "it is anu";
-            ${constants.KW.IRU} "femi":
-                ${constants.KW.SOPE} "it is femi";
+        ${constants.KW.BAD} (oruko) {
+            ${constants.KW.KESI} "anu":
+                ${constants.KW.ANDIKA} "it is anu";
+            ${constants.KW.KESI} "femi":
+                ${constants.KW.ANDIKA} "it is femi";
         }`;
 
         mainInterpreter.interpreteProgram();
@@ -35,18 +35,18 @@ describe("INodeFun test suite", () => {
 
     test("it should interprete a nested yi node", () => {
         parser.lexer().inputStream.code = `
-        ${constants.KW.JEKI} oruko = 1;
+        ${constants.KW.HIFADHI} oruko = 1;
 
-        ${constants.KW.YI} (oruko) {
-            ${constants.KW.IRU} 1:
-                ${constants.KW.YI} (1+5) {
-                    ${constants.KW.IRU} 3+3:
-                        ${constants.KW.SOPE} "it is anu";
-                    ${constants.KW.IRU} 3:
-                        ${constants.KW.SOPE} "it is three";
+        ${constants.KW.BAD} (oruko) {
+            ${constants.KW.KESI} 1:
+                ${constants.KW.BAD} (1+5) {
+                    ${constants.KW.KESI} 3+3:
+                        ${constants.KW.ANDIKA} "it is anu";
+                    ${constants.KW.KESI} 3:
+                        ${constants.KW.ANDIKA} "it is three";
                 }            
-            ${constants.KW.IRU} 2:
-                ${constants.KW.SOPE} "it is femi";
+            ${constants.KW.KESI} 2:
+                ${constants.KW.ANDIKA} "it is femi";
         }`;
 
         mainInterpreter.interpreteProgram();
@@ -55,16 +55,16 @@ describe("INodeFun test suite", () => {
 
     test("it should interprete yi node with padasi", () => {
         parser.lexer().inputStream.code = `
-        ${constants.KW.JEKI} oruko = "funmi";
+        ${constants.KW.HIFADHI} oruko = "funmi";
 
-        ${constants.KW.YI} (oruko) {
-            ${constants.KW.IRU} "anu":
-                ${constants.KW.SOPE} "it is anu";
-            ${constants.KW.IRU} "femi":
-                ${constants.KW.SOPE} "it is femi";
+        ${constants.KW.BAD} (oruko) {
+            ${constants.KW.KESI} "anu":
+                ${constants.KW.ANDIKA} "it is anu";
+            ${constants.KW.KESI} "femi":
+                ${constants.KW.ANDIKA} "it is femi";
             ${constants.KW.PADASI}: 
-                ${constants.KW.SOPE} "i don't know";
-                ${constants.KW.SOPE} "Yoruba - mi o mo";
+                ${constants.KW.ANDIKA} "i don't know";
+                ${constants.KW.ANDIKA} "Yoruba - mi o mo";
         }`;
 
         mainInterpreter.interpreteProgram();
@@ -74,19 +74,19 @@ describe("INodeFun test suite", () => {
 
     test("it should interprete a valid yi node and return a value from within it", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.JEKI} oruko = "femi";
+            ${constants.KW.HIFADHI} oruko = "femi";
 
-            ${constants.KW.ISE} apere(oruko) {
+            ${constants.KW.KAZI} apere(oruko) {
 
-                ${constants.KW.YI} (oruko) {
-                    ${constants.KW.IRU} "anu":
+                ${constants.KW.BAD} (oruko) {
+                    ${constants.KW.KESI} "anu":
                         ${constants.KW.PADA} "it is anu";
-                    ${constants.KW.IRU} "femi":
+                    ${constants.KW.KESI} "femi":
                         ${constants.KW.PADA} "it is femi";
                 }
             }
             
-            ${constants.KW.SOPE} apere(oruko);
+            ${constants.KW.ANDIKA} apere(oruko);
         `;
 
         mainInterpreter.interpreteProgram();

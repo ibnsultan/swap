@@ -20,28 +20,28 @@ describe("INodeWoke test suite", () => {
 
     test("it should set global(woke) variables properly within local context", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.ISE} count() {
-                ${constants.KW.JEKI} counter = 3;
-                ${constants.KW.JEKI} i = 15;  
-                ${constants.KW.JEKI} j = [6,7];  
+            ${constants.KW.KAZI} count() {
+                ${constants.KW.HIFADHI} counter = 3;
+                ${constants.KW.HIFADHI} i = 15;  
+                ${constants.KW.HIFADHI} j = [6,7];  
             
-                ${constants.KW.ISE} incrementCounter() { 
-                    ${constants.KW.WOKE} \`counter, j\`;
+                ${constants.KW.KAZI} incrementCounter() { 
+                    ${constants.KW.ITA} \`counter, j\`;
 
-                    ${constants.KW.JEKI} counter = counter + 1;
-                    ${constants.KW.JEKI} i = i + 1;
-                    ${constants.KW.JEKI} j[0] = j[0] + 8;
-                    ${constants.KW.SOPE} i;
+                    ${constants.KW.HIFADHI} counter = counter + 1;
+                    ${constants.KW.HIFADHI} i = i + 1;
+                    ${constants.KW.HIFADHI} j[0] = j[0] + 8;
+                    ${constants.KW.ANDIKA} i;
                 }
                 incrementCounter();
 
-                ${constants.KW.SOPE} j[0];
-                ${constants.KW.SOPE} i;
+                ${constants.KW.ANDIKA} j[0];
+                ${constants.KW.ANDIKA} i;
                 ${constants.KW.PADA} counter;
             
             }
             
-            ${constants.KW.SOPE} count();
+            ${constants.KW.ANDIKA} count();
         `;
 
         mainInterpreter.interpreteProgram();
@@ -53,24 +53,24 @@ describe("INodeWoke test suite", () => {
 
     test("it should set global(woke) variables properly within local context - second example", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.ISE} count() {
-                ${constants.KW.JEKI} i = 15;  
+            ${constants.KW.KAZI} count() {
+                ${constants.KW.HIFADHI} i = 15;  
             
-                ${constants.KW.ISE} incrementCounter() {
-                    ${constants.KW.WOKE} \`i\`;
-                    ${constants.KW.JEKI} i = i + 1;
+                ${constants.KW.KAZI} incrementCounter() {
+                    ${constants.KW.ITA} \`i\`;
+                    ${constants.KW.HIFADHI} i = i + 1;
                     
-                    ${constants.KW.ISE} increase() { 
-                        ${constants.KW.WOKE} \`i\`;
+                    ${constants.KW.KAZI} increase() { 
+                        ${constants.KW.ITA} \`i\`;
     
-                        ${constants.KW.JEKI} i = i + 2;
+                        ${constants.KW.HIFADHI} i = i + 2;
                     }
                     increase();
                 }
                 
                 incrementCounter();
 
-                ${constants.KW.SOPE} i;
+                ${constants.KW.ANDIKA} i;
             }
             
             count();

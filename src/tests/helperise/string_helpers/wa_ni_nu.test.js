@@ -11,7 +11,7 @@ describe("waNinu Test Suite", () => {
     });
 
     test("It should fail because helper function waNinu expects an array as argument", () => {
-        expect(() => waNinu(1)).toThrow("Yorlang system error");
+        expect(() => waNinu(1)).toThrow("system error");
     });
 
 });

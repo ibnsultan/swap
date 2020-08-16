@@ -13,20 +13,20 @@ describe("KwNodeKuro test suite", () => {
     let parser;
 
     beforeEach(() => {
-        fs.readFileSync.mockReturnValue(`${constants.KW.KURO};`);
+        fs.readFileSync.mockReturnValue(`${constants.KW.VUNJA};`);
         parser = new Parser(new Lexer(new InputStream()));
     });
 
     test("It should return a kúrò node ast when kuro node is expected because it is within a loop", () => {
-        const expectedNode = { operation: constants.KW.KURO, };
-        parser.pushToBlockTypeStack(constants.KW.NIGBATI);
+        const expectedNode = { operation: constants.KW.VUNJA, };
+        parser.pushToBlockTypeStack(constants.KW.WAKATI);
 
         expect(kwNodeKuro.getNode.call(parser))
             .toEqual(expectedNode);
     });
 
     test("It should skip the semicolon after an expected keyword kúrò", () => {
-        parser.pushToBlockTypeStack(constants.KW.NIGBATI);
+        parser.pushToBlockTypeStack(constants.KW.WAKATI);
         kwNodeKuro.getNode.call(parser);
 
         expect(parser.lexer().peek()).toBe(null);

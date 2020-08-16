@@ -12,12 +12,12 @@ class KwNodeNigbati extends BaseNode {
     }
 
     getNode () {
-        this.skipKeyword(constants.KW.NIGBATI);
+        this.skipKeyword(constants.KW.WAKATI);
 
         return {
-            operation: constants.KW.NIGBATI,
+            operation: constants.KW.WAKATI,
             condition: bracketExpressionNl.getNode.call(this, false),
-            body: this.parseBlock(constants.KW.NIGBATI),
+            body: this.parseBlock(constants.KW.WAKATI),
         };
     }
 }

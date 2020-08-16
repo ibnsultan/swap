@@ -8,12 +8,12 @@ class KwNodeKuro extends BaseNode {
             return KwNodeKuro.getParsedKuroNode(this);
         }
 
-        this.throwError(feedbackMessages.unexpectedDeclaration(constants.KW.KURO));
+        this.throwError(feedbackMessages.unexpectedDeclaration(constants.KW.VUNJA));
     }
 
     static isExpectedKuroStatement (context) {
-        return context.getBlockTypeStack().includes(constants.KW.FUN) ||
-                                            context.getBlockTypeStack().includes(constants.KW.NIGBATI);
+        return context.getBlockTypeStack().includes(constants.KW.HAKIKA) ||
+                                            context.getBlockTypeStack().includes(constants.KW.WAKATI);
     }
 
     static getParsedKuroNode (context) {

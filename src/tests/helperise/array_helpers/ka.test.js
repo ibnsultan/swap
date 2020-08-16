@@ -13,6 +13,6 @@ describe("Ka Test suite", () => {
 
     test("It should fail because ka expects an array as argument", () => {
         const array = 2;
-        expect(() => ka(array)).toThrow("Yorlang system error");
+        expect(() => ka(array)).toThrow("system error");
     });
 });

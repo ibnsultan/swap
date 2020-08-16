@@ -20,7 +20,7 @@ class KeywordNl extends BaseNode {
     }
 
     static isBooleanKeywordNl (context) {
-        return [ constants.KW.OOTO, constants.KW.IRO, ].includes(context.lexer().peek().value);
+        return [ constants.KW.KWELI, constants.KW.SIKWELI, ].includes(context.lexer().peek().value);
     }
 }
 

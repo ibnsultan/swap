@@ -16,12 +16,12 @@ describe("KwNodeIse test suite", () => {
     });
 
     test("it should return valid ise node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.ISE} teOruko(a,b) {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAZI} teOruko(a,b) {}`;
 
         const expectedNode = {
             body: [],
             name: "teOruko",
-            operation: constants.KW.ISE,
+            operation: constants.KW.KAZI,
             paramTokens: [
                 {
                     type: constants.VARIABLE,
@@ -38,15 +38,15 @@ describe("KwNodeIse test suite", () => {
     });
 
     test("it should return valid ise node for nested blocks", () => {
-        parser.lexer().inputStream.code = `${constants.KW.ISE} koOruko(orukoMi) {
-            ${constants.KW.JEKI} oruko = orukoMi;
+        parser.lexer().inputStream.code = `${constants.KW.KAZI} koOruko(orukoMi) {
+            ${constants.KW.HIFADHI} oruko = orukoMi;
             
-            ${constants.KW.FUN} (${constants.KW.JEKI} i =0; i < 10; ${constants.KW.JEKI} i = i + 1) {
-                ${constants.KW.SOPE} i;
+            ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
+                ${constants.KW.ANDIKA} i;
             }
         
-            ${constants.KW.ISE} teAkori() {
-                ${constants.KW.SOPE} "adupe";
+            ${constants.KW.KAZI} teAkori() {
+                ${constants.KW.ANDIKA} "adupe";
             }
         
             ${constants.KW.PADA} teAkori();
@@ -56,14 +56,14 @@ describe("KwNodeIse test suite", () => {
     });
 
     test("it should fail to create an ise node within an invalid block", () => {
-        parser.lexer().inputStream.code = `${constants.KW.ISE} koOruko(orukoMi) {
-            ${constants.KW.JEKI} oruko = orukoMi;
+        parser.lexer().inputStream.code = `${constants.KW.KAZI} koOruko(orukoMi) {
+            ${constants.KW.HIFADHI} oruko = orukoMi;
             
-            ${constants.KW.FUN} (tí i =0; i < 10; tí i = i + 1;) {
-                ${constants.KW.SOPE} i;
+            ${constants.KW.HAKIKA} (tí i =0; i < 10; tí i = i + 1;) {
+                ${constants.KW.ANDIKA} i;
 
-                ${constants.KW.ISE} teAkori() {
-                    ${constants.KW.SOPE} "adupe";
+                ${constants.KW.KAZI} teAkori() {
+                    ${constants.KW.ANDIKA} "adupe";
                 }
             }
         
@@ -74,7 +74,7 @@ describe("KwNodeIse test suite", () => {
     });
 
     test("it should throw an error when given invalid ise", () => {
-        parser.lexer().inputStream.code = `${constants.KW.ISE} (teOruko(a,b) {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAZI} (teOruko(a,b) {}`;
 
         expect(() => {
             kwNodeIse.getNode.call(parser);

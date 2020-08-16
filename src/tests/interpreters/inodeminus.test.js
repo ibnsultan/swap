@@ -13,7 +13,7 @@ const constants = require("../../constants.js");
 describe("IMinus test suite", () => {
     test("it should interprete a minus operation", () => {
         let parser = new Parser(new Lexer(new InputStream()));
-        parser.lexer().inputStream.code = `${constants.KW.JEKI} a = 5 - 4;`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 5 - 4;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iMinus.interpreteNode.call(new MainInterpreter(), node.right)).toBe(1);
     });

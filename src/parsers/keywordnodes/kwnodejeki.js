@@ -7,7 +7,7 @@ class KwNodeJeki extends BaseNode {
     getNode (config) {
         config = config || { shouldExpectTerminator: true, };
 
-        this.skipKeyword(constants.KW.JEKI);
+        this.skipKeyword(constants.KW.HIFADHI);
 
         const node = {};
         node.operation = constants.SYM.ASSIGN;
