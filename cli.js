@@ -14,7 +14,7 @@ commander.on("--help", function () {
     console.log("         //    /     //        // author: Abdulbasit Rubeiyya");
     console.log("________//____/_____//        //   ");
     console.log("Examples:");
-    console.log("  $ swap test.swap");
+    console.log("  $ swap file.sw");
     console.log("  $ swap -h");
     console.log("  $ swap -v");
 });
@@ -22,11 +22,11 @@ commander.on("--help", function () {
 commander.version(packageJson.version, "-v, --version");
 
 commander.arguments("[file]")
-    .option("-l, --lang [lang]", "Select language to use")
+    .option("")
     .action((file, options) => {
-        if (path.extname(file) === constants.YL_EXT) {
+        if (path.extname(file) === constants.SWAP_EXT) {
             setGlobalVars(options);
-            startYorlangProcess(file);
+            startSwapProcess(file);
         } else {
             throw new Error("Invalid file extension used, only swap file can be used");
         }
@@ -39,7 +39,7 @@ function setGlobalVars (options) {
     global.defaultLang = lang.includes(options.lang) ? options.lang : "english";
 }
 
-function startYorlangProcess (file) {
+function startSwapProcess (file) {
     const InputStream = require("./src/inputstream.js");
     const Lexer = require("./src/lexer.js");
     const Parser = require("./src/parsers/parser.js");

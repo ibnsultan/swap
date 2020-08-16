@@ -1,10 +1,29 @@
 {
-  "name": "swapro",
-  "version": "2.0.2",
-  "description": "swap is a programming language that allows programmers to code in swahili Language construct",
-  "main": "./cli.js",
-  "scripts": {
-    "test": "swap"
+  "_from": "swapro",
+  "_id": "swapro@3.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-VC5UBtSMFpPA9xoMdi7Rvnttq5vxrAf6kle+RbFpYsR5qtf8J2IJgndQE72Hj6k39C5gj2Skg4VSgcvlN1In0g==",
+  "_location": "/swapro",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "swapro",
+    "name": "swapro",
+    "escapedName": "swapro",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/swapro/-/swapro-3.0.0.tgz",
+  "_shasum": "9789300e7260a7d3fdc1848dcce7d7c1f924bb7a",
+  "_spec": "swapro",
+  "_where": "C:\\WINDOWS\\system32",
+  "author": {
+    "name": "Abdulbasit Sultan Rubeiyya"
   },
   "bin": {
     "swap": "cli.js"
@@ -15,6 +34,13 @@
     "mathjs": "^7.0.0",
     "readline-sync": "1.4.9"
   },
-  "author": "Abdulbasit Sultan Rubeiyya",
-  "license": "MIT"
+  "deprecated": false,
+  "description": "swap is a programming language that allows programmers to code in swahili Language construct",
+  "license": "MIT",
+  "main": "./cli.js",
+  "name": "swapro",
+  "scripts": {
+    "test": "swap"
+  },
+  "version": "3.0.0"
 }
