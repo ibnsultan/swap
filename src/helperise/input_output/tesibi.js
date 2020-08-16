@@ -9,10 +9,10 @@ function teSibi (args) {
             return parseFloat(input) || input;
         }
 
-        throw new Error("Invalid param given to helper teSibi.");
+        throw new Error("Invalid param given to helper dai.");
     }
 
-    throw new Error("Yorlang system error");
+    throw new Error("system error");
 }
 
 module.exports = teSibi;

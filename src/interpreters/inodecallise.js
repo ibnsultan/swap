@@ -12,7 +12,7 @@ class INodeCallIse extends IBase {
                 return getFormattedReturnValue(this.environment().runHelperIse(node.name, INodeCallIse.getIseHelperParams(this, node.paramValues)));
             }
 
-            this.throwError(feedbackMessages.varDoesNotExist(constants.KW.ISE, node.name));
+            this.throwError(feedbackMessages.varDoesNotExist(constants.KW.KAZI, node.name));
         }
 
         return INodeCallIse.startNewScope(this, iseNode, INodeCallIse.getResolvedParameterValues(this, node.paramValues));

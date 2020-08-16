@@ -3,7 +3,7 @@ const constants = require("../constants.js");
 
 class INodeKuro extends IBase {
     interpreteNode (node) {
-        return constants.KW.KURO;
+        return constants.KW.VUNJA;
     }
 }
 

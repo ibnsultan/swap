@@ -20,7 +20,7 @@ function yipo (args) {
 
         return min + (Math.random() * (max - min));
     }
-    throw new Error("Yorlang system error");
+    throw new Error("system error");
 }
 
 module.exports = yipo;

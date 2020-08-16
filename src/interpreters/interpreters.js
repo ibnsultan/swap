@@ -17,16 +17,16 @@ interpreters[constants.SYM.L_THAN_OR_EQ] = require("./inodelthanoreq.js");
 interpreters[constants.SYM.NOT_EQ] = require("./inodenoteq.js");
 interpreters[constants.SYM.EXCLAMATION_POINT] = require("./inodenotoperator.js");
 
-interpreters[constants.KW.SOPE] = require("./inodesope.js");
-interpreters[constants.KW.SE] = require("./inodese.js");
-interpreters[constants.KW.NIGBATI] = require("./inodenigbati.js");
-interpreters[constants.KW.KURO] = require("./inodekuro.js");
-interpreters[constants.KW.FUN] = require("./inodefun.js");
-interpreters[constants.KW.YI] = require("./inodeyi.js");
-interpreters[constants.KW.ISE] = require("./inodeise.js");
+interpreters[constants.KW.ANDIKA] = require("./inodesope.js");
+interpreters[constants.KW.KAMA] = require("./inodese.js");
+interpreters[constants.KW.WAKATI] = require("./inodenigbati.js");
+interpreters[constants.KW.VUNJA] = require("./inodekuro.js");
+interpreters[constants.KW.HAKIKA] = require("./inodefun.js");
+interpreters[constants.KW.BAD] = require("./inodeyi.js");
+interpreters[constants.KW.KAZI] = require("./inodeise.js");
 interpreters[constants.KW.PADA] = require("./inodepada.js");
-interpreters[constants.KW.GBE_WOLE] = require("./inodegbewole.js");
-interpreters[constants.KW.WOKE] = require("./inodewoke.js");
+interpreters[constants.KW.LETE] = require("./inodegbewole.js");
+interpreters[constants.KW.ITA] = require("./inodewoke.js");
 
 interpreters[constants.CALL_ISE] = require("./inodecallise.js");
 interpreters[constants.GET_JEKI] = require("./inodegetjeki.js");

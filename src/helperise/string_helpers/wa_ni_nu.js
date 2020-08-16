@@ -8,8 +8,8 @@ function waNinu (args) {
         if ((typeof parentString === "string") && (typeof subString === "string")) {
             return parentString.includes(subString);
         }
-        throw new Error("Yorlang system error: arguments should be two strings");
+        throw new Error("system error: arguments should be two strings");
     }
-    throw new Error("Yorlang system error");
+    throw new Error("system error");
 }
 module.exports = waNinu;

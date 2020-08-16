@@ -6,7 +6,7 @@ function getFormattedReturnValue (returnedValue) {
     case "object": if (Array.isArray(returnedValue)) return returnedValue;
     }
 
-    throw new Error("Yorlang system error: invalid result returned from helper function");
+    throw new Error("system error: invalid result returned from helper function");
 }
 
 module.exports = getFormattedReturnValue;

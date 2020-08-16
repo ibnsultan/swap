@@ -7,7 +7,7 @@ function ka (args) {
         throw new Error("Invalid param given to helper ise ka.");
     }
 
-    throw new Error("Yorlang system error");
+    throw new Error("system error");
 }
 
 module.exports = ka;
