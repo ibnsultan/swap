@@ -5,7 +5,7 @@ const KEYWORDS = {
     BASI: "basi",
     KWELI: "kweli",
     SIKWELI: "sikweli",
-    KAZI: "kazi",
+    KAZI: "njia",
     HAKIKA: "hakika",
     PADA: "rejesha",
     VUNJA: "vunja",
