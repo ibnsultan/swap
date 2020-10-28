@@ -387,4 +387,4 @@ if the substring does not exist in the main string then it would have returned
 
 Assuming we have two variable A and B where A=15 and B=20
 
-FULL DOCUMENTATION CAN BE OBTAINED (HERE)[http://edtech.co.tz/swap/25/page]
+FULL DOCUMENTATION CAN BE OBTAINED [HERE](http://edtech.co.tz/swap/25/page)
