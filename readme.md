@@ -1,5 +1,5 @@
 # Swahili Programming Language
-**SWAP** was created so as to help non-English speaking natives to have a much easier understanding  in Programming (i.e SWAHILI) in Tanzania .
+**SWAP** was created to help non-English speaking natives to have a much easier understanding in Programming (i.e SWAHILI) in Tanzania.
 
 ## Feature List
 - Variable Declaration
@@ -18,7 +18,7 @@
 
 #### INSTALLATION
 
-Getting Started with Swap you need to have [node runtime](https://nodejs.org/en/download/) installed on your machine, After making sure that node runtime works on your machine run the following command
+Getting Started with Swap you need to have [node runtime](https://nodejs.org/en/download/) installed on your machine. After making sure that node runtime works on your machine run the following command
 
 `npm install -g swapro`
 
@@ -84,7 +84,7 @@ Result
 
 **eg. 3**
 
-    hifadhi jina= "juma";
+    hifadhi jina= "Juma";
     hifadhi umri = 5 ;
     andika jina + " " + "is" + " " + umri + " " + "years old" ;
 
@@ -109,7 +109,7 @@ Swap also supports the program interactive programming by requesting inputs from
 assuming after running the program the user provided it with input "Abdulbasit"
 
 then the Results will be
- `Habari Abdulbasit`Conditionals like if, else, else if and switch statements are also defined and used in Swap language
+ `Habari Abdulbasit`. Conditionals like if, else, else if and switch statements are also defined and used in Swap language
 
 **IF ELSE IF CONDITIONS:**
 
@@ -131,11 +131,11 @@ then the Results will be
 Result
  `juma ni kijana`
 
-**Explanation:**The above program is used to show from which age group does a person belong whether young, youth or an old person
+**Explanation:** The above program is used to show from which age group does a person belong whether young, youth or an old person
 
 **SWITCH CASE:**
 
-Also, switch case expressions are included, The switch case is only evaluated Once, the value of each expression is always compared with the values of Each case. if there is a match, the associated code block is run and then escapes the sequence.
+Also, switch case expressions are included. The switch case is only evaluated once, the value of each expression is always compared with the values of each case. if there is a match, the associated code block is run and then escapes the sequence.
  With exceptional to loops the use of `break;` which is presented by `vunja;` statement in Swap, to kill or escape a switch case sequence will result to a fatal error. In normal cases (without loops) the switch case automatically escapes the sequence after executing the true match of a case.
 
 The switch case values are presented as follows;
@@ -165,7 +165,7 @@ wakati (teule > 0){
 }
 ```
 
-**Explanation:**The following program prompts a user to choose a tv package if a program chose is present and is matched with the associated case, the program will echo the user's input and exits else if the input value is not matched the program will continue to loop until a right input is given or the program is manually terminated.
+**Explanation:** The following program prompts a user to choose a tv package if a program chose is present and is matched with the associated case, the program will echo the user's input and exits else if the input value is not matched the program will continue to loop until a right input is given or the program is manually terminated.
 
 **INCREMENT and DECREMENTS**
 
@@ -179,7 +179,7 @@ i.e.
 
 **for Loop**
 
-In Swap, "for" loop in implemented by**`hakika`** statement and expressed as
+In Swap, "for" loop in implemented by **`hakika`** statement and expressed as
 
     hakika(hifadhi a = 0; a < 10; hifadhi a = a+1){
         //statement
@@ -204,7 +204,7 @@ Results
 
 **FUNCTIONS**
 
-A function is a code-block that performs a certain task, In Swap, a function can be a group of a procedure which performs a certain work or can be used to return a value.
+A function is a code-block that performs a certain task. In Swap, a function can be a group of a procedure which performs a certain work or can be used to return a value.
 
 Functions in Swap can be defined *as independent modules of code blocks that perform certain work.*
 
@@ -238,7 +238,7 @@ Result
 in swap there is no pre-declaration of functional prototypes, therefore the use of functions have to be fully declared before they are executed.
 **IMPORT**
 
-The import keyword is supplemented by the constant`lete` which literally means "bring", the import(`lete`) constant is used to import other files in to the main program file.
+The import keyword is supplemented by the constant `lete` which literally means "bring", the import(`lete`) constant is used to import other files into the main program file.
 
 The constant is followed by a string value which should contain the path to the imported file and this path must be provided as a suffix to the absolute path of the needed file
 
@@ -251,7 +251,7 @@ Suppose you want to import a file from another directory
 
 **VARIABLE SCOPES**
 
-a variable scope is the settings within which the variable is declared, All the inner functions (`njia`) have access to the variables that are from the outer function, unlikely the inner functions the outer functions do not have access to their Inner functions.
+a variable scope is the settings within which the variable is declared. All the inner functions (`njia`) have access to the variables that are from the outer function, unlikely the inner functions the outer functions do not have access to their Inner functions.
 
 **eg. 11**
 
@@ -302,6 +302,7 @@ It is also known as the linear array, all elements stored can be accessed throug
 Results
 
 `moja, mbili moja `
+
 **MULTI-DIMENSIONAL ARRAY**
 
 It is an array that stores data on more than one level, a multi-dimensional array is used to store several data groups in one variable.
@@ -343,7 +344,7 @@ Result
  `HERUFI`
 
 **badili:**
- `badili` this is an inverse of `BADILI` constant, it transforms a or converts a string value of a variable into lowercase letters. The constant must be written in lowercase.
+ `badili` this is an inverse of `BADILI` constant, it transforms or converts a string value of a variable into lowercase letters. The constant must be written in lowercase.
 
 **eg. 17**
  `andika BADILI("HerUFI");`
