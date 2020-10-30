@@ -1,5 +1,4 @@
 # Swap
-swahili programming Langage
 
 # Swahili Programming Language
 **SWAP** was created so as to help non-English speaking natives to have a much easier understanding  in Programming (i.e SWAHILI) in Tanzania .
