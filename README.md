@@ -147,7 +147,7 @@ The switch case values are presented as follows;
 
 **eg. 7**
 
-``` {style="color: red;"}
+```
 andika "1. cct basic";
 andika "2. cct ordinary";
 hifadhi teule = beba ("weka chaguo lako hapa: ");
