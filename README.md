@@ -53,7 +53,7 @@ if your installation was successful the following result will show up
 1.  Linux : no more configurations start right away
 2.  Windows: use the notepad++ mod that provides a syntax highlighter for you code, [click here to download it](https://github.com/ibnsultan/notepad-for-swap/blob/master/notepad%20Xtra.7z?raw=true) 
 
-**NOTE: The file extension for a swap file is .sw**
+**NOTE: The file extension for a swap file is .sw and Swap does not use the WINDOWS (CRLF) EOL format, if you're not going to use the provided text editor on windows OS make sure it is set to use UNIX (LF) or MACINTOSH (CR) EOL format**
 
 First Program:
 
