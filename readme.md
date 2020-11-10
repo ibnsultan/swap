@@ -1,10 +1,14 @@
 # Swahili Programming Language
 **SWAP** was created to help non-English speaking natives to have a much easier understanding in Programming (i.e SWAHILI) in Tanzania.
 
+![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/screen.png?token=AGZG7Y3AVUL6Z55JUO7DOVK7WQF7Q)
+
 ## Feature List
 - Variable Declaration
 - Conditionals & Loops
-- Functions & Arrays
+- Variable functions, Functions & Arrays
+- recursion
+- Basic arithmetic operations
 
 ## Author
 - Abdulbasit S Rubeiyya- @ibnsultan
@@ -47,9 +51,15 @@ if your installation was successful the following result will show up
       $ swap -h
       $ swap -v
 
+Dowload [Visual studio code](https://code.visualstudio.com/) editor and install the [swap extension](https://marketplace.visualstudio.com/items?itemName=abdulbasit.swap-vsce) for syntax higlighting
+![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/ext.png)
 
-1.  Linux : no more configurations start right away
-2.  Windows: use the notepad++ mod that provides a syntax highlighter for you code, [click here to download it](https://github.com/ibnsultan/notepad-for-swap/blob/master/notepad%20Xtra.7z?raw=true) 
+1.  Linux and MAC : no more configurations start right away
+2.  Windows: for every swap project, create a folder with a name `.vscode` and in that folder create file `settings.json` and add the following lines
+    `{"files.eol": "\n",}` and you'll be ready to go
+    
+![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/screen.png?token=AGZG7Y3AVUL6Z55JUO7DOVK7WQF7Q)
+    
 
 **NOTE: The file extension for a swap file is .sw**
 
@@ -65,7 +75,7 @@ Result:
 
 Every line of code has and must be terminated by a delimiter which is a `semicolon(;)`
 
-To run your program initiate a CMD in your project directory and run the command
+To run your program initiate a CMD or Terminal in your project directory and run the command
  `swap file.sw`
 
 File should be replaced with the name of your file.
