@@ -58,7 +58,7 @@ Dowload [Visual studio code](https://code.visualstudio.com/) editor and install 
 2.  Windows: for every swap project, create a folder with a name `.vscode` and in that folder create file `settings.json` and add the following lines
     `{"files.eol": "\n",}` and you'll be ready to go
     
-![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/screen.png?token=AGZG7Y3AVUL6Z55JUO7DOVK7WQF7Q)
+![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/setts.png)
     
 
 **NOTE: The file extension for a swap file is .sw**
