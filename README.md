@@ -6,7 +6,7 @@ It is the only programming Language that allows programmers to code in the Swahi
 
 
 ## Author
-- Abdulbasit Rubeiyya- @ibnsultan003
+- Abdulbasit Rubeiyya- @ibnsultan
 
 ## Credits
 - node js
