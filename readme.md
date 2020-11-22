@@ -1,28 +1,24 @@
+# Swap
+
 # Swahili Programming Language
-**SWAP** was created to help non-English speaking natives to have a much easier understanding in Programming (i.e SWAHILI) in Tanzania.
+**SWAP** was created so as to help non-English speaking natives to have a much easier understanding  in Programming (i.e SWAHILI) in Tanzania .
+It is the only programming Language that allows programmers to code in the Swahili Language construct
 
-![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/screen.png?token=AGZG7Y3AVUL6Z55JUO7DOVK7WQF7Q)
-
-## Feature List
-- Variable Declaration
-- Conditionals & Loops
-- Variable functions, Functions & Arrays
-- recursion
-- Basic arithmetic operations
 
 ## Author
-- Abdulbasit S Rubeiyya- @ibnsultan
+- Abdulbasit Rubeiyya- @ibnsultan
 
-## License
-- [MIT](https://github.com/)
+## Credits
+- node js
+- jScript
 
 [**JOIN THE SWAP COMMUNITY TODAY, CLICK HERE**](https://wanda.buzz/swapcommunity)
 
-# TUTORIAL
+## TUTORIAL
 
 #### INSTALLATION
 
-Getting Started with Swap you need to have [node runtime](https://nodejs.org/en/download/) installed on your machine. After making sure that node runtime works on your machine run the following command
+Getting Started with Swap you need to have [node runtime](https://nodejs.org/en/download/) installed on your machine, After making sure that node runtime works on your machine run the following command
 
 `npm install -g swapro`
 
@@ -51,17 +47,20 @@ if your installation was successful the following result will show up
       $ swap -h
       $ swap -v
 
-Dowload [Visual studio code](https://code.visualstudio.com/) editor and install the [swap extension](https://marketplace.visualstudio.com/items?itemName=abdulbasit.swap-vsce) for syntax higlighting
+To program using swap we will be using vscode, so open the program and install the swap extension
 ![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/ext.png)
 
-1.  Linux and MAC : no more configurations start right away
-2.  Windows: for every swap project, create a folder with a name `.vscode` and in that folder create file `settings.json` and add the following lines
-    `{"files.eol": "\n",}` and you'll be ready to go
+1.  Linux : no more configurations start right away
+2.  Windows: swap supports only LF (Line feed) end of line format while the default for windows is CRLF (Carrige Return and Line feed) EOL format so we have to change it
+    In your project create a folder called **.vscode**, and inside it create a file settings.json and inside it add the following line.
+    `{ "files.eol": "\n" }
     
-![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/setts.png)
+    ![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/setts.png)
     
 
-**NOTE: The file extension for a swap file is .sw**
+    OR for windows you can use the notepad++ mod that provides a syntax highlighter for you code, [click here to download it](https://github.com/ibnsultan/notepad-for-swap/blob/master/notepad%20Xtra.7z?raw=true) 
+
+**NOTE: The file extension for a swap file is .sw and Swap does not use the WINDOWS (CRLF) EOL format, if you're not going to use the provided text editor on windows OS make sure it is set to use UNIX (LF) or MACINTOSH (CR) EOL format**
 
 First Program:
 
@@ -75,7 +74,7 @@ Result:
 
 Every line of code has and must be terminated by a delimiter which is a `semicolon(;)`
 
-To run your program initiate a CMD or Terminal in your project directory and run the command
+To run your program initiate a CMD in your project directory and run the command
  `swap file.sw`
 
 File should be replaced with the name of your file.
@@ -94,7 +93,7 @@ Result
 
 **eg. 3**
 
-    hifadhi jina= "Juma";
+    hifadhi jina= "juma";
     hifadhi umri = 5 ;
     andika jina + " " + "is" + " " + umri + " " + "years old" ;
 
@@ -119,7 +118,7 @@ Swap also supports the program interactive programming by requesting inputs from
 assuming after running the program the user provided it with input "Abdulbasit"
 
 then the Results will be
- `Habari Abdulbasit`. Conditionals like if, else, else if and switch statements are also defined and used in Swap language
+ `Habari Abdulbasit`Conditionals like if, else, else if and switch statements are also defined and used in Swap language
 
 **IF ELSE IF CONDITIONS:**
 
@@ -141,11 +140,11 @@ then the Results will be
 Result
  `juma ni kijana`
 
-**Explanation:** The above program is used to show from which age group does a person belong whether young, youth or an old person
+**Explanation:**The above program is used to show from which age group does a person belong whether young, youth or an old person
 
 **SWITCH CASE:**
 
-Also, switch case expressions are included. The switch case is only evaluated once, the value of each expression is always compared with the values of each case. if there is a match, the associated code block is run and then escapes the sequence.
+Also, switch case expressions are included, The switch case is only evaluated Once, the value of each expression is always compared with the values of Each case. if there is a match, the associated code block is run and then escapes the sequence.
  With exceptional to loops the use of `break;` which is presented by `vunja;` statement in Swap, to kill or escape a switch case sequence will result to a fatal error. In normal cases (without loops) the switch case automatically escapes the sequence after executing the true match of a case.
 
 The switch case values are presented as follows;
@@ -156,7 +155,7 @@ The switch case values are presented as follows;
 
 **eg. 7**
 
-``` {style="color: red;"}
+```
 andika "1. cct basic";
 andika "2. cct ordinary";
 hifadhi teule = beba ("weka chaguo lako hapa: ");
@@ -175,7 +174,7 @@ wakati (teule > 0){
 }
 ```
 
-**Explanation:** The following program prompts a user to choose a tv package if a program chose is present and is matched with the associated case, the program will echo the user's input and exits else if the input value is not matched the program will continue to loop until a right input is given or the program is manually terminated.
+**Explanation:**The following program prompts a user to choose a tv package if a program chose is present and is matched with the associated case, the program will echo the user's input and exits else if the input value is not matched the program will continue to loop until a right input is given or the program is manually terminated.
 
 **INCREMENT and DECREMENTS**
 
@@ -189,7 +188,7 @@ i.e.
 
 **for Loop**
 
-In Swap, "for" loop in implemented by **`hakika`** statement and expressed as
+In Swap, "for" loop in implemented by**`hakika`** statement and expressed as
 
     hakika(hifadhi a = 0; a < 10; hifadhi a = a+1){
         //statement
@@ -214,7 +213,7 @@ Results
 
 **FUNCTIONS**
 
-A function is a code-block that performs a certain task. In Swap, a function can be a group of a procedure which performs a certain work or can be used to return a value.
+A function is a code-block that performs a certain task, In Swap, a function can be a group of a procedure which performs a certain work or can be used to return a value.
 
 Functions in Swap can be defined *as independent modules of code blocks that perform certain work.*
 
@@ -248,7 +247,7 @@ Result
 in swap there is no pre-declaration of functional prototypes, therefore the use of functions have to be fully declared before they are executed.
 **IMPORT**
 
-The import keyword is supplemented by the constant `lete` which literally means "bring", the import(`lete`) constant is used to import other files into the main program file.
+The import keyword is supplemented by the constant`lete` which literally means "bring", the import(`lete`) constant is used to import other files in to the main program file.
 
 The constant is followed by a string value which should contain the path to the imported file and this path must be provided as a suffix to the absolute path of the needed file
 
@@ -261,7 +260,7 @@ Suppose you want to import a file from another directory
 
 **VARIABLE SCOPES**
 
-a variable scope is the settings within which the variable is declared. All the inner functions (`njia`) have access to the variables that are from the outer function, unlikely the inner functions the outer functions do not have access to their Inner functions.
+a variable scope is the settings within which the variable is declared, All the inner functions (`njia`) have access to the variables that are from the outer function, unlikely the inner functions the outer functions do not have access to their Inner functions.
 
 **eg. 11**
 
@@ -312,7 +311,6 @@ It is also known as the linear array, all elements stored can be accessed throug
 Results
 
 `moja, mbili moja `
-
 **MULTI-DIMENSIONAL ARRAY**
 
 It is an array that stores data on more than one level, a multi-dimensional array is used to store several data groups in one variable.
@@ -354,7 +352,7 @@ Result
  `HERUFI`
 
 **badili:**
- `badili` this is an inverse of `BADILI` constant, it transforms or converts a string value of a variable into lowercase letters. The constant must be written in lowercase.
+ `badili` this is an inverse of `BADILI` constant, it transforms a or converts a string value of a variable into lowercase letters. The constant must be written in lowercase.
 
 **eg. 17**
  `andika BADILI("HerUFI");`
@@ -398,4 +396,7 @@ if the substring does not exist in the main string then it would have returned
 
 Assuming we have two variable A and B where A=15 and B=20
 
-FULL DOCUMENTATION CAN BE OBTAINED [HERE](http://edtech.co.tz/swap/25/page)
+[**THE FULL TUTORIAL CAN BE FOUND HERE**](http://edtech.co.tz/swap/25/page)
+
+
+
