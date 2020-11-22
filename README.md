@@ -47,9 +47,18 @@ if your installation was successful the following result will show up
       $ swap -h
       $ swap -v
 
+To program using swap we will be using vscode, so open the program and install the swap extension
+![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/ext.png)
 
 1.  Linux : no more configurations start right away
-2.  Windows: use the notepad++ mod that provides a syntax highlighter for you code, [click here to download it](https://github.com/ibnsultan/notepad-for-swap/blob/master/notepad%20Xtra.7z?raw=true) 
+2.  Windows: swap supports only LF (Line feed) end of line format while the default for windows is CRLF (Carrige Return and Line feed) EOL format so we have to change it
+    In your project create a folder called **.vscode**, and inside it create a file settings.json and inside it add the following line.
+    `{ "files.eol": "\n" }
+    
+    ![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/setts.png)
+    
+
+    OR for windows you can use the notepad++ mod that provides a syntax highlighter for you code, [click here to download it](https://github.com/ibnsultan/notepad-for-swap/blob/master/notepad%20Xtra.7z?raw=true) 
 
 **NOTE: The file extension for a swap file is .sw and Swap does not use the WINDOWS (CRLF) EOL format, if you're not going to use the provided text editor on windows OS make sure it is set to use UNIX (LF) or MACINTOSH (CR) EOL format**
 
