@@ -174,7 +174,7 @@ wakati (teule > 0){
         zaidi :
         andika "umekosea tafadhali chagua tena";
     }
-    hifadhi teule = beba ("weka chagua lako hapa: ");
+    hifadhi teule = dai("weka chagua lako hapa: ");
 }
 ```
 
