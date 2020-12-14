@@ -53,7 +53,11 @@ To program using swap we will be using vscode, so open the program and install t
 1.  Linux : no more configurations start right away
 2.  Windows: swap supports only LF (Line feed) end of line format while the default for windows is CRLF (Carrige Return and Line feed) EOL format so we have to change it
     In your project create a folder called **.vscode**, and inside it create a file settings.json and inside it add the following line.
-    `{ "files.eol": "\n" }
+    ```
+     {
+        "files.eol": "\n" 
+     }
+     ```
     
     ![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/setts.png)
     
@@ -158,13 +162,13 @@ The switch case values are presented as follows;
 ```
 andika "1. cct basic";
 andika "2. cct ordinary";
-hifadhi teule = beba ("weka chaguo lako hapa: ");
+hifadhi teule = dai("weka chaguo lako hapa: ");
 wakati (teule > 0){
-    badilisha (teule){
-        chaguo 1 :
+    chagua (teule){ 
+        kesi 1 :
         andika "chaguo lako ni: " + teule ;
         vunja;
-        chaguo 2 :
+        kesi 2 :
         andika "chaguo lako ni: " + teule ;
         vunja;
         zaidi :
@@ -198,7 +202,7 @@ In Swap, "for" loop in implemented by**`hakika`** statement and expressed as
  In Swap, the while loop is represented by `wakati()` statement and is expressed as
 
     wakati(hali/condition){
-        //staement;
+        //statement;
     }
 
 **eg. 8**
@@ -244,9 +248,9 @@ or
 Result
  `18`
 
-in swap there is no pre-declaration of functional prototypes, therefore the use of functions have to be fully declared before they are executed.
-**IMPORT**
+in swap there is no pre-declaration of functional prototypes as in languages like C++, therefore the use of functions have to be fully declared before they are called.
 
+**IMPORT**
 The import keyword is supplemented by the constant`lete` which literally means "bring", the import(`lete`) constant is used to import other files in to the main program file.
 
 The constant is followed by a string value which should contain the path to the imported file and this path must be provided as a suffix to the absolute path of the needed file
@@ -309,11 +313,11 @@ It is also known as the linear array, all elements stored can be accessed throug
     andika array[0]
 
 Results
-
 `moja, mbili moja `
+
 **MULTI-DIMENSIONAL ARRAY**
 
-It is an array that stores data on more than one level, a multi-dimensional array is used to store several data groups in one variable.
+It is an array that stores data with than one array level, a multi-dimensional array is used to store several data groups in one variable.
 
 **eg. 14**
 
@@ -374,7 +378,11 @@ Result
 
 **eg. 19**
 
-`andika hariri ("wewe ni mbaya", "mbaya", "mzuri");`
+`andika hariri("wewe ni mbaya", "mbaya", "mzuri");`
+The function `hariri` takes in three arguments, assuming the parameters used by function `hariri` x, y and z then
+x will be the initial input
+y is the string to find and replace in the input of x
+z is the string value to replace the input of y
 
 Result
  `wewe ni mzuri`
