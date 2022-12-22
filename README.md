@@ -12,8 +12,6 @@ It is the only programming Language that allows programmers to code in the Swahi
 - node js
 - jScript
 
-[**JOIN THE SWAP COMMUNITY TODAY, CLICK HERE**](https://wanda.buzz/swapcommunity)
-
 ## TUTORIAL
 
 #### INSTALLATION
@@ -54,9 +52,7 @@ To program using swap we will be using vscode, so open the program and install t
 2.  Windows: swap supports only LF (Line feed) end of line format while the default for windows is CRLF (Carrige Return and Line feed) EOL format so we have to change it
     In your project create a folder called **.vscode**, and inside it create a file settings.json and inside it add the following line.
     ```
-     {
-        "files.eol": "\n" 
-     }
+     { "files.eol": "\n" }
      ```
     
     ![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/setts.png)
