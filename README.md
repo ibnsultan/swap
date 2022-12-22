@@ -46,7 +46,8 @@ if your installation was successful the following result will show up
       $ swap -v
 
 To program using swap we will be using vscode, so open the program and install the swap extension <br>
-![Screenshot](https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/swap.jpg)
+
+<img src="https://raw.githubusercontent.com/ibnsultan/swap-vsce/main/assets/swap.jpg" width="100%">
 
 1.  Linux : no more configurations start right away
 2.  Windows: swap supports only LF (Line feed) end of line format while the default for windows is CRLF (Carrige Return and Line feed) EOL format so we have to change it
