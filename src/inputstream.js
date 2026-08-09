@@ -12,10 +12,16 @@ class InputStream {
 
     readProgramFile (fileName) {
         try {
-            return fs.readFileSync(process.cwd() + "/" + fileName, "utf8");
+            return this.normalizeLineEndings(fs.readFileSync(process.cwd() + "/" + fileName, "utf8"));
         } catch (e) {
             throw new Error(`Could not read file: ${fileName}`);
         }
+    }
+
+    // normalize CRLF (Windows) and legacy CR (old Mac) line endings to LF
+    // so swap files aren't restricted to a single EOL format.
+    normalizeLineEndings (code) {
+        return typeof code === "string" ? code.replace(/\r\n|\r/g, constants.SYM.NEW_LINE) : code;
     }
 
     // return the next value and also discard it from the stream

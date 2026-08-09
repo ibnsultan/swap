@@ -9,7 +9,7 @@ const Lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeFun test suite", () => {
+describe("INodeHakika test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -20,76 +20,76 @@ describe("INodeFun test suite", () => {
 
     test("it should interprete a valid yi node", () => {
         parser.lexer().inputStream.code = `
-        ${constants.KW.HIFADHI} oruko = "femi";
+        ${constants.KW.HIFADHI} jina = "juma";
 
-        ${constants.KW.BAD} (oruko) {
-            ${constants.KW.KESI} "anu":
-                ${constants.KW.ANDIKA} "it is anu";
-            ${constants.KW.KESI} "femi":
-                ${constants.KW.ANDIKA} "it is femi";
+        ${constants.KW.CHAGUA} (jina) {
+            ${constants.KW.KESI} "sawa":
+                ${constants.KW.ANDIKA} "it is sawa";
+            ${constants.KW.KESI} "juma":
+                ${constants.KW.ANDIKA} "it is juma";
         }`;
 
         mainInterpreter.interpreteProgram();
-        expect(global.console.log).toHaveBeenCalledWith("it is femi");
+        expect(global.console.log).toHaveBeenCalledWith("it is juma");
     });
 
     test("it should interprete a nested yi node", () => {
         parser.lexer().inputStream.code = `
-        ${constants.KW.HIFADHI} oruko = 1;
+        ${constants.KW.HIFADHI} jina = 1;
 
-        ${constants.KW.BAD} (oruko) {
+        ${constants.KW.CHAGUA} (jina) {
             ${constants.KW.KESI} 1:
-                ${constants.KW.BAD} (1+5) {
+                ${constants.KW.CHAGUA} (1+5) {
                     ${constants.KW.KESI} 3+3:
-                        ${constants.KW.ANDIKA} "it is anu";
+                        ${constants.KW.ANDIKA} "it is sawa";
                     ${constants.KW.KESI} 3:
                         ${constants.KW.ANDIKA} "it is three";
                 }            
             ${constants.KW.KESI} 2:
-                ${constants.KW.ANDIKA} "it is femi";
+                ${constants.KW.ANDIKA} "it is juma";
         }`;
 
         mainInterpreter.interpreteProgram();
-        expect(global.console.log).toHaveBeenCalledWith("it is anu");
+        expect(global.console.log).toHaveBeenCalledWith("it is sawa");
     });
 
-    test("it should interprete yi node with padasi", () => {
+    test("it should interprete yi node with zaidi", () => {
         parser.lexer().inputStream.code = `
-        ${constants.KW.HIFADHI} oruko = "funmi";
+        ${constants.KW.HIFADHI} jina = "fatuma";
 
-        ${constants.KW.BAD} (oruko) {
-            ${constants.KW.KESI} "anu":
-                ${constants.KW.ANDIKA} "it is anu";
-            ${constants.KW.KESI} "femi":
-                ${constants.KW.ANDIKA} "it is femi";
-            ${constants.KW.PADASI}: 
+        ${constants.KW.CHAGUA} (jina) {
+            ${constants.KW.KESI} "sawa":
+                ${constants.KW.ANDIKA} "it is sawa";
+            ${constants.KW.KESI} "juma":
+                ${constants.KW.ANDIKA} "it is juma";
+            ${constants.KW.ZAIDI}: 
                 ${constants.KW.ANDIKA} "i don't know";
-                ${constants.KW.ANDIKA} "Yoruba - mi o mo";
+                ${constants.KW.ANDIKA} "sijui kabisa";
         }`;
 
         mainInterpreter.interpreteProgram();
         expect(global.console.log).toHaveBeenCalledWith("i don't know");
-        expect(global.console.log).toHaveBeenCalledWith("Yoruba - mi o mo");
+        expect(global.console.log).toHaveBeenCalledWith("sijui kabisa");
     });
 
     test("it should interprete a valid yi node and return a value from within it", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} oruko = "femi";
+            ${constants.KW.HIFADHI} jina = "juma";
 
-            ${constants.KW.KAZI} apere(oruko) {
+            ${constants.KW.NJIA} mfano(jina) {
 
-                ${constants.KW.BAD} (oruko) {
-                    ${constants.KW.KESI} "anu":
-                        ${constants.KW.PADA} "it is anu";
-                    ${constants.KW.KESI} "femi":
-                        ${constants.KW.PADA} "it is femi";
+                ${constants.KW.CHAGUA} (jina) {
+                    ${constants.KW.KESI} "sawa":
+                        ${constants.KW.REJESHA} "it is sawa";
+                    ${constants.KW.KESI} "juma":
+                        ${constants.KW.REJESHA} "it is juma";
                 }
             }
             
-            ${constants.KW.ANDIKA} apere(oruko);
+            ${constants.KW.ANDIKA} mfano(jina);
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(global.console.log).toHaveBeenCalledWith("it is femi");
+        expect(global.console.log).toHaveBeenCalledWith("it is juma");
     });
 });

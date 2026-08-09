@@ -1,7 +1,7 @@
 const IBase = require("./ibase.js");
 const constants = require("../constants.js");
 
-class INodeFun extends IBase {
+class INodeHakika extends IBase {
     interpreteNode (node) {
         this.evaluateNode(node.init);
 
@@ -17,4 +17,4 @@ class INodeFun extends IBase {
     }
 }
 
-module.exports = new INodeFun();
+module.exports = new INodeHakika();

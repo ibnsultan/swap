@@ -2,23 +2,23 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeNigbati = require("../../../parsers/keywordnodes/kwnodenigbati.js");
+const kwNodeWakati = require("../../../parsers/keywordnodes/kwnodewakati.js");
 const Parser = require("../../../parsers/parser.js");
 const Lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodeNigbati test suite", () => {
+describe("KwNodeWakati test suite", () => {
     let parser;
 
     beforeEach(() => {
         parser = new Parser(new Lexer(new InputStream()));
     });
 
-    test("it should return a nigbati node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.WAKATI} ((ikeji < aropo) && (ikeji > 0)) {
-            ${constants.KW.ANDIKA} "a jura wa lo tijakadi ko";
-            ${constants.KW.HIFADHI} ikeji = ikeji + 1;
+    test("it should return a wakati node", () => {
+        parser.lexer().inputStream.code = `${constants.KW.WAKATI} ((pili < jumla) && (pili > 0)) {
+            ${constants.KW.ANDIKA} "hii ni jaribio la mfano";
+            ${constants.KW.HIFADHI} pili = pili + 1;
         }`;
 
         const expectedNode = {
@@ -28,17 +28,17 @@ describe("KwNodeNigbati test suite", () => {
                         left: null,
                         operation: null,
                         right: null,
-                        value: "a jura wa lo tijakadi ko",
+                        value: "hii ni jaribio la mfano",
                     },
                     operation: constants.KW.ANDIKA,
                 },
                 {
-                    left: "ikeji",
+                    left: "pili",
                     operation: constants.SYM.ASSIGN,
                     right: {
                         left: {
-                            name: "ikeji",
-                            operation: constants.GET_JEKI,
+                            name: "pili",
+                            operation: constants.GET_HIFADHI,
                         },
                         operation: "+",
                         right: {
@@ -54,21 +54,21 @@ describe("KwNodeNigbati test suite", () => {
             condition: {
                 left: {
                     left: {
-                        name: "ikeji",
-                        operation: constants.GET_JEKI,
+                        name: "pili",
+                        operation: constants.GET_HIFADHI,
                     },
                     operation: constants.SYM.L_THAN,
                     right: {
-                        name: "aropo",
-                        operation: constants.GET_JEKI,
+                        name: "jumla",
+                        operation: constants.GET_HIFADHI,
                     },
                     value: null,
                 },
                 operation: constants.SYM.AND,
                 right: {
                     left: {
-                        name: "ikeji",
-                        operation: constants.GET_JEKI,
+                        name: "pili",
+                        operation: constants.GET_HIFADHI,
                     },
                     operation: constants.SYM.G_THAN,
                     right: {
@@ -84,30 +84,30 @@ describe("KwNodeNigbati test suite", () => {
             operation: constants.KW.WAKATI,
         };
 
-        expect(kwNodeNigbati.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeWakati.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("it should return valid nigbati node for nested blocks", () => {
-        parser.lexer().inputStream.code = `${constants.KW.WAKATI} ((ikeji < aropo) && (ikeji > 0)) {
-            ${constants.KW.ANDIKA} "a jura wa lo tijakadi ko";
-            ${constants.KW.HIFADHI} ikeji = ikeji + 1;
-            ${constants.KW.WAKATI} ((ikeji < aropo) && (ikeji > 0)) {
-                ${constants.KW.ANDIKA} "a jura wa lo tijakadi ko";
-                ${constants.KW.HIFADHI} ikeji = ikeji + 1;
+    test("it should return valid wakati node for nested blocks", () => {
+        parser.lexer().inputStream.code = `${constants.KW.WAKATI} ((pili < jumla) && (pili > 0)) {
+            ${constants.KW.ANDIKA} "hii ni jaribio la mfano";
+            ${constants.KW.HIFADHI} pili = pili + 1;
+            ${constants.KW.WAKATI} ((pili < jumla) && (pili > 0)) {
+                ${constants.KW.ANDIKA} "hii ni jaribio la mfano";
+                ${constants.KW.HIFADHI} pili = pili + 1;
             }
         }`;
 
-        expect(kwNodeNigbati.getNode.call(parser)).toBeTruthy();
+        expect(kwNodeWakati.getNode.call(parser)).toBeTruthy();
     });
 
     test("it should throw an error when given invalid construct", () => {
-        parser.lexer().inputStream.code = `${constants.KW.WAKATI} ikeji < aropo) && (ikeji > 0)) {
-            ${constants.KW.ANDIKA} "a jura wa lo tijakadi ko";
-            ${constants.KW.HIFADHI} ikeji = ikeji + 1;
+        parser.lexer().inputStream.code = `${constants.KW.WAKATI} pili < jumla) && (pili > 0)) {
+            ${constants.KW.ANDIKA} "hii ni jaribio la mfano";
+            ${constants.KW.HIFADHI} pili = pili + 1;
         }`;
 
         expect(() => {
-            kwNodeNigbati.getNode.call(parser);
+            kwNodeWakati.getNode.call(parser);
         }).toThrow();
     });
 });

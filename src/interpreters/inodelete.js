@@ -3,7 +3,7 @@ const Parser = require("../parsers/parser.js");
 const Lexer = require("../lexer.js");
 const InputStream = require("../inputstream.js");
 
-class INodeGbeWole extends IBase {
+class INodeLete extends IBase {
     interpreteNode (node) {
         const fileName = this.evaluateNode(node.path);
         const parser = new Parser(new Lexer(new InputStream(fileName)));
@@ -11,4 +11,4 @@ class INodeGbeWole extends IBase {
     }
 }
 
-module.exports = new INodeGbeWole();
+module.exports = new INodeLete();

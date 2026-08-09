@@ -1,7 +1,7 @@
 const IBase = require("./ibase.js");
 const constants = require("../constants.js");
 
-class INodeNigbati extends IBase {
+class INodeWakati extends IBase {
     interpreteNode (node) {
         while (this.evaluateNode(node.condition) !== constants.KW.SIKWELI) {
             for (let i = 0; i < node.body.length; i++) {
@@ -13,4 +13,4 @@ class INodeNigbati extends IBase {
     }
 }
 
-module.exports = new INodeNigbati();
+module.exports = new INodeWakati();

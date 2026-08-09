@@ -2,13 +2,13 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeSe = require("../../../parsers/keywordnodes/kwnodese.js");
+const kwNodeKama = require("../../../parsers/keywordnodes/kwnodekama.js");
 const Parser = require("../../../parsers/parser.js");
 const lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodeSe test suite", () => {
+describe("KwNodeKama test suite", () => {
     let parser;
 
     beforeEach(() => {
@@ -16,14 +16,14 @@ describe("KwNodeSe test suite", () => {
     });
 
     test("it should return a valid se node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.KAMA} (niOruko) {
-            ${constants.KW.ANDIKA} "o ni oruko";
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (kunaJina) {
+            ${constants.KW.ANDIKA} "o ni jina";
         }`;
 
         const expectedNode = {
             condition: {
-                name: "niOruko",
-                operation: constants.GET_JEKI,
+                name: "kunaJina",
+                operation: constants.GET_HIFADHI,
             },
             operation: constants.KW.KAMA,
             then: [
@@ -32,47 +32,47 @@ describe("KwNodeSe test suite", () => {
                         left: null,
                         operation: null,
                         right: null,
-                        value: "o ni oruko",
+                        value: "o ni jina",
                     },
                     operation: constants.KW.ANDIKA,
                 },
             ],
         };
 
-        expect(kwNodeSe.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeKama.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("it should return a valid se node when body is empty", () => {
-        parser.lexer().inputStream.code = `${constants.KW.KAMA} (niOruko) {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (kunaJina) {}`;
 
         const expectedNode = {
             condition: {
-                name: "niOruko",
-                operation: constants.GET_JEKI,
+                name: "kunaJina",
+                operation: constants.GET_HIFADHI,
             },
             operation: constants.KW.KAMA,
             then: [],
         };
 
-        expect(kwNodeSe.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeKama.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("it should return a valid se node for nested blocks", () => {
-        parser.lexer().inputStream.code = `${constants.KW.KAMA} (niOruko) {
-            ${constants.KW.KAMA} (niOruko) {}
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (kunaJina) {
+            ${constants.KW.KAMA} (kunaJina) {}
         }`;
 
-        expect(kwNodeSe.getNode.call(parser)).toBeTruthy();
+        expect(kwNodeKama.getNode.call(parser)).toBeTruthy();
     });
 
     test("it should return a valid se and tabi node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.KAMA} (aropo && ${constants.KW.KWELI}) {} ${constants.KW.BASI} {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} (jumla && ${constants.KW.KWELI}) {} ${constants.KW.BASI} {}`;
 
         const expectedNode = {
             condition: {
                 left: {
-                    name: "aropo",
-                    operation: constants.GET_JEKI,
+                    name: "jumla",
+                    operation: constants.GET_HIFADHI,
                 },
                 operation: constants.SYM.AND,
                 right: {
@@ -88,21 +88,21 @@ describe("KwNodeSe test suite", () => {
             then: [],
         };
 
-        expect(kwNodeSe.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeKama.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("it should throw an error when given an invalid se and tabi node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.KAMA} aropo && ${constants.KW.KWELI}) {} tàbí {}`;
+        parser.lexer().inputStream.code = `${constants.KW.KAMA} jumla && ${constants.KW.KWELI}) {} au {}`;
 
         expect(() => {
-            kwNodeSe.getNode.call(parser);
+            kwNodeKama.getNode.call(parser);
         }).toThrow();
     });
 
     test("it should parse tabi se (else if) statements", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAMA} (aropo && ${constants.KW.KWELI}) {} 
-            ${constants.KW.BASI} ${constants.KW.KAMA} (niOruko) {}
+            ${constants.KW.KAMA} (jumla && ${constants.KW.KWELI}) {} 
+            ${constants.KW.BASI} ${constants.KW.KAMA} (kunaJina) {}
             ${constants.KW.BASI} ${constants.KW.KAMA} (${constants.KW.KWELI}) {}
             ${constants.KW.BASI} {}
         `;
@@ -110,8 +110,8 @@ describe("KwNodeSe test suite", () => {
         const expectedNode = {
             "condition": {
                 "left": {
-                    "name": "aropo",
-                    "operation": constants.GET_JEKI,
+                    "name": "jumla",
+                    "operation": constants.GET_HIFADHI,
                 },
                 "operation": "&&",
                 "right": {
@@ -124,8 +124,8 @@ describe("KwNodeSe test suite", () => {
             },
             "else": {
                 "condition": {
-                    "name": "niOruko",
-                    "operation": constants.GET_JEKI,
+                    "name": "kunaJina",
+                    "operation": constants.GET_HIFADHI,
                 },
                 "else": {
                     "condition": {
@@ -145,6 +145,6 @@ describe("KwNodeSe test suite", () => {
             "then": [],
         };
 
-        expect(kwNodeSe.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeKama.getNode.call(parser)).toEqual(expectedNode);
     });
 });

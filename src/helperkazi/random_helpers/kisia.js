@@ -5,7 +5,7 @@
  *
  * @returns {number}
  */
-function yipo (args) {
+function kisia (args) {
     if (Array.isArray(args)) {
         let [ min, max, ] = args;
         min = Number(min) || 0;
@@ -23,4 +23,4 @@ function yipo (args) {
     throw new Error("system error");
 }
 
-module.exports = yipo;
+module.exports = kisia;

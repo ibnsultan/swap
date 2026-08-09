@@ -2,42 +2,42 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeWoke = require("../../../parsers/keywordnodes/kwnodewoke.js");
+const kwNodeIta = require("../../../parsers/keywordnodes/kwnodeita.js");
 const Parser = require("../../../parsers/parser.js");
 const Lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodeWoke test suite", () => {
+describe("KwNodeIta test suite", () => {
     let parser;
 
     beforeEach(() => {
         parser = new Parser(new Lexer(new InputStream()));
     });
 
-    test("It should return a valid woke node found within an ise block", () => {
+    test("It should return a valid ita node found within a kazi block", () => {
         parser.lexer().inputStream.code = `${constants.KW.ITA} \`counter, name\`;`;
 
         const expectedNode = {
             operation: constants.KW.ITA,
             varNames: ["counter", "name", ],
         };
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
-        expect(kwNodeWoke.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeIta.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("It should fail to return a valid woke node found outside ise block", () => {
+    test("It should fail to return a valid ita node found outside kazi block", () => {
         parser.lexer().inputStream.code = `${constants.KW.ITA} \`counter\`;`;
         parser.pushToBlockTypeStack(constants.PROGRAM);
 
-        expect(() => kwNodeWoke.getNode.call(parser)).toThrow();
+        expect(() => kwNodeIta.getNode.call(parser)).toThrow();
     });
 
-    test("It should fail to return a valid woke node when woke is not used with a variable", () => {
+    test("It should fail to return a valid ita node when ita is not used with a variable", () => {
         parser.lexer().inputStream.code = `${constants.KW.ITA} \`"something"\`;`;
         parser.pushToBlockTypeStack(constants.PROGRAM);
 
-        expect(() => kwNodeWoke.getNode.call(parser)).toThrow();
+        expect(() => kwNodeIta.getNode.call(parser)).toThrow();
     });
 });

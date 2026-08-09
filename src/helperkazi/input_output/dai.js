@@ -1,7 +1,7 @@
 const readlineSync = require("readline-sync");
 
 // Takes command line input
-function teSibi (args) {
+function dai (args) {
     if (Array.isArray(args)) {
         const [ question, ] = args;
         if (typeof question === "string") {
@@ -15,4 +15,4 @@ function teSibi (args) {
     throw new Error("system error");
 }
 
-module.exports = teSibi;
+module.exports = dai;

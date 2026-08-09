@@ -9,7 +9,7 @@ const Lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeNigbati test suite", () => {
+describe("INodeWakati test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe("INodeNigbati test suite", () => {
         global.console.log = jest.fn();
     });
 
-    test("it should interprete the nigbati keyword with kuro keyword", () => {
+    test("it should interprete the wakati keyword with vunja keyword", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = 0;
             ${constants.KW.WAKATI} (a < 3) {
@@ -38,7 +38,7 @@ describe("INodeNigbati test suite", () => {
         expect(global.console.log).toHaveBeenCalledTimes(3);
     });
 
-    test("it should interprete the nigbati keyword", () => {
+    test("it should interprete the wakati keyword", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = 0;
             ${constants.KW.WAKATI} (a < 3) {
@@ -51,7 +51,7 @@ describe("INodeNigbati test suite", () => {
         expect(global.console.log).toHaveBeenCalledTimes(3);
     });
 
-    test("it should interprete nested nigbati keyword", () => {
+    test("it should interprete nested wakati keyword", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = 0;
             ${constants.KW.WAKATI} (a < 3) {
@@ -59,7 +59,7 @@ describe("INodeNigbati test suite", () => {
                 ${constants.KW.HIFADHI} a = a + 1;
                 ${constants.KW.HIFADHI} b = a + 1;
                 ${constants.KW.WAKATI} (b < 3) {
-                    ${constants.KW.ANDIKA} "anu";
+                    ${constants.KW.ANDIKA} "sawa";
                     ${constants.KW.HIFADHI} b = b + 1;
                 }
             }

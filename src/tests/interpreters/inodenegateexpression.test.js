@@ -21,23 +21,23 @@ describe("INodeNegateExpressionNl test suite", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.MINUS}2;`;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(-2);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(-2);
     });
 
     test("it should return negative of 5", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} getNum() {
-                ${constants.KW.PADA} 5;
+            ${constants.KW.NJIA} getNum() {
+                ${constants.KW.REJESHA} 5;
             }
             ${constants.KW.HIFADHI} a = ${constants.SYM.MINUS}getNum();
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(-5);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(-5);
     });
 
     test("it should fail to negate a string", () => {
-        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.MINUS}"anu";`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.MINUS}"sawa";`;
         expect(() => mainInterpreter.interpreteProgram()).toThrow();
     });
 });

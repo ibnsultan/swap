@@ -4,7 +4,7 @@ const leafnl = require("../nodeLiterals/leafnl.js");
 const path = require("path");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodeGbeWole extends BaseNode {
+class KwNodeLete extends BaseNode {
     getNode () {
         this.skipKeyword(constants.KW.LETE);
         const node = {};
@@ -22,4 +22,4 @@ class KwNodeGbeWole extends BaseNode {
     }
 }
 
-module.exports = new KwNodeGbeWole();
+module.exports = new KwNodeLete();

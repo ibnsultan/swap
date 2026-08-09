@@ -1,15 +1,15 @@
 const IBase = require("./ibase.js");
 const constants = require("../constants.js");
 
-class INodeWoke extends IBase {
+class INodeIta extends IBase {
     interpreteNode (node) {
-        let woke = this.environment().getJeki(this.getCurrentScope(), constants.KW.ITA);
+        let ita = this.environment().getHifadhi(this.getCurrentScope(), constants.KW.ITA);
 
-        if (!woke) woke = node.varNames;
-        else woke.push(...node.varNames);
+        if (!ita) ita = node.varNames;
+        else ita.push(...node.varNames);
 
-        this.environment().setJeki(this.getCurrentScope(), constants.KW.ITA, woke);
+        this.environment().setHifadhi(this.getCurrentScope(), constants.KW.ITA, ita);
     }
 }
 
-module.exports = new INodeWoke();
+module.exports = new INodeIta();

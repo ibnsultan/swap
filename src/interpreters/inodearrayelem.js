@@ -4,8 +4,8 @@ const feedbackMessages = require("../feedbackMessages.js");
 
 class INodeArrayElement extends IBase {
     interpreteNode (node) {
-        const jekiNode = { name: node.name, operation: contansts.GET_JEKI, };
-        const arrayLiteral = this.evaluateNode(jekiNode);
+        const hifadhiNode = { name: node.name, operation: contansts.GET_HIFADHI, };
+        const arrayLiteral = this.evaluateNode(hifadhiNode);
 
         return INodeArrayElement.getArrayElement(this, node, arrayLiteral);
     }

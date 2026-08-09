@@ -2,26 +2,26 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeFun = require("../../../parsers/keywordnodes/kwnodefun.js");
+const kwNodeHakika = require("../../../parsers/keywordnodes/kwnodehakika.js");
 const Parser = require("../../../parsers/parser.js");
 const lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodeFun test suite", () => {
+describe("KwNodeHakika test suite", () => {
     let parser;
 
     beforeEach(() => {
         parser = new Parser(new lexer(new InputStream()));
     });
 
-    test("it should return a valid fun node", () => {
+    test("it should return a valid hakika node", () => {
         const expectedNode = {
             body: [],
             condition: {
                 left: {
                     name: "i",
-                    operation: constants.GET_JEKI,
+                    operation: constants.GET_HIFADHI,
                 },
                 operation: constants.SYM.L_THAN,
                 right: {
@@ -38,7 +38,7 @@ describe("KwNodeFun test suite", () => {
                 right: {
                     left: {
                         name: "i",
-                        operation: constants.GET_JEKI,
+                        operation: constants.GET_HIFADHI,
                     },
                     operation: constants.SYM.PLUS,
                     right: {
@@ -65,34 +65,34 @@ describe("KwNodeFun test suite", () => {
 
         parser.lexer().inputStream.code = `${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {}`;
 
-        expect(kwNodeFun.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeHakika.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("it should return a valid fun node for nested blocks", () => {
+    test("it should return a valid hakika node for nested blocks", () => {
         parser.lexer().inputStream.code = `${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
             ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {}
         }`;
 
-        expect(kwNodeFun.getNode.call(parser)).toBeTruthy();
+        expect(kwNodeHakika.getNode.call(parser)).toBeTruthy();
     });
 
-    test("it should throw an error when given invalid fun node", () => {
+    test("it should throw an error when given invalid hakika node", () => {
         parser.lexer().inputStream.code = `${constants.KW.HAKIKA} ${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
             ${constants.KW.ANDIKA} i;
         }`;
 
         expect(() => {
-            kwNodeFun.getNode.call(parser);
+            kwNodeHakika.getNode.call(parser);
         }).toThrow();
     });
 
-    test("it should throw an error when given invalid fun increment node", () => {
+    test("it should throw an error when given invalid hakika increment node", () => {
         parser.lexer().inputStream.code = `${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i =0; i < 10; ${constants.KW.HIFADHI} i = j + 1) {
             ${constants.KW.ANDIKA} i;
         }`;
 
         expect(() => {
-            kwNodeFun.getNode.call(parser);
+            kwNodeHakika.getNode.call(parser);
         }).toThrow();
     });
 });

@@ -9,7 +9,7 @@ const Lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeIse test suite", () => {
+describe("INodeKazi test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -18,9 +18,9 @@ describe("INodeIse test suite", () => {
         global.console.log = jest.fn();
     });
 
-    test("It should save an ise node", () => {
+    test("It should save a kazi node", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} teOruko(fname) {
+            ${constants.KW.NJIA} wekaJina(fname) {
                 ${constants.KW.ANDIKA} fname;
             }
         `;
@@ -30,11 +30,11 @@ describe("INodeIse test suite", () => {
                 operation: constants.KW.ANDIKA,
                 body: {
                     name: "fname",
-                    operation: constants.GET_JEKI,
+                    operation: constants.GET_HIFADHI,
                 },
             }, ],
-            name: "teOruko",
-            operation: constants.KW.KAZI,
+            name: "wekaJina",
+            operation: constants.KW.NJIA,
             paramTokens: [
                 {
                     type: constants.VARIABLE,
@@ -44,16 +44,16 @@ describe("INodeIse test suite", () => {
         };
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getIse(mainInterpreter.getCurrentScope(), "teOruko")).toEqual(expectedNode);
+        expect(mainInterpreter.environment().getKazi(mainInterpreter.getCurrentScope(), "wekaJina")).toEqual(expectedNode);
     });
 
-    test("It should fail to save ise node if there exist another ise node with the same name in the same scope", () => {
+    test("It should fail to save kazi node if there exist another kazi node with the same name in the same scope", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} teOruko(fname, lname) {
+            ${constants.KW.NJIA} wekaJina(fname, lname) {
                 ${constants.KW.ANDIKA} fname + " "+ lname;
             }
 
-            ${constants.KW.KAZI} teOruko(fname) {
+            ${constants.KW.NJIA} wekaJina(fname) {
                 ${constants.KW.ANDIKA} fname + " "+ lname;
             }
         `;
@@ -61,17 +61,17 @@ describe("INodeIse test suite", () => {
         expect(() => mainInterpreter.interpreteProgram()).toThrow();
     });
 
-    test("It should save nested ise node", () => {
+    test("It should save nested kazi node", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} teName(fname, lname) {
+            ${constants.KW.NJIA} wekaJina(fname, lname) {
                 ${constants.KW.ANDIKA} fname + " "+ lname;
-                ${constants.KW.KAZI} teNumber(number) {
+                ${constants.KW.NJIA} wekaNamba(number) {
                     ${constants.KW.ANDIKA} number;
                 }
             }
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getIse(mainInterpreter.getCurrentScope(), "teName")).toBeTruthy();
+        expect(mainInterpreter.environment().getKazi(mainInterpreter.getCurrentScope(), "wekaJina")).toBeTruthy();
     });
 });

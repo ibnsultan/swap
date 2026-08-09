@@ -4,14 +4,14 @@ jest.mock("fs", () => ({
 
 const MainInterpreter = require("../../interpreters/maininterpreter.js");
 const Environment = require("../../environment.js");
-const iNodeSope = require("../../interpreters/inodesope.js");
-const kwNodeSope = require("../../parsers/keywordnodes/kwnodesope.js");
+const iNodeAndika = require("../../interpreters/inodeandika.js");
+const kwNodeAndika = require("../../parsers/keywordnodes/kwnodeandika.js");
 const Parser = require("../../parsers/parser.js");
 const lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeSope test suite", () => {
+describe("INodeAndika test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -21,16 +21,16 @@ describe("INodeSope test suite", () => {
     });
 
     test("it should print a string to the console", () => {
-        parser.lexer().inputStream.code = `${constants.KW.ANDIKA} "femi";`;
-        const node = kwNodeSope.getNode.call(parser);
-        iNodeSope.interpreteNode.call(mainInterpreter, node);
-        expect(global.console.log).toHaveBeenCalledWith("femi");
+        parser.lexer().inputStream.code = `${constants.KW.ANDIKA} "juma";`;
+        const node = kwNodeAndika.getNode.call(parser);
+        iNodeAndika.interpreteNode.call(mainInterpreter, node);
+        expect(global.console.log).toHaveBeenCalledWith("juma");
     });
 
     test("it should print a number to the console", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} 3;`;
-        const node = kwNodeSope.getNode.call(parser);
-        iNodeSope.interpreteNode.call(mainInterpreter, node);
+        const node = kwNodeAndika.getNode.call(parser);
+        iNodeAndika.interpreteNode.call(mainInterpreter, node);
         expect(global.console.log).toHaveBeenCalledWith(3);
     });
 

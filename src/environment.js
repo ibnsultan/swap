@@ -1,12 +1,12 @@
-const helperIseDeclarations = require("./helperise/registeredHelperIse.js");
+const helperKaziDeclarations = require("./helperkazi/registeredHelperKazi.js");
 
 class Environment {
     constructor () {
         this.vars = {};
-        this.iseDeclarations = {};
+        this.kaziDeclarations = {};
     }
 
-    setJeki (scope, name, value) {
+    setHifadhi (scope, name, value) {
         if (!this.vars[scope]) {
             this.vars[scope] = {};
         }
@@ -14,35 +14,35 @@ class Environment {
         this.vars[scope][name] = value;
     }
 
-    getJeki (scope, name) {
+    getHifadhi (scope, name) {
         if (this.vars[scope]) { return this.vars[scope][name]; }
     }
 
-    setIse (scope, iseName, iseNode) {
-        if (!this.iseDeclarations[scope]) {
-            this.iseDeclarations[scope] = {};
+    setKazi (scope, kaziName, kaziNode) {
+        if (!this.kaziDeclarations[scope]) {
+            this.kaziDeclarations[scope] = {};
         }
 
-        this.iseDeclarations[scope][iseName] = iseNode;
+        this.kaziDeclarations[scope][kaziName] = kaziNode;
     }
 
-    getIse (scope, iseName) {
-        if (this.iseDeclarations[scope]) {
-            return this.iseDeclarations[scope][iseName];
-        }
-    }
-
-    isExistHelperIse (iseName) {
-        return helperIseDeclarations[iseName] !== undefined;
-    }
-
-    runHelperIse (iseName, iseArgs) {
-        if (this.isExistHelperIse(iseName)) {
-            return helperIseDeclarations[iseName](iseArgs);
+    getKazi (scope, kaziName) {
+        if (this.kaziDeclarations[scope]) {
+            return this.kaziDeclarations[scope][kaziName];
         }
     }
 
-    sope (value) {
+    isExistHelperKazi (kaziName) {
+        return helperKaziDeclarations[kaziName] !== undefined;
+    }
+
+    runHelperKazi (kaziName, kaziArgs) {
+        if (this.isExistHelperKazi(kaziName)) {
+            return helperKaziDeclarations[kaziName](kaziArgs);
+        }
+    }
+
+    andika (value) {
         console.log(value);
     }
 }

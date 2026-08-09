@@ -59,26 +59,26 @@ describe("BracketExpressionLiteral test suite", () => {
     });
 
     test("it should parse boolean bracket expression", () => {
-        parser.lexer().inputStream.code = "((ikeji < aropo) && (ikeji > 0))";
+        parser.lexer().inputStream.code = "((pili < jumla) && (pili > 0))";
 
         const expectedNode = {
             left: {
                 left: {
-                    name: "ikeji",
-                    operation: constants.GET_JEKI,
+                    name: "pili",
+                    operation: constants.GET_HIFADHI,
                 },
                 operation: constants.SYM.L_THAN,
                 right: {
-                    name: "aropo",
-                    operation: constants.GET_JEKI,
+                    name: "jumla",
+                    operation: constants.GET_HIFADHI,
                 },
                 value: null,
             },
             operation: constants.SYM.AND,
             right: {
                 left: {
-                    name: "ikeji",
-                    operation: constants.GET_JEKI,
+                    name: "pili",
+                    operation: constants.GET_HIFADHI,
                 },
                 operation: constants.SYM.G_THAN,
                 right: {
@@ -95,7 +95,7 @@ describe("BracketExpressionLiteral test suite", () => {
     });
 
     test("it should fail to parse invalid bracket expression", () => {
-        parser.lexer().inputStream.code = "ikeji < aropo) && (ikeji > 0)";
+        parser.lexer().inputStream.code = "pili < jumla) && (pili > 0)";
         expect(() => bracketExpNl.getNode.call(parser)).toThrow();
     });
 });

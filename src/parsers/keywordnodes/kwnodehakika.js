@@ -1,10 +1,10 @@
 const constants = require("../../constants.js");
 const BaseNode = require("../basenode.js");
-const kwNodeJeki = require("./kwnodejeki.js");
+const kwNodeHifadhi = require("./kwnodehifadhi.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 const bracketExpressionNl = require("../nodeLiterals/bracketexpressionnl.js");
 
-class KwNodeFun extends BaseNode {
+class KwNodeHakika extends BaseNode {
     constructor () {
         super();
         if (this.isDependenciesInValid()) {
@@ -13,7 +13,7 @@ class KwNodeFun extends BaseNode {
     }
 
     isDependenciesInValid () {
-        return !(kwNodeJeki instanceof BaseNode) && !(bracketExpressionNl instanceof BaseNode);
+        return !(kwNodeHifadhi instanceof BaseNode) && !(bracketExpressionNl instanceof BaseNode);
     }
 
     getNode () {
@@ -22,14 +22,14 @@ class KwNodeFun extends BaseNode {
         this.skipPunctuation(constants.SYM.L_BRACKET);
         const node = {};
         node.operation = constants.KW.HAKIKA;
-        node.init = kwNodeJeki.getNode.call(this);
+        node.init = kwNodeHifadhi.getNode.call(this);
         node.condition = bracketExpressionNl.getNode.call(this, { isArithmeticExpression: false, isBracketExpected: false, });
 
         this.skipPunctuation(constants.SYM.STATEMENT_TERMINATOR);
-        node.increment = kwNodeJeki.getNode.call(this, { shouldExpectTerminator: false, });
+        node.increment = kwNodeHifadhi.getNode.call(this, { shouldExpectTerminator: false, });
 
-        if (KwNodeFun.isInValidFunIncrementStatement(node)) {
-            this.throwError(feedbackMessages.funIncrementAndDecrementMsg());
+        if (KwNodeHakika.isInValidHakikaIncrementStatement(node)) {
+            this.throwError(feedbackMessages.hakikaIncrementAndDecrementMsg());
         }
         this.skipPunctuation(constants.SYM.R_BRACKET);
 
@@ -38,14 +38,14 @@ class KwNodeFun extends BaseNode {
         return node;
     }
 
-    static isInValidFunIncrementStatement (funNode) {
-        const incrementNode = funNode.increment.right;
+    static isInValidHakikaIncrementStatement (hakikaNode) {
+        const incrementNode = hakikaNode.increment.right;
 
         if ([ constants.SYM.PLUS, constants.SYM.MINUS, ].includes(incrementNode.operation)) {
-            // e.g fun (tí i =0; i < 10; tí i = i + 1;)
+            // e.g hakika (tí i =0; i < 10; tí i = i + 1;)
             // make sure there is variable 'i' in atleast one child of the incrementNode
-            // i.e jeki i = i + 1 or jeki i = 1 + i or jeki i = i + i
-            if ([ incrementNode.left.name, incrementNode.right.name, ].includes(funNode.init.left)) {
+            // i.e hifadhi i = i + 1 or hifadhi i = 1 + i or hifadhi i = i + i
+            if ([ incrementNode.left.name, incrementNode.right.name, ].includes(hakikaNode.init.left)) {
                 return false;
             }
         }
@@ -54,4 +54,4 @@ class KwNodeFun extends BaseNode {
     }
 }
 
-module.exports = new KwNodeFun();
+module.exports = new KwNodeHakika();

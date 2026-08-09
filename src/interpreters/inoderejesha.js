@@ -1,9 +1,9 @@
 const IBase = require("./ibase.js");
 
-class INodePada extends IBase {
+class INodeRejesha extends IBase {
     interpreteNode (node) {
         return this.evaluateNode(node.body);
     }
 }
 
-module.exports = new INodePada();
+module.exports = new INodeRejesha();

@@ -3,7 +3,7 @@ const BaseNode = require("../basenode.js");
 const bracketExpressionNl = require("../nodeLiterals/bracketexpressionnl.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodeNigbati extends BaseNode {
+class KwNodeWakati extends BaseNode {
     constructor () {
         super();
         if (!(bracketExpressionNl instanceof BaseNode)) {
@@ -22,4 +22,4 @@ class KwNodeNigbati extends BaseNode {
     }
 }
 
-module.exports = new KwNodeNigbati();
+module.exports = new KwNodeWakati();

@@ -2,7 +2,7 @@
  * @param args receives three strings parent string , the string to be replaced, and the new string.
  * @returns string
  */
-function fiRopo (args) {
+function hariri (args) {
     if (Array.isArray(args)) {
         const [ parentString, regex, newString, ] = args;
         if ((typeof parentString === "string") && (typeof regex === "string") && (typeof newString === "string")) {
@@ -12,4 +12,4 @@ function fiRopo (args) {
     }
     throw new Error("system error");
 }
-module.exports = fiRopo;
+module.exports = hariri;

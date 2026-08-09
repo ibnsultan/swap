@@ -3,7 +3,7 @@ const BaseNode = require("../basenode.js");
 const variableNl = require("../nodeLiterals/variablenl.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodeJeki extends BaseNode {
+class KwNodeHifadhi extends BaseNode {
     getNode (config) {
         config = config || { shouldExpectTerminator: true, };
 
@@ -12,8 +12,8 @@ class KwNodeJeki extends BaseNode {
         const node = {};
         node.operation = constants.SYM.ASSIGN;
         const varNode = variableNl.getNode.call(this);
-        if (varNode.operation === constants.CALL_ISE) this.throwError(feedbackMessages.invalidAssignment());
-        node.left = (varNode.operation === constants.GET_JEKI) ? varNode.name : varNode;
+        if (varNode.operation === constants.CALL_KAZI) this.throwError(feedbackMessages.invalidAssignment());
+        node.left = (varNode.operation === constants.GET_HIFADHI) ? varNode.name : varNode;
         this.skipOperator(constants.SYM.ASSIGN);
         node.right = this.parseExpression();
         if (config.shouldExpectTerminator) this.skipPunctuation(constants.SYM.STATEMENT_TERMINATOR);
@@ -22,4 +22,4 @@ class KwNodeJeki extends BaseNode {
     }
 }
 
-module.exports = new KwNodeJeki();
+module.exports = new KwNodeHifadhi();

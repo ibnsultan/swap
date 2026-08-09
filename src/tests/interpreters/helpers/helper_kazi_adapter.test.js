@@ -1,4 +1,4 @@
-const getFormattedReturnValue = require("../../../interpreters/helpers/helper_ise_adapter.js");
+const getFormattedReturnValue = require("../../../interpreters/helpers/helper_kazi_adapter.js");
 
 describe("Ka Test suite", () => {
     test("It should return the valid swap input - array", () => {
@@ -6,7 +6,7 @@ describe("Ka Test suite", () => {
     });
 
     test("It should return the valid swap input - string", () => {
-        expect(getFormattedReturnValue("anu")).toBe("anu");
+        expect(getFormattedReturnValue("sawa")).toBe("sawa");
     });
 
     test("It should return the valid swap input - number", () => {

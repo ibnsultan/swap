@@ -2,21 +2,21 @@ const constants = require("../../constants.js");
 const BaseNode = require("../basenode.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodeKuro extends BaseNode {
+class KwNodeVunja extends BaseNode {
     getNode () {
-        if (KwNodeKuro.isExpectedKuroStatement(this)) {
-            return KwNodeKuro.getParsedKuroNode(this);
+        if (KwNodeVunja.isExpectedVunjaStatement(this)) {
+            return KwNodeVunja.getParsedVunjaNode(this);
         }
 
         this.throwError(feedbackMessages.unexpectedDeclaration(constants.KW.VUNJA));
     }
 
-    static isExpectedKuroStatement (context) {
+    static isExpectedVunjaStatement (context) {
         return context.getBlockTypeStack().includes(constants.KW.HAKIKA) ||
                                             context.getBlockTypeStack().includes(constants.KW.WAKATI);
     }
 
-    static getParsedKuroNode (context) {
+    static getParsedVunjaNode (context) {
         const node = {};
         node.operation = context.lexer().next().value;
         context.skipPunctuation(constants.SYM.STATEMENT_TERMINATOR);
@@ -25,4 +25,4 @@ class KwNodeKuro extends BaseNode {
     }
 }
 
-module.exports = new KwNodeKuro();
+module.exports = new KwNodeVunja();

@@ -3,7 +3,7 @@ const BaseNode = require("../basenode.js");
 const bracketExpressionNl = require("../nodeLiterals/bracketexpressionnl.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodeYi extends BaseNode {
+class KwNodeChagua extends BaseNode {
     constructor () {
         super();
         if (!(bracketExpressionNl instanceof BaseNode)) {
@@ -13,77 +13,77 @@ class KwNodeYi extends BaseNode {
 
     getNode () {
         const node = {};
-        node.operation = constants.KW.BAD;
-        this.pushToBlockTypeStack(constants.KW.BAD);
-        this.skipKeyword(constants.KW.BAD);
-        node.yivalue = bracketExpressionNl.getNode.call(this);
+        node.operation = constants.KW.CHAGUA;
+        this.pushToBlockTypeStack(constants.KW.CHAGUA);
+        this.skipKeyword(constants.KW.CHAGUA);
+        node.chaguavalue = bracketExpressionNl.getNode.call(this);
         this.skipPunctuation(constants.SYM.L_PAREN);
-        node.yibody = KwNodeYi.getYiBody(this);
-        node.padasi = KwNodeYi.getPadasi(this);
+        node.chaguabody = KwNodeChagua.getChaguaBody(this);
+        node.zaidi = KwNodeChagua.getZaidi(this);
         this.skipPunctuation(constants.SYM.R_PAREN);
         this.popBlockTypeStack();
 
         return node;
     }
 
-    static getYiBody (context) {
-        const yiBody = []; const kwNodeIRU = new KwNodeIRU();
+    static getChaguaBody (context) {
+        const chaguaBody = []; const kwNodeKesi = new KwNodeKesi();
 
-        while (KwNodeYi.isNextTokenIru(context)) {
-            yiBody.push(kwNodeIRU.getNode.call(context));
+        while (KwNodeChagua.isNextTokenKesi(context)) {
+            chaguaBody.push(kwNodeKesi.getNode.call(context));
         }
 
-        return yiBody;
+        return chaguaBody;
     }
 
-    static isNextTokenIru (context) {
+    static isNextTokenKesi (context) {
         return context.isNotEndOfFile() && context.lexer().peek().value === constants.KW.KESI;
     }
 
-    static getPadasi (context) {
-        const padasi = [];
+    static getZaidi (context) {
+        const zaidi = [];
 
-        if (context.isNextTokenKeyword(constants.KW.PADASI)) {
-            context.skipKeyword(constants.KW.PADASI);
+        if (context.isNextTokenKeyword(constants.KW.ZAIDI)) {
+            context.skipKeyword(constants.KW.ZAIDI);
             context.skipPunctuation(constants.SYM.COLON);
 
             while (context.isNotEndOfBlock()) {
-                padasi.push(context.parseAst());
+                zaidi.push(context.parseAst());
             }
         }
 
-        return padasi;
+        return zaidi;
     }
 }
 
-class KwNodeIRU extends BaseNode {
+class KwNodeKesi extends BaseNode {
     getNode () {
         const node = {};
         node.operation = constants.KW.KESI;
         this.skipKeyword(constants.KW.KESI);
-        node.IRUvalue = this.parseExpression();
+        node.kesivalue = this.parseExpression();
         this.skipPunctuation(constants.SYM.COLON);
-        node.IRUbody = KwNodeIRU.getIRUBody(this);
+        node.kesibody = KwNodeKesi.getKesiBody(this);
 
         return node;
     }
 
-    static getIRUBody (context) {
-        const IRUBody = [];
+    static getKesiBody (context) {
+        const kesiBody = [];
 
-        while (KwNodeIRU.canParseIRUStatements(context)) {
-            IRUBody.push(context.parseAst());
+        while (KwNodeKesi.canParseKesiStatements(context)) {
+            kesiBody.push(context.parseAst());
         }
 
-        return IRUBody;
+        return kesiBody;
     }
 
-    static canParseIRUStatements (context) {
+    static canParseKesiStatements (context) {
         return context.isNotEndOfFile() &&
                         context.lexer().peek().value !== constants.KW.KESI &&
-                        context.lexer().peek().value !== constants.KW.PADASI &&
+                        context.lexer().peek().value !== constants.KW.ZAIDI &&
                         context.lexer().peek().value !== constants.SYM.R_PAREN;
     }
 }
 
-module.exports = new KwNodeYi();
+module.exports = new KwNodeChagua();

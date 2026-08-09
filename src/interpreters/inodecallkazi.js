@@ -1,33 +1,33 @@
 const IBase = require("./ibase.js");
-const getFormattedReturnValue = require("./helpers/helper_ise_adapter");
+const getFormattedReturnValue = require("./helpers/helper_kazi_adapter");
 const feedbackMessages = require("../feedbackMessages.js");
 const constants = require("../constants.js");
 
-class INodeCallIse extends IBase {
+class INodeCallKazi extends IBase {
     interpreteNode (node) {
-        const iseNode = INodeCallIse.getIseNode(this, node.name);
+        const kaziNode = INodeCallKazi.getKaziNode(this, node.name);
 
-        if (iseNode == null) {
-            if (this.environment().isExistHelperIse(node.name)) {
-                return getFormattedReturnValue(this.environment().runHelperIse(node.name, INodeCallIse.getIseHelperParams(this, node.paramValues)));
+        if (kaziNode == null) {
+            if (this.environment().isExistHelperKazi(node.name)) {
+                return getFormattedReturnValue(this.environment().runHelperKazi(node.name, INodeCallKazi.getKaziHelperParams(this, node.paramValues)));
             }
 
-            this.throwError(feedbackMessages.varDoesNotExist(constants.KW.KAZI, node.name));
+            this.throwError(feedbackMessages.varDoesNotExist(constants.KW.NJIA, node.name));
         }
 
-        return INodeCallIse.startNewScope(this, iseNode, INodeCallIse.getResolvedParameterValues(this, node.paramValues));
+        return INodeCallKazi.startNewScope(this, kaziNode, INodeCallKazi.getResolvedParameterValues(this, node.paramValues));
     }
 
-    static getIseNode (context, iseName) {
+    static getKaziNode (context, kaziName) {
         for (let index = context.scopeStack().length - 1; index >= 0; index--) {
-            if (context.environment().getIse(context.scopeStack()[index], iseName) !== undefined) {
-                return context.environment().getIse(context.scopeStack()[index], iseName);
+            if (context.environment().getKazi(context.scopeStack()[index], kaziName) !== undefined) {
+                return context.environment().getKazi(context.scopeStack()[index], kaziName);
             }
         }
         return null;
     }
 
-    static getIseHelperParams (context, paramNodeList) {
+    static getKaziHelperParams (context, paramNodeList) {
         const params = [];
         paramNodeList.forEach(paramNode => {
             params.push(context.evaluateNode(paramNode));
@@ -44,27 +44,27 @@ class INodeCallIse extends IBase {
         return paramValues;
     }
 
-    static startNewScope (context, iseNode, paramValues) {
-        context.pushToScopeStack(iseNode.name);
-        INodeCallIse.setIseNodeParam(context, iseNode.paramTokens, paramValues);
-        const returnedValue = INodeCallIse.runIseNodeBody(context, iseNode.body);
+    static startNewScope (context, kaziNode, paramValues) {
+        context.pushToScopeStack(kaziNode.name);
+        INodeCallKazi.setKaziNodeParam(context, kaziNode.paramTokens, paramValues);
+        const returnedValue = INodeCallKazi.runKaziNodeBody(context, kaziNode.body);
         context.popFromScopeStack();
 
         return returnedValue;
     }
 
-    static setIseNodeParam (context, iseNodeParamTokens, iseParamValues) {
-        for (let i = 0; i < iseNodeParamTokens.length; i++) {
-            context.environment().setJeki(context.getCurrentScope(), iseNodeParamTokens[i].value, iseParamValues[i]);
+    static setKaziNodeParam (context, kaziNodeParamTokens, kaziParamValues) {
+        for (let i = 0; i < kaziNodeParamTokens.length; i++) {
+            context.environment().setHifadhi(context.getCurrentScope(), kaziNodeParamTokens[i].value, kaziParamValues[i]);
         }
     }
 
-    static runIseNodeBody (context, iseNodeBody) {
-        for (let i = 0; i < iseNodeBody.length; i++) {
-            const returnedValue = context.evaluateNode(iseNodeBody[i]);
+    static runKaziNodeBody (context, kaziNodeBody) {
+        for (let i = 0; i < kaziNodeBody.length; i++) {
+            const returnedValue = context.evaluateNode(kaziNodeBody[i]);
             if (returnedValue !== undefined) return returnedValue;
         }
     }
 }
 
-module.exports = new INodeCallIse();
+module.exports = new INodeCallKazi();

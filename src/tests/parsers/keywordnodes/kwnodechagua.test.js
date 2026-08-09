@@ -2,13 +2,13 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeYi = require("../../../parsers/keywordnodes/kwnodeyi.js");
+const kwNodeChagua = require("../../../parsers/keywordnodes/kwnodechagua.js");
 const Parser = require("../../../parsers/parser.js");
 const Lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodeYi test suite", () => {
+describe("KwNodeChagua test suite", () => {
     let parser;
 
     beforeEach(() => {
@@ -16,31 +16,31 @@ describe("KwNodeYi test suite", () => {
     });
 
     test("it should return a valid yi node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.BAD} (firstname) {
-            ${constants.KW.KESI} "anu":
-                ${constants.KW.ANDIKA} "it is anu";
-            ${constants.KW.KESI} "femi": 
-                ${constants.KW.ANDIKA} "it femi";
-            ${constants.KW.PADASI}: 
-                ${constants.KW.ANDIKA} "mi o mo";      
+        parser.lexer().inputStream.code = `${constants.KW.CHAGUA} (firstname) {
+            ${constants.KW.KESI} "sawa":
+                ${constants.KW.ANDIKA} "it is sawa";
+            ${constants.KW.KESI} "juma": 
+                ${constants.KW.ANDIKA} "it juma";
+            ${constants.KW.ZAIDI}: 
+                ${constants.KW.ANDIKA} "sijui";      
         }`;
 
         const expectedNode = {
-            yibody: [
+            chaguabody: [
                 {
-                    IRUbody: [
+                    kesibody: [
                         {
                             body: {
                                 left: null,
                                 operation: null,
                                 right: null,
-                                value: "it is anu",
+                                value: "it is sawa",
                             },
                             operation: constants.KW.ANDIKA,
                         },
                     ],
-                    IRUvalue: {
-                        value: "anu",
+                    kesivalue: {
+                        value: "sawa",
                         left: null,
                         right: null,
                         operation: null,
@@ -48,19 +48,19 @@ describe("KwNodeYi test suite", () => {
                     operation: constants.KW.KESI,
                 },
                 {
-                    IRUbody: [
+                    kesibody: [
                         {
                             body: {
                                 left: null,
                                 operation: null,
                                 right: null,
-                                value: "it femi",
+                                value: "it juma",
                             },
                             operation: constants.KW.ANDIKA,
                         },
                     ],
-                    IRUvalue: {
-                        value: "femi",
+                    kesivalue: {
+                        value: "juma",
                         left: null,
                         right: null,
                         operation: null,
@@ -68,41 +68,41 @@ describe("KwNodeYi test suite", () => {
                     operation: constants.KW.KESI,
                 },
             ],
-            operation: constants.KW.BAD,
-            padasi: [
+            operation: constants.KW.CHAGUA,
+            zaidi: [
                 {
                     body: {
                         left: null,
                         operation: null,
                         right: null,
-                        value: "mi o mo",
+                        value: "sijui",
                     },
                     operation: constants.KW.ANDIKA,
                 },
             ],
-            yivalue: {
+            chaguavalue: {
                 name: "firstname",
-                operation: constants.GET_JEKI,
+                operation: constants.GET_HIFADHI,
             },
         };
 
-        expect(kwNodeYi.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeChagua.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("it should throw an error when an invalid yi node is given", () => {
-        parser.lexer().inputStream.code = `${constants.KW.BAD} name) {
-            ${constants.KW.KESI} "anu":
-                ${constants.KW.ANDIKA} "it is anu";
+        parser.lexer().inputStream.code = `${constants.KW.CHAGUA} name) {
+            ${constants.KW.KESI} "sawa":
+                ${constants.KW.ANDIKA} "it is sawa";
                 ${constants.KW.VUNJA};
-            ${constants.KW.KESI} "femi": 
-                ${constants.KW.ANDIKA} "it femi";
+            ${constants.KW.KESI} "juma": 
+                ${constants.KW.ANDIKA} "it juma";
                 ${constants.KW.VUNJA};
-            ${constants.KW.PADASI}: 
-                ${constants.KW.ANDIKA} "mi o mo";      
+            ${constants.KW.ZAIDI}: 
+                ${constants.KW.ANDIKA} "sijui";      
         }`;
 
         expect(() => {
-            kwNodeYi.getNode.call(parser);
+            kwNodeChagua.getNode.call(parser);
         }).toThrow();
     });
 });

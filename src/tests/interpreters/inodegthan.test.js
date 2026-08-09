@@ -5,7 +5,7 @@ jest.mock("fs", () => ({
 const MainInterpreter = require("../../interpreters/maininterpreter.js");
 const Environment = require("../../environment.js");
 const iNodeGthan = require("../../interpreters/inodegthan.js");
-const kwNodeTi = require("../../parsers/keywordnodes/kwnodejeki.js");
+const kwNodeTi = require("../../parsers/keywordnodes/kwnodehifadhi.js");
 const Parser = require("../../parsers/parser.js");
 const lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
@@ -32,7 +32,7 @@ describe("INodeGreaterThan test suite", () => {
     });
 
     test("it should return iro for a greater than false condition involving a string", () => {
-        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = "anu" > 5;`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = "sawa" > 5;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeGthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.SIKWELI);
     });
@@ -44,6 +44,6 @@ describe("INodeGreaterThan test suite", () => {
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "b")).toEqual(constants.KW.KWELI);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "b")).toEqual(constants.KW.KWELI);
     });
 });

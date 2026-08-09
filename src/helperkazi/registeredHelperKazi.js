@@ -1,11 +1,11 @@
-const helperIseDeclarations = {};
-helperIseDeclarations["kaunta"] = require("./array_helpers/ka.js");
-helperIseDeclarations["BADILI"] = require("./string_helpers/si_leta_nla.js");
-helperIseDeclarations["badili"] = require("./string_helpers/si_leta_kekere.js");
-helperIseDeclarations["tafuta"] = require("./string_helpers/wa_ni_nu.js");
-helperIseDeclarations["hariri"] = require("./string_helpers/fi_ro_po.js");
-helperIseDeclarations["dai"] = require("./input_output/tesibi.js");
-helperIseDeclarations["mda"] = require("./datetime_helpers/aago.js");
-helperIseDeclarations["kisia"] = require("./random_helpers/yipo.js");
+const helperKaziDeclarations = {};
+helperKaziDeclarations["kaunta"] = require("./array_helpers/kaunta.js");
+helperKaziDeclarations["BADILI"] = require("./string_helpers/badiliHerufiKubwa.js");
+helperKaziDeclarations["badili"] = require("./string_helpers/badiliHerufiNdogo.js");
+helperKaziDeclarations["tafuta"] = require("./string_helpers/tafuta.js");
+helperKaziDeclarations["hariri"] = require("./string_helpers/hariri.js");
+helperKaziDeclarations["dai"] = require("./input_output/dai.js");
+helperKaziDeclarations["mda"] = require("./datetime_helpers/mda.js");
+helperKaziDeclarations["kisia"] = require("./random_helpers/kisia.js");
 
-module.exports = helperIseDeclarations;
+module.exports = helperKaziDeclarations;

@@ -2,7 +2,7 @@
  * @param args receives two strings parent string and the substring
  * @returns boolean
  */
-function waNinu (args) {
+function tafuta (args) {
     if (Array.isArray(args)) {
         const [ parentString, subString, ] = args;
         if ((typeof parentString === "string") && (typeof subString === "string")) {
@@ -12,4 +12,4 @@ function waNinu (args) {
     }
     throw new Error("system error");
 }
-module.exports = waNinu;
+module.exports = tafuta;

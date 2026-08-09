@@ -1,13 +1,13 @@
 // Convert String to lower case
-function siLetaKekere (args) {
+function badiliHerufiNdogo (args) {
     if (Array.isArray(args)) {
         const [ param, ] = args;
         if (typeof param === "string") return param.toLowerCase();
 
-        throw new Error("Invalid param given to helper ise síLẹ́tàkékeré.");
+        throw new Error("Invalid param given to helper kazi badiliHerufiNdogo.");
     }
 
     throw new Error("system error");
 }
 
-module.exports = siLetaKekere;
+module.exports = badiliHerufiNdogo;

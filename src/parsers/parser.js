@@ -193,9 +193,9 @@ class Parser {
         }
 
         if (token.type === constants.VARIABLE) { // then a function call is expected
-            const callIseNodeLiteral = nodeLiterals[constants.CALL_ISE];
-            if (callIseNodeLiteral instanceof BaseNode) return callIseNodeLiteral.getNode.call(this);
-            else throw new Error(feedbackMessages.baseNodeType(callIseNodeLiteral));
+            const callKaziNodeLiteral = nodeLiterals[constants.CALL_KAZI];
+            if (callKaziNodeLiteral instanceof BaseNode) return callKaziNodeLiteral.getNode.call(this);
+            else throw new Error(feedbackMessages.baseNodeType(callKaziNodeLiteral));
         }
 
         this.throwError(feedbackMessages.genericErrorMsg(token.value));

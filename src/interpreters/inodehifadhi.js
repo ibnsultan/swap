@@ -1,35 +1,35 @@
 const IBase = require("./ibase.js");
 const constants = require("../constants.js");
-const WokeHelper = require("./helpers/woke_helper.js");
+const ItaHelper = require("./helpers/ita_helper.js");
 const feedbackMessages = require("../feedbackMessages.js");
 
-class INodeJeki extends IBase {
+class INodeHifadhi extends IBase {
     interpreteNode (node) {
         if (node.left.operation === constants.ARRAY_ELEM) {
-            INodeJeki.setArrayElement(this, node);
+            INodeHifadhi.setArrayElement(this, node);
             return;
         }
 
-        if (WokeHelper.isWokeVariable(this, node.left)) {
-            INodeJeki.setWokeVariable(this, node);
+        if (ItaHelper.isItaVariable(this, node.left)) {
+            INodeHifadhi.setItaVariable(this, node);
             return;
         }
 
-        this.environment().setJeki(this.getCurrentScope(), node.left, INodeJeki.getValue(this, node.right));
+        this.environment().setHifadhi(this.getCurrentScope(), node.left, INodeHifadhi.getValue(this, node.right));
     }
 
-    static setWokeVariable (context, node) {
+    static setItaVariable (context, node) {
         const topIndex = context.scopeStack().length - 2;
 
         for (let index = topIndex; index >= 0; index--) {
-            if (context.environment().getJeki(context.scopeStack()[index], node.left) !== undefined) {
-                return context.environment().setJeki(context.scopeStack()[index], node.left, INodeJeki.getValue(context, node.right));
+            if (context.environment().getHifadhi(context.scopeStack()[index], node.left) !== undefined) {
+                return context.environment().setHifadhi(context.scopeStack()[index], node.left, INodeHifadhi.getValue(context, node.right));
             }
         }
     }
 
     static setArrayElement (context, node) { // this also caters for setting multi-dimensional array element
-        let arrayLiteral = INodeJeki.getArrayLiteral(context, node);
+        let arrayLiteral = INodeHifadhi.getArrayLiteral(context, node);
 
         for (let i = 0; i < node.left.indexNodes.length; i++) {
             const arrayIndex = context.evaluateNode(node.left.indexNodes[i]);
@@ -59,8 +59,8 @@ class INodeJeki extends IBase {
     }
 
     static getArrayLiteral (context, node) {
-        const jekiNode = { name: node.left.name, operation: constants.GET_JEKI, };
-        return context.evaluateNode(jekiNode);
+        const hifadhiNode = { name: node.left.name, operation: constants.GET_HIFADHI, };
+        return context.evaluateNode(hifadhiNode);
     }
 
     static getValue (context, node) {
@@ -70,4 +70,4 @@ class INodeJeki extends IBase {
     }
 }
 
-module.exports = new INodeJeki();
+module.exports = new INodeHifadhi();

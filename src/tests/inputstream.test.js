@@ -46,4 +46,23 @@ describe("InputStream Tests", () => {
 
         expect(inputStream.isEndOfFile()).toBe(true);
     });
+
+    test("normalizeLineEndings - it should convert CRLF (Windows) line endings to LF", () => {
+        expect(inputStream.normalizeLineEndings("hifadhi a = 1;\r\nandika a;\r\n"))
+            .toBe("hifadhi a = 1;\nandika a;\n");
+    });
+
+    test("normalizeLineEndings - it should convert legacy CR (old Mac) line endings to LF", () => {
+        expect(inputStream.normalizeLineEndings("hifadhi a = 1;\randika a;\r"))
+            .toBe("hifadhi a = 1;\nandika a;\n");
+    });
+
+    test("normalizeLineEndings - it should leave LF (Unix) line endings unchanged", () => {
+        expect(inputStream.normalizeLineEndings("hifadhi a = 1;\nandika a;\n"))
+            .toBe("hifadhi a = 1;\nandika a;\n");
+    });
+
+    test("normalizeLineEndings - it should return non-string values as-is", () => {
+        expect(inputStream.normalizeLineEndings(undefined)).toBe(undefined);
+    });
 });

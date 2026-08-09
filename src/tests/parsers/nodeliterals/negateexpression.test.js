@@ -32,13 +32,13 @@ describe("NegateExpressionNl test suite", () => {
     });
 
     test("It should parse negative expression", () => {
-        parser.lexer().inputStream.code = `${constants.SYM.MINUS} apere();`;
+        parser.lexer().inputStream.code = `${constants.SYM.MINUS} mfano();`;
 
         const expectedNode = {
             operation: constants.NEGATE_EXPRESSION,
             body: {
-                operation: constants.CALL_ISE,
-                name: "apere",
+                operation: constants.CALL_KAZI,
+                name: "mfano",
                 paramValues: [],
             },
         };

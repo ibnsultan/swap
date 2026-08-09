@@ -1,9 +1,9 @@
 const IBase = require("./ibase.js");
 
-class INodeSope extends IBase {
+class INodeAndika extends IBase {
     interpreteNode (node) {
-        this.environment().sope(this.evaluateNode(node.body));
+        this.environment().andika(this.evaluateNode(node.body));
     }
 }
 
-module.exports = new INodeSope();
+module.exports = new INodeAndika();

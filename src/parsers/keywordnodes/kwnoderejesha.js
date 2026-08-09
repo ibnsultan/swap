@@ -2,23 +2,23 @@ const constants = require("../../constants.js");
 const BaseNode = require("../basenode.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodePada extends BaseNode {
+class KwNodeRejesha extends BaseNode {
     getNode () {
-        if (KwNodePada.isExpectedPadaStatement(this)) {
-            return KwNodePada.getParsedPadaNode(this);
+        if (KwNodeRejesha.isExpectedRejeshaStatement(this)) {
+            return KwNodeRejesha.getParsedRejeshaNode(this);
         }
 
-        this.throwError(feedbackMessages.unexpectedDeclaration(constants.KW.PADA));
+        this.throwError(feedbackMessages.unexpectedDeclaration(constants.KW.REJESHA));
     }
 
-    static isExpectedPadaStatement (context) {
-        return context.getBlockTypeStack().includes(constants.KW.KAZI);
+    static isExpectedRejeshaStatement (context) {
+        return context.getBlockTypeStack().includes(constants.KW.NJIA);
     }
 
-    static getParsedPadaNode (context) {
-        context.skipKeyword(constants.KW.PADA);
+    static getParsedRejeshaNode (context) {
+        context.skipKeyword(constants.KW.REJESHA);
         const node = {};
-        node.operation = constants.KW.PADA;
+        node.operation = constants.KW.REJESHA;
         node.body = context.parseExpression();
         context.skipPunctuation(constants.SYM.STATEMENT_TERMINATOR);
 
@@ -26,4 +26,4 @@ class KwNodePada extends BaseNode {
     }
 }
 
-module.exports = new KwNodePada();
+module.exports = new KwNodeRejesha();

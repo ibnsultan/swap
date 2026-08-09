@@ -5,7 +5,7 @@ jest.mock("fs", () => ({
 const MainInterpreter = require("../../interpreters/maininterpreter.js");
 const Environment = require("../../environment.js");
 const iNodeEquals = require("../../interpreters/inodeequals.js");
-const kwNodeTi = require("../../parsers/keywordnodes/kwnodejeki.js");
+const kwNodeTi = require("../../parsers/keywordnodes/kwnodehifadhi.js");
 const Parser = require("../../parsers/parser.js");
 const Lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
@@ -38,6 +38,6 @@ describe("INodeEquals test suite", () => {
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "b")).toEqual(constants.KW.KWELI);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "b")).toEqual(constants.KW.KWELI);
     });
 });

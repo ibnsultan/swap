@@ -20,7 +20,7 @@ describe("VariableLiteral test suite", () => {
 
         const expectedNode = {
             name: "name",
-            operation: constants.GET_JEKI,
+            operation: constants.GET_HIFADHI,
         };
 
         expect(variableNl.getNode.call(parser)).toEqual(expectedNode);

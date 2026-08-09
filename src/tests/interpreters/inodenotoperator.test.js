@@ -21,14 +21,14 @@ describe("INodeNotOperator test suite", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.EXCLAMATION_POINT} ${constants.KW.KWELI};`;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.SIKWELI);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.SIKWELI);
     });
 
     test("it should apply not operation and return ooto", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.EXCLAMATION_POINT} ${constants.KW.SIKWELI};`;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.KWELI);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.KWELI);
     });
 
     test("it should apply not operation and return iro for a valid variable", () => {
@@ -38,6 +38,6 @@ describe("INodeNotOperator test suite", () => {
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.SIKWELI);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.SIKWELI);
     });
 });

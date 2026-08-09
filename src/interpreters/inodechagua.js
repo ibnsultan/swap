@@ -1,34 +1,34 @@
 const IBase = require("./ibase.js");
 
-class INodeYi extends IBase {
+class INodeChagua extends IBase {
     interpreteNode (node) {
-        const yivalue = this.evaluateNode(node.yivalue);
+        const chaguavalue = this.evaluateNode(node.chaguavalue);
 
-        for (let IRUIndex = 0; IRUIndex < node.yibody.length; IRUIndex++) {
-            if (INodeYi.isIRUValueMatchYiValue(this, node.yibody[IRUIndex].IRUvalue, yivalue)) {
-                return INodeYi.runMatchedBody(this, node.yibody[IRUIndex].IRUbody);
+        for (let kesiIndex = 0; kesiIndex < node.chaguabody.length; kesiIndex++) {
+            if (INodeChagua.isKesiValueMatchChaguaValue(this, node.chaguabody[kesiIndex].kesivalue, chaguavalue)) {
+                return INodeChagua.runMatchedBody(this, node.chaguabody[kesiIndex].kesibody);
             }
 
-            if (INodeYi.canRunPadasi(IRUIndex, node)) {
-                return INodeYi.runMatchedBody(this, node.padasi);
+            if (INodeChagua.canRunZaidi(kesiIndex, node)) {
+                return INodeChagua.runMatchedBody(this, node.zaidi);
             }
         }
     }
 
-    static isIRUValueMatchYiValue (context, IRUvalueNode, yivalue) {
-        return context.evaluateNode(IRUvalueNode) === yivalue;
+    static isKesiValueMatchChaguaValue (context, kesivalueNode, chaguavalue) {
+        return context.evaluateNode(kesivalueNode) === chaguavalue;
     }
 
     static runMatchedBody (context, body) {
         for (let i = 0; i < body.length; i++) {
             const returnedValue = context.evaluateNode(body[i]);
-            if (returnedValue !== undefined) return returnedValue; // it's an ise pada value or kuro statement
+            if (returnedValue !== undefined) return returnedValue; // it's a kazi rejesha value or vunja statement
         }
     }
 
-    static canRunPadasi (IRUIndex, node) {
-        return (IRUIndex === node.yibody.length - 1) && (node.padasi !== undefined);
+    static canRunZaidi (kesiIndex, node) {
+        return (kesiIndex === node.chaguabody.length - 1) && (node.zaidi !== undefined);
     }
 }
 
-module.exports = new INodeYi();
+module.exports = new INodeChagua();

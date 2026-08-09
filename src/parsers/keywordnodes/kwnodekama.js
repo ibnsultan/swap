@@ -3,7 +3,7 @@ const BaseNode = require("../basenode.js");
 const bracketExpressionNl = require("../nodeLiterals/bracketexpressionnl.js");
 const feedbackMessages = require("../../feedbackMessages.js");
 
-class KwNodeSe extends BaseNode {
+class KwNodeKama extends BaseNode {
     constructor () {
         super();
         if (!(bracketExpressionNl instanceof BaseNode)) {
@@ -20,21 +20,21 @@ class KwNodeSe extends BaseNode {
         node.then = this.parseBlock(constants.KW.KAMA);
 
         if (this.isNextTokenKeyword(constants.KW.BASI)) {
-            node.else = KwNodeSe.getTabiNode(this);
+            node.else = KwNodeKama.getBasiNode(this);
         }
 
         return node;
     }
 
-    static getTabiNode (context) {
+    static getBasiNode (context) {
         context.skipKeyword(constants.KW.BASI);
 
         if (context.isNextTokenKeyword(constants.KW.KAMA)) { // cater for 'tabi se' block
-            return new KwNodeSe().getNode.call(context);
+            return new KwNodeKama().getNode.call(context);
         }
 
         return context.parseBlock(constants.KW.BASI);
     }
 }
 
-module.exports = new KwNodeSe();
+module.exports = new KwNodeKama();

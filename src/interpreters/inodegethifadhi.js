@@ -1,21 +1,21 @@
 const IBase = require("./ibase.js");
-const WokeHelper = require("./helpers/woke_helper.js");
+const ItaHelper = require("./helpers/ita_helper.js");
 const feedbackMessages = require("../feedbackMessages.js");
 const constants = require("../constants.js");
 
-class INodeGetJeki extends IBase {
+class INodeGetHifadhi extends IBase {
     interpreteNode (node) {
-        for (let index = INodeGetJeki.getTopIndex(this, node.name); index >= 0; index--) {
-            if (this.environment().getJeki(this.scopeStack()[index], node.name) !== undefined) {
-                return this.environment().getJeki(this.scopeStack()[index], node.name);
+        for (let index = INodeGetHifadhi.getTopIndex(this, node.name); index >= 0; index--) {
+            if (this.environment().getHifadhi(this.scopeStack()[index], node.name) !== undefined) {
+                return this.environment().getHifadhi(this.scopeStack()[index], node.name);
             }
         }
 
         this.throwError(feedbackMessages.varDoesNotExist(constants.VARIABLE, node.name));
     }
 
-    static getTopIndex (context, jekiName) {
-        if (WokeHelper.isWokeVariable(context, jekiName)) {
+    static getTopIndex (context, hifadhiName) {
+        if (ItaHelper.isItaVariable(context, hifadhiName)) {
             return context.scopeStack().length - 2;
         }
 
@@ -23,4 +23,4 @@ class INodeGetJeki extends IBase {
     }
 }
 
-module.exports = new INodeGetJeki();
+module.exports = new INodeGetHifadhi();

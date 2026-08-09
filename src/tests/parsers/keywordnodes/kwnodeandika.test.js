@@ -2,20 +2,20 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeSope = require("../../../parsers/keywordnodes/kwnodesope.js");
+const kwNodeAndika = require("../../../parsers/keywordnodes/kwnodeandika.js");
 const Parser = require("../../../parsers/parser.js");
 const lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodeSope test suite", () => {
+describe("KwNodeAndika test suite", () => {
     let parser;
 
     beforeEach(() => {
         parser = new Parser(new lexer(new InputStream()));
     });
 
-    test("it should return node with operation sope with body of token number", () => {
+    test("it should return node with operation andika with body of token number", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} 2;`;
         const expectedNode = {
             operation: constants.KW.ANDIKA,
@@ -27,10 +27,10 @@ describe("KwNodeSope test suite", () => {
             },
         };
 
-        expect(kwNodeSope.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeAndika.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("it should return node with operation sope with body of token string", () => {
+    test("it should return node with operation andika with body of token string", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} "beautiful";`;
         const expectedNode = {
             operation: constants.KW.ANDIKA,
@@ -42,37 +42,37 @@ describe("KwNodeSope test suite", () => {
             },
         };
 
-        expect(kwNodeSope.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeAndika.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("it should return node with operation sope with body of token variable", () => {
+    test("it should return node with operation andika with body of token variable", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} name;`;
         const expectedNode = {
             operation: constants.KW.ANDIKA,
             body: {
                 name: "name",
-                operation: constants.GET_JEKI,
+                operation: constants.GET_HIFADHI,
             },
         };
 
-        expect(kwNodeSope.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeAndika.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("it should return node with operation sope with body of node callIse", () => {
+    test("it should return node with operation andika with body of node callKazi", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} sum(1,2);`;
         const expectedNode = {
             operation: constants.KW.ANDIKA,
             body: {
-                operation: constants.CALL_ISE,
+                operation: constants.CALL_KAZI,
                 name: "sum",
                 paramValues: [{ left: null, operation: null, right: null, value: 1, }, { left: null, operation: null, right: null, value: 2, }, ],
             },
         };
 
-        expect(kwNodeSope.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeAndika.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("it should return node with operation sope with body of node array element", () => {
+    test("it should return node with operation andika with body of node array element", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} a[1];`;
         const expectedNode = {
             operation: constants.KW.ANDIKA,
@@ -83,33 +83,33 @@ describe("KwNodeSope test suite", () => {
             },
         };
 
-        expect(kwNodeSope.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeAndika.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test(`It should skip the semicolon after the keyword ${constants.KW.ANDIKA}`, () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} a;`;
-        kwNodeSope.getNode.call(parser);
+        kwNodeAndika.getNode.call(parser);
 
         expect(parser.lexer().peek()).toBe(null);
     });
 
-    test("it should return node with operation sope with body of node array literal", () => {
+    test("it should return node with operation andika with body of node array literal", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} [2,3];`;
 
-        expect(kwNodeSope.getNode.call(parser)).toBeTruthy();
+        expect(kwNodeAndika.getNode.call(parser)).toBeTruthy();
     });
 
-    test("it should return node with operation sope with body of an expression", () => {
+    test("it should return node with operation andika with body of an expression", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} 2 + 2;`;
 
-        expect(kwNodeSope.getNode.call(parser)).toBeTruthy();
+        expect(kwNodeAndika.getNode.call(parser)).toBeTruthy();
     });
 
     test("It should throw an error when given invalid input", () => {
         parser.lexer().inputStream.code = `${constants.KW.ANDIKA} (2,3);`;
 
         expect(() => {
-            kwNodeSope.getNode.call(parser);
+            kwNodeAndika.getNode.call(parser);
         }).toThrow();
     });
 });

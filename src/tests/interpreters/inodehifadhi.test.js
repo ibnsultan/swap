@@ -4,14 +4,14 @@ jest.mock("fs", () => ({
 
 const MainInterpreter = require("../../interpreters/maininterpreter.js");
 const Environment = require("../../environment.js");
-const iNodeTi = require("../../interpreters/inodejeki.js");
-const kwNodeTi = require("../../parsers/keywordnodes/kwnodejeki.js");
+const iNodeTi = require("../../interpreters/inodehifadhi.js");
+const kwNodeTi = require("../../parsers/keywordnodes/kwnodehifadhi.js");
 const Parser = require("../../parsers/parser.js");
 const lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeJeki test suite", () => {
+describe("INodeHifadhi test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -23,28 +23,28 @@ describe("INodeJeki test suite", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ((5 + 2) * (2 - 4)) / 2;`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(-7);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(-7);
     });
 
     test("it should assign floating point number to a variable", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 3.142;`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe(3.142);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(3.142);
     });
 
     test("it should assign string to a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = "anu";`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = "sawa";`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe("anu");
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe("sawa");
     });
 
     test("it should assign an array literal to a variable", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = [1,2];`;
         const node = kwNodeTi.getNode.call(parser);
         iNodeTi.interpreteNode.call(mainInterpreter, node);
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual([1, 2, ]);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual([1, 2, ]);
     });
 
     test("it should interprete expression that contains a variable reference", () => {
@@ -54,53 +54,53 @@ describe("INodeJeki test suite", () => {
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "b")).toBe(-7);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "b")).toBe(-7);
     });
 
     test("it should assign value to an array element", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = [1,2];
-            ${constants.KW.HIFADHI} a[0] = "funmi";
+            ${constants.KW.HIFADHI} a[0] = "fatuma";
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual(["funmi", 2, ]);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual(["fatuma", 2, ]);
     });
 
     test("it should assign value to the last position of an array element with empty index", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = [1,2];
-            ${constants.KW.HIFADHI} a[] = "funmi";
+            ${constants.KW.HIFADHI} a[] = "fatuma";
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual([1, 2, "funmi", ]);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual([1, 2, "fatuma", ]);
     });
 
     test("it should assign value to the last position of a multidimensional array element with empty index", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = [1,[2]];
-            ${constants.KW.HIFADHI} a[1][] = "funmi";
+            ${constants.KW.HIFADHI} a[1][] = "fatuma";
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual([1, [2, "funmi", ], ]);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual([1, [2, "fatuma", ], ]);
     });
 
     test("it should assign value to a multi-dimensional array element", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = [[1,2], [[3,4], 5]];
-            ${constants.KW.HIFADHI} a[1][0][0] = "funmi";
+            ${constants.KW.HIFADHI} a[1][0][0] = "fatuma";
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual([ [1, 2, ], [["funmi", 4, ], 5, ], ]);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual([ [1, 2, ], [["fatuma", 4, ], 5, ], ]);
     });
 
     test("it should fail to assign value to an invalid multi-dimensional array element", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = [[1,2], [[3,4], 5]];
-            ${constants.KW.HIFADHI} a[1][0][0][0] = "funmi";
+            ${constants.KW.HIFADHI} a[1][0][0][0] = "fatuma";
         `;
 
         expect(() => mainInterpreter.interpreteProgram()).toThrow();
@@ -108,11 +108,11 @@ describe("INodeJeki test suite", () => {
 
     test("it should fail to assign undefined to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} teOruko(fname) {
+            ${constants.KW.NJIA} wekaJina(fname) {
                 ${constants.KW.ANDIKA} fname;
             }
             
-            ${constants.KW.HIFADHI} a = teOruko("name");
+            ${constants.KW.HIFADHI} a = wekaJina("name");
         `;
 
         expect(() => mainInterpreter.interpreteProgram()).toThrow();
@@ -121,57 +121,57 @@ describe("INodeJeki test suite", () => {
     test("it should assign value to a multi-dimensional array element", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = [[1,2], [3,4], 5];
-            ${constants.KW.HIFADHI} a[1] = "funmi";
+            ${constants.KW.HIFADHI} a[1] = "fatuma";
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toEqual([[1, 2, ], "funmi", 5, ]);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual([[1, 2, ], "fatuma", 5, ]);
     });
 
-    test("it should assign transformed (uppercase) string to variablet", () => {
+    test("it should assign transformed (uppercase) string to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} a = síLẹ́tàŃlá("funmi");
+            ${constants.KW.HIFADHI} a = BADILI("fatuma");
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe("FUNMI");
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe("FATUMA");
     });
 
     test("it should assign transformed (lowercase) string to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} a = síLẹ́tàKékeré("FUNMI");
+            ${constants.KW.HIFADHI} a = badili("FATUMA");
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "a")).toBe("funmi");
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe("fatuma");
     });
 
-    test("it should test integration of helper fiRopo", () => {
+    test("it should test integration of helper hariri", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} text = fiRopo("Yoruba da pupo", "pupo", "gidigan");
+            ${constants.KW.HIFADHI} text = hariri("Kiswahili ni kizuri", "kizuri", "kabisa");
 
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "text")).toBe("Yoruba da gidigan");
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "text")).toBe("Kiswahili ni kabisa");
     });
 
-    test("it should test integration of helper waNinu", () => {
+    test("it should test integration of helper tafuta", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} text = waNinu("Yoruba da pupo", "pupo");
+            ${constants.KW.HIFADHI} text = tafuta("Kiswahili ni kizuri", "kizuri");
 
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "text")).toBe("ooto");
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "text")).toBe("ooto");
     });
 
-    test("it should test integration of helper aago", () => {
+    test("it should test integration of helper mda", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} time = aago();
+            ${constants.KW.HIFADHI} time = mda();
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getJeki(mainInterpreter.getCurrentScope(), "time")).toBeTruthy();
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "time")).toBeTruthy();
     });
 });

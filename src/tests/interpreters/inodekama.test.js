@@ -9,7 +9,7 @@ const lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeSe test suite", () => {
+describe("INodeKama test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -110,16 +110,16 @@ describe("INodeSe test suite", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = 5;
 
-            ${constants.KW.KAZI} apere(nonba) {
-                ${constants.KW.KAMA} (nonba < 4) {
-                    ${constants.KW.ANDIKA} nonba + 4;
+            ${constants.KW.NJIA} mfano(namba) {
+                ${constants.KW.KAMA} (namba < 4) {
+                    ${constants.KW.ANDIKA} namba + 4;
                 } 
-                ${constants.KW.BASI} ${constants.KW.KAMA} (nonba > 4) {
-                    ${constants.KW.PADA} nonba + 3;
+                ${constants.KW.BASI} ${constants.KW.KAMA} (namba > 4) {
+                    ${constants.KW.REJESHA} namba + 3;
                 }
             }
 
-            ${constants.KW.ANDIKA} apere(a);
+            ${constants.KW.ANDIKA} mfano(a);
         `;
 
         mainInterpreter.interpreteProgram();

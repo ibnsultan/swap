@@ -1,12 +1,12 @@
 const IBase = require("./ibase.js");
 const constants = require("../constants.js");
 
-class INodeSe extends IBase {
+class INodeKama extends IBase {
     interpreteNode (node) {
         if (this.evaluateNode(node.condition) !== constants.KW.SIKWELI) {
-            return INodeSe.runBody(this, node.then);
+            return INodeKama.runBody(this, node.then);
         } else if (node.else !== undefined) {
-            return INodeSe.runBody(this, node.else);
+            return INodeKama.runBody(this, node.else);
         }
     }
 
@@ -16,9 +16,9 @@ class INodeSe extends IBase {
 
         for (let i = 0; i < body.length; i++) {
             const returnedValue = context.evaluateNode(body[i]);
-            if (returnedValue !== undefined) return returnedValue; // it's an ise pada value or kuro statement
+            if (returnedValue !== undefined) return returnedValue; // it's a kazi rejesha value or vunja statement
         }
     }
 }
 
-module.exports = new INodeSe();
+module.exports = new INodeKama();

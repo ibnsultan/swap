@@ -2,13 +2,13 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodePada = require("../../../parsers/keywordnodes/kwnodepada.js");
+const kwNodeRejesha = require("../../../parsers/keywordnodes/kwnoderejesha.js");
 const Parser = require("../../../parsers/parser.js");
 const lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 
-describe("KwNodePada test suite", () => {
+describe("KwNodeRejesha test suite", () => {
     let parser;
 
     beforeEach(() => {
@@ -16,11 +16,11 @@ describe("KwNodePada test suite", () => {
     });
 
     test("it should return node with body.value of type number", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} 2;`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} 2;`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
                 value: 2,
                 left: null,
@@ -29,66 +29,66 @@ describe("KwNodePada test suite", () => {
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("it should return node with body.value of type string", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} "anu";`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} "sawa";`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
-                value: "anu",
+                value: "sawa",
                 left: null,
                 right: null,
                 operation: null,
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should return node with body.operation of type getTi i.e return a variable", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} sum;`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} sum;`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
                 name: "sum",
-                operation: constants.GET_JEKI,
+                operation: constants.GET_HIFADHI,
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
-    test("It should return node with body.operation of type callIse i.e return the value of a function call", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} sum(1,a);`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+    test("It should return node with body.operation of type callKazi i.e return the value of a function call", () => {
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} sum(1,a);`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
-                operation: constants.CALL_ISE,
+                operation: constants.CALL_KAZI,
                 name: "sum",
                 paramValues: [
                     { left: null, operation: null, right: null, value: 1, },
-                    { name: "a", operation: constants.GET_JEKI, },
+                    { name: "a", operation: constants.GET_HIFADHI, },
                 ],
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should return node with body.operation of type array element i.e return the value of an array element", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} sum[1];`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} sum[1];`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
                 operation: constants.ARRAY_ELEM,
                 name: "sum",
@@ -96,15 +96,15 @@ describe("KwNodePada test suite", () => {
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should return node with body.value of type bool", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} ${constants.KW.SIKWELI};`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} ${constants.KW.SIKWELI};`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
                 value: `${constants.KW.SIKWELI}`,
                 left: null,
@@ -113,15 +113,15 @@ describe("KwNodePada test suite", () => {
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should return node with body.operation 'array' ", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} [1,2];`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} [1,2];`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
                 operation: constants.ARRAY,
                 body: [
@@ -130,38 +130,38 @@ describe("KwNodePada test suite", () => {
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should return node with body.operation 'array' when array is empty", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} [];`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} [];`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         const expectedNode = {
-            operation: constants.KW.PADA,
+            operation: constants.KW.REJESHA,
             body: {
                 operation: constants.ARRAY,
                 body: [],
             },
         };
 
-        expect(kwNodePada.getNode.call(parser)).toEqual(expectedNode);
+        expect(kwNodeRejesha.getNode.call(parser)).toEqual(expectedNode);
     });
 
     test("It should skip the semicolon after the keyword padà", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} iró;`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
-        kwNodePada.getNode.call(parser);
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} iró;`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
+        kwNodeRejesha.getNode.call(parser);
 
         expect(parser.lexer().peek()).toBe(null);
     });
 
-    test("It should throw an error when given invalid pada node", () => {
-        parser.lexer().inputStream.code = `${constants.KW.PADA} );`;
-        parser.pushToBlockTypeStack(constants.KW.KAZI);
+    test("It should throw an error when given invalid rejesha node", () => {
+        parser.lexer().inputStream.code = `${constants.KW.REJESHA} );`;
+        parser.pushToBlockTypeStack(constants.KW.NJIA);
 
         expect(() => {
-            kwNodePada.getNode.call(parser);
+            kwNodeRejesha.getNode.call(parser);
         }).toThrow();
     });
 });

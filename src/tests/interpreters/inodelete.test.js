@@ -10,17 +10,17 @@ const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 const fs = require("fs");
 
-describe("INodeGbeWole test suite", () => {
+describe("INodeLete test suite", () => {
     beforeEach(() => {
         global.console.log = jest.fn();
     });
 
     test("it should import valid file path correctly", () => {
         fs.readFileSync.mockReturnValueOnce(`${constants.KW.LETE} "/sample/sample.yl";   
-                ${constants.KW.HIFADHI} b = isiro(14, 2);
+                ${constants.KW.HIFADHI} b = hesabu(14, 2);
                 ${constants.KW.ANDIKA} b;         
-            `).mockReturnValueOnce(`${constants.KW.KAZI} isiro(a, b) { 
-                ${constants.KW.PADA} a * b; 
+            `).mockReturnValueOnce(`${constants.KW.NJIA} hesabu(a, b) { 
+                ${constants.KW.REJESHA} a * b; 
             }`);
 
         const parser = new Parser(new Lexer(new InputStream()));
@@ -31,7 +31,7 @@ describe("INodeGbeWole test suite", () => {
 
     test("it should fail to import invalid file path", () => {
         fs.readFileSync.mockReturnValueOnce(`${constants.KW.LETE} "sample/sample.yl";   
-                ${constants.KW.HIFADHI} b = isiro(14, 2);
+                ${constants.KW.HIFADHI} b = hesabu(14, 2);
                 ${constants.KW.ANDIKA} b;         
             `);
 

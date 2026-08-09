@@ -9,7 +9,7 @@ const lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeFun test suite", () => {
+describe("INodeHakika test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe("INodeFun test suite", () => {
         global.console.log = jest.fn();
     });
 
-    test("it should interprete fun node", () => {
+    test("it should interprete hakika node", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i = 0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
                 ${constants.KW.ANDIKA} i;
@@ -29,7 +29,7 @@ describe("INodeFun test suite", () => {
         expect(global.console.log).toHaveBeenCalledTimes(10);
     });
 
-    test("it should interprete fun node while using helper function to get length of the array", () => {
+    test("it should interprete hakika node while using helper function to get length of the array", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} num = [1,2,3,4,5,6,7,8,9,10];
 
@@ -42,7 +42,7 @@ describe("INodeFun test suite", () => {
         expect(global.console.log).toHaveBeenCalledTimes(10);
     });
 
-    test("it should interprete nested fun node", () => {
+    test("it should interprete nested hakika node", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i = 1; i < 3; ${constants.KW.HIFADHI} i = i + 1) {
                 ${constants.KW.ANDIKA} i;
@@ -56,7 +56,7 @@ describe("INodeFun test suite", () => {
         expect(global.console.log).toHaveBeenCalledTimes(5);
     });
 
-    test("it should interprete fun node with kuro keyword", () => {
+    test("it should interprete hakika node with vunja keyword", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i = 0; i < 10; ${constants.KW.HIFADHI} i = i + 1) {
                 ${constants.KW.ANDIKA} i;

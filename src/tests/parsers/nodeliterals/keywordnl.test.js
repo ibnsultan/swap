@@ -29,7 +29,7 @@ describe("KeywordNodeLiteral test suite", () => {
     });
 
     test("it should fail to parse invalid keyword literal", () => {
-        parser.lexer().inputStream.code = `${constants.KW.KAZI}`;
+        parser.lexer().inputStream.code = `${constants.KW.NJIA}`;
 
         expect(() => keywordNl.getNode.call(parser)).toThrow();
     });

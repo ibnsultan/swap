@@ -21,7 +21,7 @@ describe("ArrayNodeLiteral test suite", () => {
         const expectedNode = {
             body: [
                 { left: null, operation: null, right: null, value: 1, },
-                { name: "a", operation: constants.GET_JEKI, },
+                { name: "a", operation: constants.GET_HIFADHI, },
                 { left: null, operation: null, right: null, value: "segun", },
             ],
             operation: constants.ARRAY,

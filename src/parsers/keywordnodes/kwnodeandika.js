@@ -1,7 +1,7 @@
 const constants = require("../../constants.js");
 const BaseNode = require("../basenode.js");
 
-class KwNodeSope extends BaseNode {
+class KwNodeAndika extends BaseNode {
     getNode () {
         this.skipKeyword(constants.KW.ANDIKA);
         const node = {};
@@ -13,4 +13,4 @@ class KwNodeSope extends BaseNode {
     }
 }
 
-module.exports = new KwNodeSope();
+module.exports = new KwNodeAndika();

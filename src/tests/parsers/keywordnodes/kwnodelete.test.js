@@ -2,14 +2,14 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const KwNodeGbeWole = require("../../../parsers/keywordnodes/kwnodegbewole.js");
+const KwNodeLete = require("../../../parsers/keywordnodes/kwnodelete.js");
 const Parser = require("../../../parsers/parser.js");
 const lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
 const constants = require("../../../constants.js");
 const fs = require("fs");
 
-describe("KwNodeGbeWole test suite", () => {
+describe("KwNodeLete test suite", () => {
     let parser;
 
     beforeEach(() => {
@@ -17,7 +17,7 @@ describe("KwNodeGbeWole test suite", () => {
         parser = new Parser(new lexer(new InputStream()));
     });
 
-    test("It should return valid gbewole node", () => {
+    test("It should return valid lete node", () => {
         const expectedNode = {
             operation: constants.KW.LETE,
             path: {
@@ -28,14 +28,14 @@ describe("KwNodeGbeWole test suite", () => {
             },
         };
 
-        expect(KwNodeGbeWole.getNode.call(parser))
+        expect(KwNodeLete.getNode.call(parser))
             .toEqual(expectedNode);
     });
 
-    test("It should fail when gbewole is given invalid parameter", () => {
+    test("It should fail when lete is given invalid parameter", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.LETE} "./test.yal";
         `;
-        expect(() => KwNodeGbeWole.getNode.call(parser)).toThrow();
+        expect(() => KwNodeLete.getNode.call(parser)).toThrow();
     });
 });

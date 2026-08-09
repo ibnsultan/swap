@@ -76,14 +76,14 @@ describe("Parser test suite", () => {
         expect(() => parser.skipOperator(constants.SYM.ASSIGN)).toThrow();
     });
 
-    test("SkipKeyword - it should skip the keyword token JEKI", () => {
+    test("SkipKeyword - it should skip the keyword token HIFADHI", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI};`;
         parser.skipKeyword(constants.KW.HIFADHI);
 
         expect(parser.isNextTokenPunctuation(constants.SYM.STATEMENT_TERMINATOR)).toBeTruthy();
     });
 
-    test("SkipKeyword - it should fail to skip the keyword token JEKI", () => {
+    test("SkipKeyword - it should fail to skip the keyword token HIFADHI", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI};`;
 
         expect(() => parser.skipKeyword(constants.KW.ANDIKA)).toThrow();
@@ -102,7 +102,7 @@ describe("Parser test suite", () => {
             left: {
                 left: {
                     name: "a",
-                    operation: constants.GET_JEKI,
+                    operation: constants.GET_HIFADHI,
                 },
                 operation: constants.SYM.ASSIGN,
                 right: {
@@ -131,7 +131,7 @@ describe("Parser test suite", () => {
         const expectedNode = {
             paramValues: [],
             name: "koOruko",
-            operation: constants.CALL_ISE,
+            operation: constants.CALL_KAZI,
         };
 
         expect(parser.parseAst()).toEqual(expectedNode);

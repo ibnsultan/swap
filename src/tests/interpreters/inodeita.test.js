@@ -9,7 +9,7 @@ const lexer = require("../../lexer.js");
 const InputStream = require("../../inputstream.js");
 const constants = require("../../constants.js");
 
-describe("INodeWoke test suite", () => {
+describe("INodeIta test suite", () => {
     let mainInterpreter, parser;
 
     beforeEach(() => {
@@ -18,14 +18,14 @@ describe("INodeWoke test suite", () => {
         mainInterpreter = new MainInterpreter(new Environment(), parser);
     });
 
-    test("it should set global(woke) variables properly within local context", () => {
+    test("it should set global(ita) variables properly within local context", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} count() {
+            ${constants.KW.NJIA} count() {
                 ${constants.KW.HIFADHI} counter = 3;
                 ${constants.KW.HIFADHI} i = 15;  
                 ${constants.KW.HIFADHI} j = [6,7];  
             
-                ${constants.KW.KAZI} incrementCounter() { 
+                ${constants.KW.NJIA} incrementCounter() { 
                     ${constants.KW.ITA} \`counter, j\`;
 
                     ${constants.KW.HIFADHI} counter = counter + 1;
@@ -37,7 +37,7 @@ describe("INodeWoke test suite", () => {
 
                 ${constants.KW.ANDIKA} j[0];
                 ${constants.KW.ANDIKA} i;
-                ${constants.KW.PADA} counter;
+                ${constants.KW.REJESHA} counter;
             
             }
             
@@ -51,16 +51,16 @@ describe("INodeWoke test suite", () => {
         expect(global.console.log).toHaveBeenCalledWith(4);
     });
 
-    test("it should set global(woke) variables properly within local context - second example", () => {
+    test("it should set global(ita) variables properly within local context - second example", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.KAZI} count() {
+            ${constants.KW.NJIA} count() {
                 ${constants.KW.HIFADHI} i = 15;  
             
-                ${constants.KW.KAZI} incrementCounter() {
+                ${constants.KW.NJIA} incrementCounter() {
                     ${constants.KW.ITA} \`i\`;
                     ${constants.KW.HIFADHI} i = i + 1;
                     
-                    ${constants.KW.KAZI} increase() { 
+                    ${constants.KW.NJIA} increase() { 
                         ${constants.KW.ITA} \`i\`;
     
                         ${constants.KW.HIFADHI} i = i + 2;

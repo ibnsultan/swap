@@ -2,7 +2,7 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn(),
 }));
 
-const kwNodeTi = require("../../../parsers/keywordnodes/kwnodejeki.js");
+const kwNodeTi = require("../../../parsers/keywordnodes/kwnodehifadhi.js");
 const Parser = require("../../../parsers/parser.js");
 const lexer = require("../../../lexer.js");
 const InputStream = require("../../../inputstream.js");
@@ -57,7 +57,7 @@ describe("KwNodeTi test suite", () => {
             left: "a",
             right: {
                 name: "b",
-                operation: constants.GET_JEKI,
+                operation: constants.GET_HIFADHI,
             },
         };
 
@@ -76,7 +76,7 @@ describe("KwNodeTi test suite", () => {
             },
             right: {
                 name: "b",
-                operation: constants.GET_JEKI,
+                operation: constants.GET_HIFADHI,
             },
         };
 
@@ -84,7 +84,7 @@ describe("KwNodeTi test suite", () => {
     });
 
     test("it should return node with operation assign for an array assignment operation", () => {
-        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = [1,"anu",b, c[0], [1,2]];`;
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = [1,"sawa",b, c[0], [1,2]];`;
 
         const expectedNode = {
             operation: constants.SYM.ASSIGN,
@@ -93,8 +93,8 @@ describe("KwNodeTi test suite", () => {
                 operation: constants.ARRAY,
                 body: [
                     { left: null, operation: null, right: null, value: 1, },
-                    { left: null, operation: null, right: null, value: "anu", },
-                    { name: "b", operation: constants.GET_JEKI, },
+                    { left: null, operation: null, right: null, value: "sawa", },
+                    { name: "b", operation: constants.GET_HIFADHI, },
                     { indexNodes: [{ "left": null, "operation": null, "right": null, "value": 0, }, ], name: "c", operation: constants.ARRAY_ELEM, },
                     { body: [{ left: null, operation: null, right: null, value: 1, }, { left: null, operation: null, right: null, value: 2, }, ], operation: constants.ARRAY, },
                 ],
