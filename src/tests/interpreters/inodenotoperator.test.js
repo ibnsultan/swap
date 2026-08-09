@@ -17,21 +17,21 @@ describe("INodeNotOperator test suite", () => {
         mainInterpreter = new MainInterpreter(new Environment(), parser);
     });
 
-    test("it should apply not operation and return iro", () => {
+    test("it should apply not operation and return sikweli", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.EXCLAMATION_POINT} ${constants.KW.KWELI};`;
 
         mainInterpreter.interpreteProgram();
         expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.SIKWELI);
     });
 
-    test("it should apply not operation and return ooto", () => {
+    test("it should apply not operation and return kweli", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.SYM.EXCLAMATION_POINT} ${constants.KW.SIKWELI};`;
 
         mainInterpreter.interpreteProgram();
         expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe(constants.KW.KWELI);
     });
 
-    test("it should apply not operation and return iro for a valid variable", () => {
+    test("it should apply not operation and return sikweli for a valid variable", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} a = 5;
             ${constants.KW.HIFADHI} a = ${constants.SYM.EXCLAMATION_POINT} a;

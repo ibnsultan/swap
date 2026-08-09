@@ -19,19 +19,19 @@ describe("INodeGreaterThan test suite", () => {
         mainInterpreter = new MainInterpreter(new Environment(), parser);
     });
 
-    test("it should return ooto for a greater than true condition", () => {
+    test("it should return kweli for a greater than true condition", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 5 > 4;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeGthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.KWELI);
     });
 
-    test("it should return iro for a greater than false condition", () => {
+    test("it should return sikweli for a greater than false condition", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 5 > 5;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeGthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.SIKWELI);
     });
 
-    test("it should return iro for a greater than false condition involving a string", () => {
+    test("it should return sikweli for a greater than false condition involving a string", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = "sawa" > 5;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeGthan.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.SIKWELI);

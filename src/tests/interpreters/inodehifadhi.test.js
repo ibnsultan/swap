@@ -163,7 +163,7 @@ describe("INodeHifadhi test suite", () => {
         `;
 
         mainInterpreter.interpreteProgram();
-        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "text")).toBe("ooto");
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "text")).toBe("kweli");
     });
 
     test("it should test integration of helper mda", () => {

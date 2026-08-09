@@ -19,13 +19,13 @@ describe("INodeNotEqual test suite", () => {
         mainInterpreter = new MainInterpreter(new Environment(), parser);
     });
 
-    test("it should return ooto for a not equal true condition", () => {
+    test("it should return kweli for a not equal true condition", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 4 != 5;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeNotEq.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.KWELI);
     });
 
-    test("it should return iro for a not equal false condition", () => {
+    test("it should return sikweli for a not equal false condition", () => {
         parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = 5 != 5;`;
         const node = kwNodeTi.getNode.call(parser);
         expect(iNodeNotEq.interpreteNode.call(mainInterpreter, node.right)).toBe(constants.KW.SIKWELI);
