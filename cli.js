@@ -4,15 +4,12 @@ const packageJson = require("./package.json");
 const path = require("path");
 const constants = require("./src/constants.js");
 const commander = require("commander");
+const printBanner = require("./src/banner.js");
+
+printBanner(packageJson.version);
 
 commander.on("--help", function () {
-    console.log("    _________              _________  ________");
-    console.log("   /          /          //        //        /");
-    console.log("  /          /          //        //        / swahili");
-    console.log(" /_________ /          //________//________/  programming");
-    console.log("          //    /     //        //            Language");
-    console.log("         //    /     //        // author: Abdulbasit Rubeiyya");
-    console.log("________//____/_____//        //   ");
+    console.log("author: Abdulbasit Sultan Rubeiyya");
     console.log("Examples:");
     console.log("  $ swap file.sw");
     console.log("  $ swap -h");
@@ -22,9 +19,11 @@ commander.on("--help", function () {
 commander.version(packageJson.version, "-v, --version");
 
 commander.arguments("[file]")
-    .option("")
+    .option("-l, --lang <lang>", "language for error messages (english|swahili)")
     .action((file, options) => {
-        if (path.extname(file) === constants.SWAP_EXT) {
+        if (!file) {
+            commander.help();
+        } else if (path.extname(file) === constants.SWAP_EXT) {
             setGlobalVars(options);
             startSwapProcess(file);
         } else {
@@ -35,7 +34,7 @@ commander.arguments("[file]")
 commander.parse(process.argv);
 
 function setGlobalVars (options) {
-    const lang = [ "english", "kiswahili", ];
+    const lang = [ "english", "swahili", ];
     global.defaultLang = lang.includes(options.lang) ? options.lang : "english";
 }
 
