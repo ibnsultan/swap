@@ -6,7 +6,25 @@ const constants = require("./src/constants.js");
 const commander = require("commander");
 const printBanner = require("./src/banner.js");
 
-printBanner(packageJson.version);
+// Mirror how PHP keeps its own internal (C) stack out of a script's error
+// output: swap errors are already user-facing messages (see feedbackMessages.js
+// and InputStream#throwError), so surface just that message here instead of
+// letting Node's raw JS stack trace leak out of the interpreter. Set
+// SWAP_DEBUG=1 to see the full stack while working on the interpreter itself.
+process.on("uncaughtException", (error) => {
+    if (process.env.SWAP_DEBUG) throw error;
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+});
+
+// The art banner is an info/help affordance, not part of a running program's
+// output - only show it when no file is being executed (bare invocation,
+// -h/--help, -v/--version).
+const cliArgs = process.argv.slice(2);
+const isInfoRequest = cliArgs.length === 0 ||
+    [ "-h", "--help", "-v", "--version", ].some((flag) => cliArgs.includes(flag));
+
+if (isInfoRequest) printBanner(packageJson.version);
 
 commander.on("--help", function () {
     console.log("author: Abdulbasit Sultan Rubeiyya");
@@ -27,7 +45,8 @@ commander.arguments("[file]")
             setGlobalVars(options);
             startSwapProcess(file);
         } else {
-            throw new Error("Invalid file extension used, only swap file can be used");
+            console.log("Invalid file extension used, only swap file can be used\n");
+            commander.help();
         }
     });
 
