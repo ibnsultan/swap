@@ -79,7 +79,7 @@ function printBanner (version) {
 
     const versionLine = `v${version}`;
 
-    console.log(`\nswahili programming language ${colorize(versionLine, to)}`);
+    console.log(`\nswahili programming language ${colorEnabled ? colorize(versionLine, to) : versionLine}`);
     console.log("by Abdulbasit Rubeya \n");
 }
 
