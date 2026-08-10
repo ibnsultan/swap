@@ -130,7 +130,7 @@ describe("INodeHifadhi test suite", () => {
 
     test("it should assign transformed (uppercase) string to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} a = BADILI("fatuma");
+            ${constants.KW.HIFADHI} a = herufiKubwa("fatuma");
         `;
 
         mainInterpreter.interpreteProgram();
@@ -139,11 +139,20 @@ describe("INodeHifadhi test suite", () => {
 
     test("it should assign transformed (lowercase) string to variable", () => {
         parser.lexer().inputStream.code = `
-            ${constants.KW.HIFADHI} a = badili("FATUMA");
+            ${constants.KW.HIFADHI} a = herufiNdogo("FATUMA");
         `;
 
         mainInterpreter.interpreteProgram();
         expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toBe("fatuma");
+    });
+
+    test("it should test integration of helper badili", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} text = badili("Kiswahili ni kizuri", "kizuri", "kabisa");
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "text")).toBe("Kiswahili ni kabisa");
     });
 
     test("it should test integration of helper hariri", () => {
