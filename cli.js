@@ -20,6 +20,8 @@ process.on("uncaughtException", (error) => {
 // The art banner is an info/help affordance, not part of a running program's
 // output - only show it when no file is being executed (bare invocation,
 // -h/--help, -v/--version).
+// -i/--interactive is deliberately excluded here: the REPL (src/repl.js)
+// prints its own banner at startup, so including it here would double it up.
 const cliArgs = process.argv.slice(2);
 const isInfoRequest = cliArgs.length === 0 ||
     [ "-h", "--help", "-v", "--version", ].some((flag) => cliArgs.includes(flag));
@@ -30,6 +32,7 @@ commander.on("--help", function () {
     console.log("author: Abdulbasit Sultan Rubeiyya");
     console.log("Examples:");
     console.log("  $ swap file.sw");
+    console.log("  $ swap -i");
     console.log("  $ swap -h");
     console.log("  $ swap -v");
 });
@@ -38,8 +41,12 @@ commander.version(packageJson.version, "-v, --version");
 
 commander.arguments("[file]")
     .option("-l, --lang <lang>", "language for error messages (english|swahili)")
+    .option("-i, --interactive", "start an interactive REPL")
     .action((file, options) => {
-        if (!file) {
+        if (options.interactive) {
+            setGlobalVars(options);
+            startReplProcess();
+        } else if (!file) {
             commander.help();
         } else if (path.extname(file) === constants.SWAP_EXT) {
             setGlobalVars(options);
@@ -66,4 +73,8 @@ function startSwapProcess (file) {
 
     const parser = new Parser(new Lexer(new InputStream(file)));
     new MainInterpreter(new Environment(), parser).interpreteProgram();
+}
+
+function startReplProcess () {
+    require("./src/repl.js").start();
 }
