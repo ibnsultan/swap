@@ -1,0 +1,7 @@
+.github
+examples/
+extension/
+node_modules/
+
+*.md
+!README.md
