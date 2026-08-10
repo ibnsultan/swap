@@ -15,6 +15,9 @@ const KEYWORDS = {
     ZAIDI: "zaidi",
     LETE: "lete",
     ITA: "ita",
+    JARIBU: "jaribu",
+    KAMATA: "kamata",
+    RAMANI: "ramani",
 };
 
 const SYMBOLS = {
@@ -58,6 +61,7 @@ const LIST = {
         SYMBOLS.L_BRACKET, SYMBOLS.R_BRACKET, SYMBOLS.L_PAREN,
         SYMBOLS.R_PAREN, SYMBOLS.STATEMENT_TERMINATOR, SYMBOLS.COMMA,
         SYMBOLS.L_SQ_BRACKET, SYMBOLS.R_SQ_BRACKET, SYMBOLS.COLON, SYMBOLS.BACK_TICK,
+        SYMBOLS.PERIOD,
     ],
     OPERATORS: [
         SYMBOLS.PLUS, SYMBOLS.MINUS, SYMBOLS.MULTIPLY,
@@ -73,6 +77,7 @@ const LIST = {
         KEYWORDS.BASI, KEYWORDS.KWELI, KEYWORDS.SIKWELI, KEYWORDS.NJIA,
         KEYWORDS.HAKIKA, KEYWORDS.REJESHA, KEYWORDS.VUNJA, KEYWORDS.CHAGUA,
         KEYWORDS.KESI, KEYWORDS.ZAIDI, KEYWORDS.LETE, KEYWORDS.ITA,
+        KEYWORDS.JARIBU, KEYWORDS.KAMATA, KEYWORDS.RAMANI,
     ],
 };
 
@@ -91,6 +96,9 @@ const constants = {
     STRING: "string",
     ARRAY: "array",
     ARRAY_ELEM: "arrayElement",
+    MAP: "map",
+    MAP_ELEM: "mapElement",
+    LAMBDA: "lambda",
     NUMBER: "number",
     PROGRAM: "program",
     PUNCTUATION: "punctuation",
