@@ -87,15 +87,47 @@ class Lexer {
         this.inputStream.next(); // skips the "\n" symbol
     }
 
+    isLineCommentStart () {
+        return this.inputStream.peek() === constants.SYM.COMMENT ||
+            (this.inputStream.peek() === constants.SYM.DIVIDE && this.inputStream.peekNext() === constants.SYM.DIVIDE);
+    }
+
+    isBlockCommentStart () {
+        return this.inputStream.peek() === constants.SYM.DIVIDE && this.inputStream.peekNext() === constants.SYM.MULTIPLY;
+    }
+
+    skipBlockComment () {
+        this.inputStream.next(); // skips the "/"
+        this.inputStream.next(); // skips the "*"
+
+        while (this.inputStream.isNotEndOfFile() && !this.isBlockCommentEnd()) {
+            this.inputStream.next();
+        }
+
+        if (this.inputStream.isEndOfFile()) this.throwError("Expecting '*/' but reached end of file");
+
+        this.inputStream.next(); // skips the "*"
+        this.inputStream.next(); // skips the "/"
+    }
+
+    isBlockCommentEnd () {
+        return this.inputStream.peek() === constants.SYM.MULTIPLY && this.inputStream.peekNext() === constants.SYM.DIVIDE;
+    }
+
     readNext () {
         this.readWhile(this.isWhiteSpace);
         if (this.inputStream.isEndOfFile()) return null;
 
-        const ch = this.inputStream.peek();
-        if (ch === constants.SYM.COMMENT) {
+        if (this.isLineCommentStart()) {
             this.skipComments();
             return this.readNext();
         }
+        if (this.isBlockCommentStart()) {
+            this.skipBlockComment();
+            return this.readNext();
+        }
+
+        const ch = this.inputStream.peek();
         if (ch === constants.SYM.STR_QUOTE) return this.readString();
         if (this.isDigit(ch)) return this.readNumber();
         if (this.isIdentifier(ch)) return this.readIdentifier();

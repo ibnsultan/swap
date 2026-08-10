@@ -15,6 +15,9 @@ const message = {
         swapArithmeticException: () => "SwapArithmeticException - cannot divide by zero",
         undefinedValueMsg: (arg) => `Cannot set value undefined to variable ${arg}`,
         cannotNegateMsg: (arg) => `Cannot apply negation operator to the given expression: ${arg}`,
+        invalidMapAccessMsg: (arg) => `${arg} is not a ramani (map)`,
+        mapKeyDoesNotExistMsg: (name, key) => `Key ${key} does not exist in ramani ${name}`,
+        notCallableMsg: (arg) => `${arg} is not a njia (function) and cannot be called`,
 
     },
 
@@ -34,7 +37,19 @@ const message = {
         swapArithmeticException: () => "SwapArithmeticException - Haiwezekani kugawanya kwa sifuri",
         undefinedValueMsg: (arg) => `variabo ${arg} haitambliwi`,
         cannotNegateMsg: (arg) => `haiwezekana kuttumia ${arg} `,
+        invalidMapAccessMsg: (arg) => `${arg} sio ramani`,
+        mapKeyDoesNotExistMsg: (name, key) => `Ufunguo ${key} haupo kwenye ramani ${name}`,
+        notCallableMsg: (arg) => `${arg} sio njia (function) na haiwezi kuitwa`,
     },
 };
 
-module.exports = message[global.defaultLang];
+// `global.defaultLang` is only ever set by cli.js's setGlobalVars (once the CLI
+// action runs), so resolving the language table once at require time breaks any
+// caller that requires this module first - notably the test suite, and the REPL.
+// Resolve it lazily on every property access instead, defaulting to "english".
+module.exports = new Proxy({}, {
+    get (_target, prop) {
+        const lang = message[global.defaultLang] ? global.defaultLang : "english";
+        return message[lang][prop];
+    },
+});

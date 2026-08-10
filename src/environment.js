@@ -36,9 +36,12 @@ class Environment {
         return helperKaziDeclarations[kaziName] !== undefined;
     }
 
-    runHelperKazi (kaziName, kaziArgs) {
+    // callSwapFunction is only used by closure-taking helpers (e.g.
+    // ramanisha/chuja/punguza/kilamoja) to invoke a Swap closure value they
+    // received as an argument - every other helper just ignores it.
+    runHelperKazi (kaziName, kaziArgs, callSwapFunction) {
         if (this.isExistHelperKazi(kaziName)) {
-            return helperKaziDeclarations[kaziName](kaziArgs);
+            return helperKaziDeclarations[kaziName](kaziArgs, callSwapFunction);
         }
     }
 
