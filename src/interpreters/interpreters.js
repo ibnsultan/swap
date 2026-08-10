@@ -27,11 +27,15 @@ interpreters[constants.KW.NJIA] = require("./inodekazi.js");
 interpreters[constants.KW.REJESHA] = require("./inoderejesha.js");
 interpreters[constants.KW.LETE] = require("./inodelete.js");
 interpreters[constants.KW.ITA] = require("./inodeita.js");
+interpreters[constants.KW.JARIBU] = require("./inodejaribu.js");
 
 interpreters[constants.CALL_KAZI] = require("./inodecallkazi.js");
 interpreters[constants.GET_HIFADHI] = require("./inodegethifadhi.js");
 interpreters[constants.ARRAY] = require("./inodearray.js");
 interpreters[constants.ARRAY_ELEM] = require("./inodearrayelem.js");
+interpreters[constants.MAP] = require("./inodemap.js");
+interpreters[constants.MAP_ELEM] = require("./inodemapelem.js");
+interpreters[constants.LAMBDA] = require("./inodelambda.js");
 interpreters[constants.NEGATE_EXPRESSION] = require("./inodenegateexpression.js");
 
 module.exports = interpreters;

@@ -10,6 +10,11 @@ class INodeHifadhi extends IBase {
             return;
         }
 
+        if (node.left.operation === constants.MAP_ELEM) {
+            INodeHifadhi.setMapElement(this, node);
+            return;
+        }
+
         if (ItaHelper.isItaVariable(this, node.left)) {
             INodeHifadhi.setItaVariable(this, node);
             return;
@@ -59,6 +64,20 @@ class INodeHifadhi extends IBase {
     }
 
     static getArrayLiteral (context, node) {
+        const hifadhiNode = { name: node.left.name, operation: constants.GET_HIFADHI, };
+        return context.evaluateNode(hifadhiNode);
+    }
+
+    static setMapElement (context, node) { // always a plain upsert - no array-style empty-key append case
+        const mapLiteral = INodeHifadhi.getMapLiteral(context, node);
+        if (typeof mapLiteral !== "object" || mapLiteral === null || Array.isArray(mapLiteral)) {
+            context.throwError(feedbackMessages.invalidMapAccessMsg(node.left.name));
+        }
+
+        mapLiteral[node.left.key] = INodeHifadhi.getValue(context, node.right);
+    }
+
+    static getMapLiteral (context, node) {
         const hifadhiNode = { name: node.left.name, operation: constants.GET_HIFADHI, };
         return context.evaluateNode(hifadhiNode);
     }
