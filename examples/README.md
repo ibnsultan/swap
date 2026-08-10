@@ -26,7 +26,7 @@ swap examples/01_hello_world.sw
 | [05_switch_case.sw](05_switch_case.sw) | `chagua` / `kesi` / `zaidi` — swahili switch/case |
 | [06_functions.sw](06_functions.sw) | `njia`, `rejesha`, wigo wa vigeuzo (scope), na `ita` |
 | [07_arrays.sw](07_arrays.sw) | oganizesheni za mstari mmoja na za ngazi nyingi (arrays) |
-| [08_builtin_helpers.sw](08_builtin_helpers.sw) | `BADILI`, `badili`, `kaunta`, `hariri`, `tafuta` |
+| [08_builtin_helpers.sw](08_builtin_helpers.sw) | `herufiKubwa`, `herufiNdogo`, `kaunta`, `hariri`, `tafuta`, `badili` |
 | [09_user_input.sw](09_user_input.sw) | `dai` — kupokea maoni ya mtumiaji (inahitaji terminal halisi) |
 | [10_imports/](10_imports/) | `lete` — kuleta faili nyingine ndani ya programu |
 
