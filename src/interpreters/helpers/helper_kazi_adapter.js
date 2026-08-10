@@ -5,7 +5,7 @@ function getFormattedReturnValue (returnedValue) {
     case "string":
     case "number": return returnedValue;
     case "boolean": return (returnedValue) ? constants.KW.KWELI : constants.KW.SIKWELI;
-    case "object": if (Array.isArray(returnedValue)) return returnedValue;
+    case "object": if (returnedValue !== null) return returnedValue; // arrays and plain ramani (map) objects are both valid
     }
 
     throw new Error("system error: invalid result returned from helper function");
