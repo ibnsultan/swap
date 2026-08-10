@@ -29,6 +29,11 @@ swap examples/01_hello_world.sw
 | [08_builtin_helpers.sw](08_builtin_helpers.sw) | `herufiKubwa`, `herufiNdogo`, `kaunta`, `hariri`, `tafuta`, `badili` |
 | [09_user_input.sw](09_user_input.sw) | `dai` — kupokea maoni ya mtumiaji (inahitaji terminal halisi) |
 | [10_imports/](10_imports/) | `lete` — kuleta faili nyingine ndani ya programu |
+| [11_error_handling.sw](11_error_handling.sw) | `jaribu` / `kamata` — kushughulikia makosa ya wakati wa kuendesha (try/catch) |
+| [12_more_helpers.sw](12_more_helpers.sw) | helper kazi mpya: `zungusha`, `sakafu`, `paa`, `kamili`, `kubwa`, `ndogo`, `kipeo`, `mzizi`, `ongeza`, `toa`, `panga`, `unganisha`, `geuza`, `kata`, `pogoa`, `jaza`, `gawa`, `ainaYa`, `kwaJson` |
+| [13_maps.sw](13_maps.sw) | `ramani` — aina ya data ya funguo/thamani (key/value map) |
+| [14_closures.sw](14_closures.sw) | `njia` kama thamani ya kwanza (first-class functions/lambdas) — kuhifadhi, kupeleka kama hoja, na kurudisha njia |
+| [15_closure_helpers.sw](15_closure_helpers.sw) | helper kazi zinazotumia njia: `ramanisha` (map), `chuja` (filter), `punguza` (reduce), `kilamoja` (forEach), na `kwaJson`/`kutokaJson` |
 
 ## Maelezo muhimu
 

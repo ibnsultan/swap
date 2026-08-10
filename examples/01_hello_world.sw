@@ -1,2 +1,3 @@
 # Programu rahisi ya kwanza kwa lugha ya Swap
-andika "Habari, dunia!";
+// Maoni (comments) yanaweza kuandikwa kwa "#", "//", au "/* ... */"
+andika "Habari, dunia!"; /* hii inachapisha salamu */
