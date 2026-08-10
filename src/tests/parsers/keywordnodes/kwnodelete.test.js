@@ -13,7 +13,7 @@ describe("KwNodeLete test suite", () => {
     let parser;
 
     beforeEach(() => {
-        fs.readFileSync.mockReturnValue(`${constants.KW.LETE} "./test.yl";`);
+        fs.readFileSync.mockReturnValue(`${constants.KW.LETE} "./test.sw";`);
         parser = new Parser(new lexer(new InputStream()));
     });
 
@@ -24,7 +24,7 @@ describe("KwNodeLete test suite", () => {
                 left: null,
                 operation: null,
                 right: null,
-                value: "./test.yl",
+                value: "./test.sw",
             },
         };
 

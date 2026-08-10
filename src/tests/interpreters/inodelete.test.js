@@ -16,11 +16,11 @@ describe("INodeLete test suite", () => {
     });
 
     test("it should import valid file path correctly", () => {
-        fs.readFileSync.mockReturnValueOnce(`${constants.KW.LETE} "/sample/sample.yl";   
+        fs.readFileSync.mockReturnValueOnce(`${constants.KW.LETE} "/sample/sample.sw";
                 ${constants.KW.HIFADHI} b = hesabu(14, 2);
-                ${constants.KW.ANDIKA} b;         
-            `).mockReturnValueOnce(`${constants.KW.NJIA} hesabu(a, b) { 
-                ${constants.KW.REJESHA} a * b; 
+                ${constants.KW.ANDIKA} b;
+            `).mockReturnValueOnce(`${constants.KW.NJIA} hesabu(a, b) {
+                ${constants.KW.REJESHA} a * b;
             }`);
 
         const parser = new Parser(new Lexer(new InputStream()));

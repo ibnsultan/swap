@@ -129,6 +129,33 @@ describe("Lexer Tests", () => {
         expect(lexer.inputStream.peek()).toBe("a");
     });
 
+    test("ReadNext - it should skip a '//' line comment", () => {
+        lexer.inputStream.code = `// comment${constants.SYM.NEW_LINE}a`;
+        expect(lexer.readNext()).toEqual({ type: constants.VARIABLE, value: "a", });
+    });
+
+    test("ReadNext - it should treat '/' by itself as division, not a comment", () => {
+        lexer.inputStream.code = "a / b";
+        lexer.readNext(); // "a"
+        lexer.readWhile(lexer.isWhiteSpace);
+        expect(lexer.readNext()).toEqual({ type: constants.OPERATOR, value: "/", });
+    });
+
+    test("ReadNext - it should skip a '/* ... */' block comment", () => {
+        lexer.inputStream.code = "/* a block\ncomment */a";
+        expect(lexer.readNext()).toEqual({ type: constants.VARIABLE, value: "a", });
+    });
+
+    test("ReadNext - it should skip a '/* ... */' block comment containing a stray '*' or '/'", () => {
+        lexer.inputStream.code = "/* 3 * 4 / 2 */a";
+        expect(lexer.readNext()).toEqual({ type: constants.VARIABLE, value: "a", });
+    });
+
+    test("ReadNext - it should throw when a block comment is never closed", () => {
+        lexer.inputStream.code = "/* never closed";
+        expect(() => lexer.readNext()).toThrow("Expecting '*/' but reached end of file");
+    });
+
     test("SkipWhiteSpaces - it should should skip whitespaces", () => {
         lexer.inputStream.code = `    \n\t${constants.KW.HIFADHI}`;
         expect(lexer.next()).toEqual({ type: constants.KEYWORD, value: `${constants.KW.HIFADHI}`, });

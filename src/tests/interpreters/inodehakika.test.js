@@ -33,7 +33,7 @@ describe("INodeHakika test suite", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} num = [1,2,3,4,5,6,7,8,9,10];
 
-            ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i = 0; i < ka(num); ${constants.KW.HIFADHI} i = i + 1) {
+            ${constants.KW.HAKIKA} (${constants.KW.HIFADHI} i = 0; i < kaunta(num); ${constants.KW.HIFADHI} i = i + 1) {
                 ${constants.KW.ANDIKA} num[i];
             }
         `;

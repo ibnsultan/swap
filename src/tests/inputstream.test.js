@@ -35,6 +35,20 @@ describe("InputStream Tests", () => {
         }).toThrow();
     });
 
+    test("peekNext - it should look one character further ahead than peek without discarding anything", () => {
+        inputStream.code = "ab";
+
+        expect(inputStream.peekNext()).toBe("b");
+        expect(inputStream.peek()).toBe("a"); // unaffected
+        expect(inputStream.next()).toBe("a");
+    });
+
+    test("peekNext - it should return an empty string past the end of the stream", () => {
+        inputStream.code = "a";
+
+        expect(inputStream.peekNext()).toBe("");
+    });
+
     test("isNotEndOfFile - It should confirm that the inputstream has not read in the last char in the file", () => {
         inputStream.code = "tí";
 
@@ -64,5 +78,21 @@ describe("InputStream Tests", () => {
 
     test("normalizeLineEndings - it should return non-string values as-is", () => {
         expect(inputStream.normalizeLineEndings(undefined)).toBe(undefined);
+    });
+
+    test("rawSource option - it should use in-memory source text instead of reading a file", () => {
+        const fs = require("fs");
+        fs.readFileSync.mockClear();
+        const replStream = new InputStream(null, { rawSource: "andika 1;\r\n", displayName: "<repl>", });
+
+        expect(fs.readFileSync).not.toHaveBeenCalled();
+        expect(replStream.code).toBe("andika 1;\n");
+        expect(replStream.fileName).toBe("<repl>");
+    });
+
+    test("rawSource option - it should default the display name to <repl> when none is given", () => {
+        const replStream = new InputStream(null, { rawSource: "andika 1;", });
+
+        expect(replStream.fileName).toBe("<repl>");
     });
 });

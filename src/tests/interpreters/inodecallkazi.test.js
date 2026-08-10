@@ -186,6 +186,111 @@ describe("INodeCallKazi test suite", () => {
         expect(global.console.log).toHaveBeenCalledWith(3);
     });
 
+    test("it should call a lambda value assigned to a variable", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} ongeza = ${constants.KW.NJIA} (a, b) { ${constants.KW.REJESHA} a + b; };
+            ${constants.KW.ANDIKA} ongeza(2, 3);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith(5);
+    });
+
+    test("it should pass a lambda as an argument and call it inside the callee", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} ongezaMaraMbili = ${constants.KW.NJIA} (a) { ${constants.KW.REJESHA} a * 2; };
+
+            ${constants.KW.NJIA} tumia(kazi, x) {
+                ${constants.KW.REJESHA} kazi(x);
+            }
+
+            ${constants.KW.ANDIKA} tumia(ongezaMaraMbili, 10);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith(20);
+    });
+
+    test("it should call a lambda returned from another function", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.NJIA} pataOngeza() {
+                ${constants.KW.REJESHA} ${constants.KW.NJIA} (a, b) { ${constants.KW.REJESHA} a + b; };
+            }
+
+            ${constants.KW.HIFADHI} ongeza = pataOngeza();
+            ${constants.KW.ANDIKA} ongeza(4, 5);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith(9);
+    });
+
+    test("it should fail to call a value that is not a function", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} x = 5;
+            x(3);
+        `;
+
+        expect(() => mainInterpreter.interpreteProgram()).toThrow();
+    });
+
+    test("it should call a lambda recursively without corrupting the caller's scope", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} fact = ${constants.KW.NJIA} (n) {
+                ${constants.KW.KAMA} (n <= 1) {
+                    ${constants.KW.REJESHA} 1;
+                }
+                ${constants.KW.REJESHA} n * fact(n - 1);
+            };
+
+            ${constants.KW.ANDIKA} fact(5);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith(120);
+    });
+
+    test("it should test integration of closure-taking helper ramanisha (map)", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} maradufu = ${constants.KW.NJIA} (x) { ${constants.KW.REJESHA} x * 2; };
+            ${constants.KW.ANDIKA} ramanisha([1, 2, 3], maradufu);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith([ 2, 4, 6, ]);
+    });
+
+    test("it should test integration of closure-taking helper chuja (filter)", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} kubwaKulikoMbili = ${constants.KW.NJIA} (x) { ${constants.KW.REJESHA} x > 2; };
+            ${constants.KW.ANDIKA} chuja([1, 2, 3, 4], kubwaKulikoMbili);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith([ 3, 4, ]);
+    });
+
+    test("it should test integration of closure-taking helper punguza (reduce)", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} jumlisha = ${constants.KW.NJIA} (jumla, x) { ${constants.KW.REJESHA} jumla + x; };
+            ${constants.KW.ANDIKA} punguza([1, 2, 3, 4], jumlisha, 0);
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith(10);
+    });
+
+    test("it should test integration of closure-taking helper kilamoja (forEach) with an inline lambda", () => {
+        parser.lexer().inputStream.code = `
+            kilamoja([1, 2, 3], ${constants.KW.NJIA} (x) { ${constants.KW.ANDIKA} x; });
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(global.console.log).toHaveBeenCalledWith(1);
+        expect(global.console.log).toHaveBeenCalledWith(2);
+        expect(global.console.log).toHaveBeenCalledWith(3);
+    });
+
     test("Make sure kazi can take negative values as parameters", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.NJIA} jumlishaNamba(a, b) {

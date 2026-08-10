@@ -21,7 +21,13 @@ describe("GetFormattedReturnValue test suite", () => {
         expect(getFormattedReturnValue(false)).toBe("sikweli");
     });
 
+    test("It should return the valid swap input - plain object (ramani/map)", () => {
+        expect(getFormattedReturnValue({ jina: "Juma", })).toEqual({ jina: "Juma", });
+    });
+
     test("It should throw an error when given an input that can't be formatted to a swap input", () => {
-        expect(() => getFormattedReturnValue({})).toThrow();
+        expect(() => getFormattedReturnValue(null)).toThrow();
+        expect(() => getFormattedReturnValue(undefined)).toThrow();
+        expect(() => getFormattedReturnValue(() => {})).toThrow();
     });
 });

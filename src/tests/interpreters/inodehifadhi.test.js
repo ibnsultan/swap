@@ -175,6 +175,33 @@ describe("INodeHifadhi test suite", () => {
         expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "text")).toBe("kweli");
     });
 
+    test("it should assign a ramani (map) literal to a variable", () => {
+        parser.lexer().inputStream.code = `${constants.KW.HIFADHI} a = ${constants.KW.RAMANI}(jina: "Juma", umri: 25);`;
+        const node = kwNodeTi.getNode.call(parser);
+        iNodeTi.interpreteNode.call(mainInterpreter, node);
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual({ jina: "Juma", umri: 25, });
+    });
+
+    test("it should assign value to a ramani (map) key, upserting it", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} a = ${constants.KW.RAMANI}(jina: "Juma");
+            ${constants.KW.HIFADHI} a.jina = "Asha";
+            ${constants.KW.HIFADHI} a.umri = 30;
+        `;
+
+        mainInterpreter.interpreteProgram();
+        expect(mainInterpreter.environment().getHifadhi(mainInterpreter.getCurrentScope(), "a")).toEqual({ jina: "Asha", umri: 30, });
+    });
+
+    test("it should fail to assign a ramani key onto a non-map variable", () => {
+        parser.lexer().inputStream.code = `
+            ${constants.KW.HIFADHI} a = [1,2];
+            ${constants.KW.HIFADHI} a.jina = "Asha";
+        `;
+
+        expect(() => mainInterpreter.interpreteProgram()).toThrow();
+    });
+
     test("it should test integration of helper mda", () => {
         parser.lexer().inputStream.code = `
             ${constants.KW.HIFADHI} time = mda();
