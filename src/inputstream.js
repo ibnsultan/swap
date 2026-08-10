@@ -2,12 +2,21 @@ const constants = require("./constants.js");
 const fs = require("fs");
 
 class InputStream {
-    constructor (fileName) {
-        this.code = this.readProgramFile(fileName);
+    // options.rawSource lets a caller (e.g. the REPL, src/repl.js) feed
+    // in-memory source text directly instead of reading a .sw file off disk -
+    // options.displayName is what shows up in place of a filename in error
+    // messages (InputStream#throwError) for that case.
+    constructor (fileName, options = {}) {
+        if (options.rawSource != null) {
+            this.code = this.normalizeLineEndings(options.rawSource);
+            this.fileName = options.displayName || "<repl>";
+        } else {
+            this.code = this.readProgramFile(fileName);
+            this.fileName = fileName;
+        }
         this.line = 1;
         this.column = 0;
         this.position = 0;
-        this.fileName = fileName;
     }
 
     readProgramFile (fileName) {
@@ -40,6 +49,13 @@ class InputStream {
     // return the next value without discarding it from the stream
     peek () {
         return this.code.charAt(this.position);
+    }
+
+    // look one character further ahead than peek() without discarding
+    // anything - used by the lexer to distinguish "/" (divide) from the
+    // start of a "//" or "/*" comment.
+    peekNext () {
+        return this.code.charAt(this.position + 1);
     }
 
     throwError (msg) {
