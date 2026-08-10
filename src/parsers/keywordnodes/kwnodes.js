@@ -12,5 +12,6 @@ KwNodes[constants.KW.NJIA] = require("./kwnodekazi.js");
 KwNodes[constants.KW.CHAGUA] = require("./kwnodechagua.js");
 KwNodes[constants.KW.LETE] = require("./kwnodelete.js");
 KwNodes[constants.KW.ITA] = require("./kwnodeita.js");
+KwNodes[constants.KW.JARIBU] = require("./kwnodejaribu.js");
 
 module.exports = KwNodes;
