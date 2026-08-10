@@ -1,7 +1,8 @@
 const helperKaziDeclarations = {};
 helperKaziDeclarations["kaunta"] = require("./array_helpers/kaunta.js");
-helperKaziDeclarations["BADILI"] = require("./string_helpers/badiliHerufiKubwa.js");
-helperKaziDeclarations["badili"] = require("./string_helpers/badiliHerufiNdogo.js");
+helperKaziDeclarations["herufiKubwa"] = require("./string_helpers/herufiKubwa.js");
+helperKaziDeclarations["herufiNdogo"] = require("./string_helpers/herufiNdogo.js");
+helperKaziDeclarations["badili"] = require("./string_helpers/badili.js");
 helperKaziDeclarations["tafuta"] = require("./string_helpers/tafuta.js");
 helperKaziDeclarations["hariri"] = require("./string_helpers/hariri.js");
 helperKaziDeclarations["dai"] = require("./input_output/dai.js");
