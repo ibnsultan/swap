@@ -1,16 +1,13 @@
 # Swap
 
-## Swahili Programming Language
+## Swahili Programming Language (SWAP)
 
-**SWAP** was created so as to help non-English speaking natives to have a much easier understanding in Programming (i.e SWAHILI) in Tanzania.
-It is a programming Language that allows programmers to write codes in the Swahili Language construct.
+SWAP is a programming language that uses Swahili keywords to represent common programming constructs. It is designed to be simple and easy to learn, making it accessible for beginners and those who are more comfortable with the Swahili language.
 
-## Author
-- Abdulbasit Rubeiyya- @ibnsultan
+It was the first of its kind to bring programming concepts to Swahili speakers in a native language context, and it has inpired to the creation of other programming languages in Swahili, such as pyswahili and swahili-lang.
 
 ## Credits
-- node js
-- jScript
+Lots of credit to the author of yorlang @anoniscoding, he's the one who inspired me to create this programming language, and also for his great work on yorlang which was the base foundation for the initial version of swap.
 
 ## TUTORIAL
 
@@ -412,13 +409,13 @@ Result:
 
 Swap has several helper functions, the following is a list of those helper functions.
 
-#### BADILI
+#### herufiKubwa
 
-`BADILI` constant is used to convert a string value of a variable into uppercase letters. The constant must be written in uppercase.
+`herufiKubwa` is used to convert a string value of a variable into uppercase letters.
 
 **eg. 16**
 ```swap
-andika BADILI("herufi");
+andika herufiKubwa("herufi");
 ```
 
 Result
@@ -426,13 +423,13 @@ Result
 HERUFI
 ```
 
-#### badili
+#### herufiNdogo
 
-`badili` is the inverse of the `BADILI` constant. It converts a string value of a variable into lowercase letters. The constant must be written in lowercase.
+`herufiNdogo` is the inverse of `herufiKubwa`. It converts a string value of a variable into lowercase letters.
 
 **eg. 17**
 ```swap
-andika badili("HerUFI");
+andika herufiNdogo("HerUFI");
 ```
 
 Result
@@ -494,4 +491,56 @@ If the substring does not exist in the main string then it would have returned
 sikweli
 ```
 
-[**THE FULL TUTORIAL CAN BE FOUND HERE**](http://edtech.co.tz/swap/25/page)
+#### badili
+
+`badili` is Swap's `str_replace` equivalent. It replaces occurrences of a substring within a string, and supports several replacement styles depending on the arguments given: simple, multi, global ("yote"), and regex.
+
+**Simple replacement** — `badili(neno, kutafuta, badala)` replaces the first occurrence of `kutafuta` found in `neno` with `badala`.
+
+**eg. 21**
+```swap
+andika badili("wewe ni mbaya", "mbaya", "mzuri");
+```
+
+Result
+```txt
+wewe ni mzuri
+```
+
+**Global replacement** — passing `"yote"` (meaning "all") as a fourth argument replaces every occurrence of `kutafuta` instead of just the first.
+
+**eg. 22**
+```swap
+andika badili("mbaya mbaya mbaya", "mbaya", "mzuri", "yote");
+```
+
+Result
+```txt
+mzuri mzuri mzuri
+```
+
+**Multi replacement** — passing arrays of equal length for `kutafuta` and `badala` replaces every occurrence of each pair throughout the string, similar to PHP's array form of `str_replace`.
+
+**eg. 23**
+```swap
+andika badili("mbwa na paka", ["mbwa","paka"], ["ng'ombe","kuku"]);
+```
+
+Result
+```txt
+ng'ombe na kuku
+```
+
+Note that replacements happen sequentially, one pair at a time (like PHP's `str_replace`) — so swapping two values via `badili(neno, ["a","b"], ["b","a"])` will not work as expected, since the first replacement's output becomes the input for the second.
+
+**Regex replacement** — passing `"regex"` as a fourth argument treats `kutafuta` as a regular expression pattern. An optional fifth argument supplies regex flags (e.g. `"g"` for global, `"i"` for case-insensitive).
+
+**eg. 24**
+```swap
+andika badili("a1 b2 c3", "[0-9]", "#", "regex", "g");
+```
+
+Result
+```txt
+a# b# c#
+```
